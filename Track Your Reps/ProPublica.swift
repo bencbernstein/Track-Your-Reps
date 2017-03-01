@@ -20,7 +20,7 @@ class ProPublica {
     let houseURL = "https://api.propublica.org/congress/v1/members/house/NY/12/current.json"
     
         // completion: @escaping ([Any]) -> Void, progressCompletion: @escaping (Double) -> ())
-    func houseCall(completion: @escaping ([[String:String]]) -> Void) {
+    func houseCall(completion: @escaping ([Member]) -> Void) {
         Alamofire.request(houseURL, headers: headers).responseJSON { (response) in
             debugPrint(response)
             if let safeResponse = response.value as? [String: Any] {
@@ -30,14 +30,20 @@ class ProPublica {
         }
     }
     
-    func parseDistrict(response: [String: Any]) -> [[String:String]]? {
+    func parseDistrict(response: [String: Any]) -> [Member]? {
        // var memberArray = [String]()
-        guard let members = response["results"] as? [[String: String]] else { print("couldn't get members"); return nil}
+        guard let members = response["results"] as? [[String: Any]] else { print("couldn't get members"); return nil}
+        var returnMembers = [Member]()
         for each in members {
-            print ("each member is \(each)")
+            if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String {
+                print ("line 39 got hit")
+                let newMember = Member(name: name, party: party, twitterID: twitterID, phone: 555555555)
+                returnMembers.append(newMember)
+            }
+            
         }
        
-        return members
+        return returnMembers
         
     }
     
