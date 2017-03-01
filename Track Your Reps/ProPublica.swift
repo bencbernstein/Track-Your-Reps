@@ -36,7 +36,7 @@ class ProPublica {
         var returnMembers = [Member]()
         for each in members {
             if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String {
-                print ("line 39 got hit")
+
                 let newMember = Member(name: name, party: party, twitterID: twitterID, phone: 555555555)
                 returnMembers.append(newMember)
             }

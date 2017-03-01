@@ -35,8 +35,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var label: UILabel!
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-        cell.textLabel?.text = members[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MainCell
+        cell.nameLabel.text = members[indexPath.row].name
+        cell.partyLabel.text = String(describing: members[indexPath.row].party)
+        cell.twitterLabel.text = "@" + "\(members[indexPath.row].twitterID)"
+        
         return cell
     }
     

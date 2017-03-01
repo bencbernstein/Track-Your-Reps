@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEA1E6758AC00A96B3F /* ProPublica.swift */; };
 		B549CFED1E67845700A96B3F /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEC1E67845700A96B3F /* Member.swift */; };
+		B549CFEF1E6792B600A96B3F /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEE1E6792B600A96B3F /* MainCell.swift */; };
 		B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A34F11E6757FB0059DB2B /* AppDelegate.swift */; };
 		B58A34F41E6757FB0059DB2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A34F31E6757FB0059DB2B /* ViewController.swift */; };
 		B58A34F71E6757FB0059DB2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F51E6757FB0059DB2B /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Track_Your_Reps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B549CFEA1E6758AC00A96B3F /* ProPublica.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProPublica.swift; sourceTree = "<group>"; };
 		B549CFEC1E67845700A96B3F /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = ../Member.swift; sourceTree = "<group>"; };
+		B549CFEE1E6792B600A96B3F /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		B58A34EE1E6757FB0059DB2B /* Track Your Reps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Track Your Reps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58A34F11E6757FB0059DB2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58A34F31E6757FB0059DB2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				B58A34F31E6757FB0059DB2B /* ViewController.swift */,
 				B549CFEA1E6758AC00A96B3F /* ProPublica.swift */,
 				B58A34F51E6757FB0059DB2B /* Main.storyboard */,
+				B549CFEE1E6792B600A96B3F /* MainCell.swift */,
 				B58A34F81E6757FB0059DB2B /* Assets.xcassets */,
 				B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */,
 				B58A34FD1E6757FB0059DB2B /* Info.plist */,
@@ -222,6 +225,7 @@
 				B58A34F41E6757FB0059DB2B /* ViewController.swift in Sources */,
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B549CFED1E67845700A96B3F /* Member.swift in Sources */,
+				B549CFEF1E6792B600A96B3F /* MainCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
