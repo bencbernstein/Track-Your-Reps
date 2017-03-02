@@ -17,8 +17,8 @@ class ProPublica {
     ]
     
 
-    func fetchData(callType: callType, completion: @escaping ([Member]) -> Void) {
-        let url = callType.rawValue
+    func fetchData(callType: callType, currentstate: String, completion: @escaping ([Member]) -> Void) {
+        let url = callType.rawValue + "\(currentstate)/current.json"
         Alamofire.request(url, headers: headers).responseJSON { (response) in
             debugPrint(response)
             if let safeResponse = response.value as? [String: Any] {
@@ -64,7 +64,7 @@ class ProPublica {
     enum callType: String {
         case recentBill = "https://api.propublica.org/congress/v1/115/House/bills/introduced.json"
         case house = "https://api.propublica.org/congress/v1/members/new.json"
-        case byDistrict = "https://api.propublica.org/congress/v1/members/house/NY/11/current.json"
+        case byDistrict = "https://api.propublica.org/congress/v1/members/house/"
         
     }
     

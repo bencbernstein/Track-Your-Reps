@@ -13,31 +13,35 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
+    var currentState: String? {
+        didSet {
+            ProPublica().fetchData(callType: .byDistrict, currentstate: currentState!) { (returnMembers) in
+                for member in returnMembers {
+                    self.members.append(member)
+                }
+            }
+        }
+    }
+    
     var members = [Member]() {
         didSet {
             tableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager.delegate = self
-        tableView.delegate = self
-        tableView.rowHeight = 125
-        
         instantiateLocation()
         
-        let proPublicaAPI = ProPublica()
-        proPublicaAPI.fetchData(callType: .byDistrict) { (returnMembers) in
-            for member in returnMembers {
-                self.members.append(member)
-            }
-            print("results are \(self.members)")
-        }
-        
+        tableView.delegate = self
+        tableView.rowHeight = 125
+   
     }
-
+    
+    
+    
     // MARK: Table View Methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MainCell
@@ -51,7 +55,7 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-       return 1
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,30 +67,27 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         CLGeocoder().reverseGeocodeLocation(manager.location!) { (placemarks, error) in
             if placemarks?.count != 0 {
-               let pm = (placemarks?[0])! as CLPlacemark
-               self.displayLocationInfo(placemark: pm)
+                let pm = (placemarks?[0])! as CLPlacemark
+                self.displayLocationInfo(placemark: pm)
             } else {
-                print ("we had a problem with the data received\"")
+                print ("we had a problem with the data received")
             }
             
         }
     }
     
     func displayLocationInfo(placemark: CLPlacemark) {
-            locationManager.stopUpdatingLocation()
-            self.navigationItem.title = "Reps for \(String(describing: placemark.administrativeArea!))"
-            print(placemark.locality ?? "")
-            print(placemark.postalCode ??  "")
-            print(placemark.administrativeArea ??  "")
-            print(placemark.country ?? "")
-            print(placemark.administrativeArea ?? "")
-       
+        locationManager.stopUpdatingLocation()
+        self.navigationItem.title = "Reps for \(String(describing: placemark.administrativeArea!))"
+        guard (placemark.administrativeArea != nil) else { return }
+        if currentState != placemark.administrativeArea {
+            currentState = placemark.administrativeArea
+        }
         
     }
     
     func instantiateLocation() {
         self.locationManager.requestAlwaysAuthorization()
-        
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -98,7 +99,7 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     }
     
     
-
-
+    
+    
 }
 
