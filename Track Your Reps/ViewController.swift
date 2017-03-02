@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UITableViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet var tableView: UITableView!
     var members = [Member]() {
         didSet {
             tableView.reloadData()
@@ -21,10 +21,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         tableView.delegate = self
-        tableView.dataSource = self
-       
+        tableView.rowHeight = 125
+        
         let proPublicaAPI = ProPublica()
-        proPublicaAPI.houseCall { (returnMembers) in
+        proPublicaAPI.apiCall(callType: .test) { (returnMembers) in
             for member in returnMembers {
                 self.members.append(member)
             }
@@ -32,22 +32,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
     }
-    @IBOutlet weak var label: UILabel!
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MainCell
         cell.nameLabel.text = members[indexPath.row].name
         cell.partyLabel.text = String(describing: members[indexPath.row].party)
         cell.twitterLabel.text = "@" + "\(members[indexPath.row].twitterID)"
+        cell.recentLabel.text = "Voting on Intelligence Bill in 30 minutes"
         
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
        return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return members.count
     }
     

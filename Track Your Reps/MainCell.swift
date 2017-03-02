@@ -14,4 +14,5 @@ class MainCell: UITableViewCell {
     
     @IBOutlet weak var twitterLabel: UILabel!
     @IBOutlet weak var partyLabel: UILabel!
+    @IBOutlet weak var recentLabel: UILabel!
 }

@@ -16,12 +16,10 @@ class ProPublica {
         "Accept": "application/json"
     ]
     
-    let testURL = "https://api.propublica.org/congress/v1/members/new.json"
-    let houseURL = "https://api.propublica.org/congress/v1/members/house/NY/12/current.json"
-    
-        // completion: @escaping ([Any]) -> Void, progressCompletion: @escaping (Double) -> ())
-    func houseCall(completion: @escaping ([Member]) -> Void) {
-        Alamofire.request(houseURL, headers: headers).responseJSON { (response) in
+
+    func apiCall(callType: callType, completion: @escaping ([Member]) -> Void) {
+        let url = callType.rawValue
+        Alamofire.request(url, headers: headers).responseJSON { (response) in
             debugPrint(response)
             if let safeResponse = response.value as? [String: Any] {
                 completion(self.parseDistrict(response: safeResponse)!)
@@ -30,6 +28,7 @@ class ProPublica {
         }
     }
     
+    // parse distict
     func parseDistrict(response: [String: Any]) -> [Member]? {
        // var memberArray = [String]()
         guard let members = response["results"] as? [[String: Any]] else { print("couldn't get members"); return nil}
@@ -40,13 +39,13 @@ class ProPublica {
                 let newMember = Member(name: name, party: party, twitterID: twitterID, phone: 555555555)
                 returnMembers.append(newMember)
             }
-            
         }
-       
+
         return returnMembers
         
     }
     
+    // parse new memebers return dict
     func parseNew(response: [String: Any]) -> [String]? {
         guard let members = response["results"] as? [Any] else { print("couldn't get members"); return nil}
         print ("members are \(members)")
@@ -60,6 +59,15 @@ class ProPublica {
             print ("Member: \(member)")
         }
         return memberArray
+    }
+    
+    enum callType: String {
+        case recentBill = "https://api.propublica.org/congress/v1/115/House/bills/introduced.json"
+        case house = "https://api.propublica.org/congress/v1/members/new.json"
+        case test = "https://api.propublica.org/congress/v1/members/house/NY/12/current.json"
+        
+        
+        
     }
     
 }
