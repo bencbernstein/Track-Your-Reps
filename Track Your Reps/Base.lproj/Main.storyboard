@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,43 +26,42 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMa-jY-wiD">
-                                            <rect key="frame" x="15" y="23" width="43" height="24"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                            <rect key="frame" x="10" y="10" width="38" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbx-xF-MOi">
-                                            <rect key="frame" x="82" y="14" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                            <rect key="frame" x="328.5" y="10" width="36.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bN-5q-2SL" userLabel="Update">
+                                            <rect key="frame" x="169" y="41" width="37.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp0-LD-fFU">
-                                            <rect key="frame" x="154" y="15" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bN-5q-2SL" userLabel="Update">
-                                            <rect key="frame" x="23" y="55.5" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="169" y="8" width="36.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Zp0-LD-fFU" firstAttribute="top" secondItem="MEC-8Y-J1I" secondAttribute="topMargin" constant="15" id="5ov-y9-kPe"/>
-                                        <constraint firstItem="jbx-xF-MOi" firstAttribute="leading" secondItem="YMa-jY-wiD" secondAttribute="trailing" constant="15" id="8uz-7c-i0r"/>
-                                        <constraint firstItem="YMa-jY-wiD" firstAttribute="top" secondItem="MEC-8Y-J1I" secondAttribute="topMargin" constant="15" id="A1x-wy-2Io"/>
-                                        <constraint firstItem="Zp0-LD-fFU" firstAttribute="leading" secondItem="jbx-xF-MOi" secondAttribute="trailing" constant="15" id="DX6-N8-DhS"/>
-                                        <constraint firstItem="jbx-xF-MOi" firstAttribute="top" secondItem="MEC-8Y-J1I" secondAttribute="topMargin" constant="15" id="JPm-ca-BDm"/>
                                         <constraint firstItem="6bN-5q-2SL" firstAttribute="centerY" secondItem="MEC-8Y-J1I" secondAttribute="centerY" id="Q9Y-N6-79K"/>
                                         <constraint firstItem="6bN-5q-2SL" firstAttribute="centerX" secondItem="MEC-8Y-J1I" secondAttribute="centerX" id="aad-Vb-8dK"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="6bN-5q-2SL" secondAttribute="bottom" constant="15" id="hoc-i7-kQj"/>
+                                        <constraint firstItem="jbx-xF-MOi" firstAttribute="leading" secondItem="Zp0-LD-fFU" secondAttribute="trailing" constant="10" id="f0Z-oa-bjx"/>
+                                        <constraint firstItem="Zp0-LD-fFU" firstAttribute="leading" secondItem="YMa-jY-wiD" secondAttribute="trailing" constant="10" id="qxO-qi-fan"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
-                                    <constraint firstItem="YMa-jY-wiD" firstAttribute="leading" secondItem="nrR-9h-3Oz" secondAttribute="leading" constant="15" id="1uD-AP-auj"/>
+                                    <constraint firstItem="YMa-jY-wiD" firstAttribute="leading" secondItem="nrR-9h-3Oz" secondAttribute="leading" constant="10" id="1uD-AP-auj"/>
+                                    <constraint firstItem="YMa-jY-wiD" firstAttribute="top" secondItem="nrR-9h-3Oz" secondAttribute="top" constant="10" id="7NI-56-8ik"/>
+                                    <constraint firstItem="jbx-xF-MOi" firstAttribute="top" secondItem="nrR-9h-3Oz" secondAttribute="top" constant="10" id="AkV-7b-hPz"/>
+                                    <constraint firstItem="Zp0-LD-fFU" firstAttribute="top" secondItem="nrR-9h-3Oz" secondAttribute="top" constant="10" id="RjW-av-7fJ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="nameLabel" destination="YMa-jY-wiD" id="Z2s-qm-gxL"/>

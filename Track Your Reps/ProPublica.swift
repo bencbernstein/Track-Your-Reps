@@ -17,7 +17,7 @@ class ProPublica {
     ]
     
 
-    func apiCall(callType: callType, completion: @escaping ([Member]) -> Void) {
+    func fetchData(callType: callType, completion: @escaping ([Member]) -> Void) {
         let url = callType.rawValue
         Alamofire.request(url, headers: headers).responseJSON { (response) in
             debugPrint(response)
@@ -28,14 +28,14 @@ class ProPublica {
         }
     }
     
+    
+    
     // parse distict
     func parseDistrict(response: [String: Any]) -> [Member]? {
-       // var memberArray = [String]()
         guard let members = response["results"] as? [[String: Any]] else { print("couldn't get members"); return nil}
         var returnMembers = [Member]()
         for each in members {
             if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String {
-
                 let newMember = Member(name: name, party: party, twitterID: twitterID, phone: 555555555)
                 returnMembers.append(newMember)
             }
@@ -64,9 +64,7 @@ class ProPublica {
     enum callType: String {
         case recentBill = "https://api.propublica.org/congress/v1/115/House/bills/introduced.json"
         case house = "https://api.propublica.org/congress/v1/members/new.json"
-        case test = "https://api.propublica.org/congress/v1/members/house/NY/12/current.json"
-        
-        
+        case byDistrict = "https://api.propublica.org/congress/v1/members/house/NY/11/current.json"
         
     }
     

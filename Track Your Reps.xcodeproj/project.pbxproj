@@ -15,6 +15,7 @@
 		B58A34F71E6757FB0059DB2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F51E6757FB0059DB2B /* Main.storyboard */; };
 		B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F81E6757FB0059DB2B /* Assets.xcassets */; };
 		B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */; };
+		B5B189D81E68992F00F9E6AF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B189D71E68992F00F9E6AF /* MapKit.framework */; };
 		FE72E0A8F71CCE302DBAFE90 /* Pods_Track_Your_Reps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		B58A34F81E6757FB0059DB2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B58A34FB1E6757FB0059DB2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58A34FD1E6757FB0059DB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B189D71E68992F00F9E6AF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BDA79378503B9B55821DD638 /* Pods-Track Your Reps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Track Your Reps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Track Your Reps/Pods-Track Your Reps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B189D81E68992F00F9E6AF /* MapKit.framework in Frameworks */,
 				FE72E0A8F71CCE302DBAFE90 /* Pods_Track_Your_Reps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +61,7 @@
 		79019F1EB2601D335D539FFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5B189D71E68992F00F9E6AF /* MapKit.framework */,
 				9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */,
 			);
 			name = Frameworks;
@@ -84,17 +88,33 @@
 		B58A34F01E6757FB0059DB2B /* Track Your Reps */ = {
 			isa = PBXGroup;
 			children = (
+				B5B189DA1E68998B00F9E6AF /* Views */,
+				B5B189D91E68998300F9E6AF /* Models */,
 				B58A34F11E6757FB0059DB2B /* AppDelegate.swift */,
-				B549CFEC1E67845700A96B3F /* Member.swift */,
-				B58A34F31E6757FB0059DB2B /* ViewController.swift */,
-				B549CFEA1E6758AC00A96B3F /* ProPublica.swift */,
-				B58A34F51E6757FB0059DB2B /* Main.storyboard */,
-				B549CFEE1E6792B600A96B3F /* MainCell.swift */,
 				B58A34F81E6757FB0059DB2B /* Assets.xcassets */,
 				B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */,
 				B58A34FD1E6757FB0059DB2B /* Info.plist */,
 			);
 			path = "Track Your Reps";
+			sourceTree = "<group>";
+		};
+		B5B189D91E68998300F9E6AF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B549CFEA1E6758AC00A96B3F /* ProPublica.swift */,
+				B549CFEC1E67845700A96B3F /* Member.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B5B189DA1E68998B00F9E6AF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B58A34F51E6757FB0059DB2B /* Main.storyboard */,
+				B549CFEE1E6792B600A96B3F /* MainCell.swift */,
+				B58A34F31E6757FB0059DB2B /* ViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,8 +152,13 @@
 				TargetAttributes = {
 					B58A34ED1E6757FB0059DB2B = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = R2Y4F8J6CR;
+						DevelopmentTeam = SRFS2YY3XR;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -347,10 +372,11 @@
 			baseConfigurationReference = BDA79378503B9B55821DD638 /* Pods-Track Your Reps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = R2Y4F8J6CR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SRFS2YY3XR;
 				INFOPLIST_FILE = "Track Your Reps/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.burningflowers.oneminuteworkout.Track-Your-Reps";
+				PRODUCT_BUNDLE_IDENTIFIER = com.burningflowe.rs.what;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -361,10 +387,11 @@
 			baseConfigurationReference = 0DE53F1ECEE94284723FF3F5 /* Pods-Track Your Reps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = R2Y4F8J6CR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SRFS2YY3XR;
 				INFOPLIST_FILE = "Track Your Reps/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.burningflowers.oneminuteworkout.Track-Your-Reps";
+				PRODUCT_BUNDLE_IDENTIFIER = com.burningflowe.rs.what;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
