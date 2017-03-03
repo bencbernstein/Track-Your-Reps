@@ -16,32 +16,62 @@ class ProPublica {
         "Accept": "application/json"
     ]
     
-
-    func fetchData(callType: callType, currentstate: String, completion: @escaping ([Member]) -> Void) {
-        let url = callType.rawValue + "\(currentstate)/current.json"
+    
+    func fetchAllMembersForState(currentstate: String, completion: @escaping ([Member]) -> Void) {
+        let url = "https://api.propublica.org/congress/v1/members/house/\(currentstate)/current.json"
         Alamofire.request(url, headers: headers).responseJSON { (response) in
             debugPrint(response)
             if let safeResponse = response.value as? [String: Any] {
-                completion(self.parseDistrict(response: safeResponse)!)
+                completion(self.parseAllMembers(response: safeResponse)!)
             }
             
         }
     }
     
+    func fetchMember(memberID: String, completion: @escaping ([VotingPosition]) -> Void) {
+        let url = "https://api.propublica.org/congress/v1/members/\(memberID)/votes.json"
+        Alamofire.request(url, headers: headers).responseJSON { (response) in
+            debugPrint(response)
+            if let safeResponse = response.value as? [String: Any] {
+                completion(self.parseMember(response: safeResponse)!)
+            }
+            
+        }
+    }
     
-    
-    // parse distict
-    func parseDistrict(response: [String: Any]) -> [Member]? {
+   
+    func parseAllMembers(response: [String: Any]) -> [Member]? {
         guard let members = response["results"] as? [[String: Any]] else { print("couldn't get members"); return nil}
         var returnMembers = [Member]()
         for each in members {
-            if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String {
-                let newMember = Member(name: name, party: party, twitterID: twitterID, phone: 555555555)
+            if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String, let id = each["member_id"] as? String {
+                let newMember = Member(id: id, name: name, party: party, twitterID: twitterID, phone: 555555555)
                 returnMembers.append(newMember)
             }
         }
-
+        
         return returnMembers
+        
+    }
+    
+    func parseMember(response: [String: Any]) -> [VotingPosition]? {
+        guard let member = response["results"] as? [[String: Any]] else { print("couldn't get members"); return nil}
+        print("member is \(member)")
+        guard let votes = member[0]["votes"] as? [Any] else { print("couldn't get votes"); return nil}
+        print("got back \(votes.count) votes")
+        var votingPositions = [VotingPosition]()
+        for eachUnCast in votes {
+            if let each = eachUnCast as? [String: Any] {
+                if let position = each["position"] as? String, let description = each["description"] as? String, let date = each["date"] as? String {
+                    let newPosition = VotingPosition(description: description, question: nil, date: date, time: nil, position: Position(rawValue: position)!)
+                    votingPositions.append(newPosition)
+                    print ("\(position) on \(description) at \(date)")
+                }
+            }
+            
+        }
+ 
+        return votingPositions
         
     }
     
@@ -61,11 +91,14 @@ class ProPublica {
         return memberArray
     }
     
-    enum callType: String {
-        case recentBill = "https://api.propublica.org/congress/v1/115/House/bills/introduced.json"
-        case house = "https://api.propublica.org/congress/v1/members/new.json"
-        case byDistrict = "https://api.propublica.org/congress/v1/members/house/"
-        
-    }
+    // not used right now ...
+    //    enum callType: String {
+    //
+    //        //case recentBill = "https://api.propublica.org/congress/v1/115/House/bills/introduced.json"
+    //        case byMember = "https://api.propublica.org/congress/v1/members/"
+    //        //case house = "https://api.propublica.org/congress/v1/members/new.json"
+    //        case byDistrict = "https://api.propublica.org/congress/v1/members/house/"
+    
+    //    }
     
 }

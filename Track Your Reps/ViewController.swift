@@ -12,13 +12,12 @@ import CoreLocation
 class ViewController: UITableViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
+    var votingPostions = [VotingPosition]()
     
     var currentState: String? {
         didSet {
-            ProPublica().fetchData(callType: .byDistrict, currentstate: currentState!) { (returnMembers) in
-                for member in returnMembers {
-                    self.members.append(member)
-                }
+            ProPublica().fetchAllMembersForState(currentstate: currentState!) { (returnMembers) in
+                self.members = returnMembers.flatMap { return $0 }
             }
         }
     }
@@ -26,8 +25,16 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     var members = [Member]() {
         didSet {
             tableView.reloadData()
+            ProPublica().fetchMember(memberID: "K000388") { (votingpositions) in
+                print("voting positions are now \(votingpositions)")
+                self.votingPostions = votingpositions
+            }
         }
     }
+    
+    // for each member in members, fetchmember with member.ID
+    // when you get it, take out the latest voting position
+    // append latesting position to that member
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +49,7 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     
     
     
+    
     // MARK: Table View Methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MainCell
@@ -52,7 +60,6 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
         
         return cell
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -72,7 +79,6 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
             } else {
                 print ("we had a problem with the data received")
             }
-            
         }
     }
     
@@ -97,9 +103,6 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
         }
         
     }
-    
-    
-    
     
 }
 

@@ -13,12 +13,15 @@ class Member {
     var party: Party
     var twitterID: String
     var phone: Int
+    var id: String
     
-    init(name: String, party: Party, twitterID: String, phone: Int) {
+    init(id: String, name: String, party: Party, twitterID: String, phone: Int) {
         self.name = name
         self.party = party
         self.twitterID = twitterID
         self.phone = phone
+        self.id = id
+        
     }
     
 }

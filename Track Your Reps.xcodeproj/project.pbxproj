@@ -15,6 +15,7 @@
 		B58A34F71E6757FB0059DB2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F51E6757FB0059DB2B /* Main.storyboard */; };
 		B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F81E6757FB0059DB2B /* Assets.xcassets */; };
 		B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */; };
+		B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */; };
 		B5B189D81E68992F00F9E6AF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B189D71E68992F00F9E6AF /* MapKit.framework */; };
 		FE72E0A8F71CCE302DBAFE90 /* Pods_Track_Your_Reps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		B58A34F81E6757FB0059DB2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B58A34FB1E6757FB0059DB2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58A34FD1E6757FB0059DB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotingPosition.swift; sourceTree = "<group>"; };
 		B5B189D71E68992F00F9E6AF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BDA79378503B9B55821DD638 /* Pods-Track Your Reps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Track Your Reps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Track Your Reps/Pods-Track Your Reps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 			children = (
 				B549CFEA1E6758AC00A96B3F /* ProPublica.swift */,
 				B549CFEC1E67845700A96B3F /* Member.swift */,
+				B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */,
+				B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */,
 				B58A34F41E6757FB0059DB2B /* ViewController.swift in Sources */,
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B549CFED1E67845700A96B3F /* Member.swift in Sources */,
