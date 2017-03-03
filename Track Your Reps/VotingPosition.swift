@@ -12,15 +12,15 @@ class VotingPosition {
     var description: String?
     var question: String?
     var date: String?
-    var time: Int?
+    var time: String?
     var position: String?
     
-    init(description: String, question: String?, date: String, time: Int?, position: Position) {
+    init(description: String, question: String?, date: String, time: String?, position: Position?) {
         self.description = description
         self.question = question
         self.date = date
         self.time = time
-        self.position = position.rawValue
+        self.position = position?.rawValue
         
     }
     

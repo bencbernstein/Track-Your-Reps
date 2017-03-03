@@ -44,9 +44,10 @@ class ProPublica {
         guard let members = response["results"] as? [[String: Any]] else { print("couldn't get members"); return nil}
         var returnMembers = [Member]()
         for each in members {
-            if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String, let id = each["member_id"] as? String {
-                let newMember = Member(id: id, name: name, party: party, twitterID: twitterID, phone: 555555555)
-                returnMembers.append(newMember)
+            if let name = each["name"] as? String, let party = Party(rawValue: each["party"] as! String), let twitterID = each["twitter_id"] as? String, let id = each["id"] as? String {
+                print("didset 49")
+               let newMember = Member(id: id, name: name, party: party, twitterID: twitterID, phone: 555555555)
+               returnMembers.append(newMember)
             }
         }
         
@@ -62,8 +63,8 @@ class ProPublica {
         var votingPositions = [VotingPosition]()
         for eachUnCast in votes {
             if let each = eachUnCast as? [String: Any] {
-                if let position = each["position"] as? String, let description = each["description"] as? String, let date = each["date"] as? String {
-                    let newPosition = VotingPosition(description: description, question: nil, date: date, time: nil, position: Position(rawValue: position)!)
+                if let position = each["position"] as? String, let description = each["description"] as? String, let date = each["date"] as? String, let time = each["time"] as? String {
+                    let newPosition = VotingPosition(description: description, question: nil, date: date, time: time, position: Position(rawValue: position))
                     votingPositions.append(newPosition)
                     print ("\(position) on \(description) at \(date)")
                 }

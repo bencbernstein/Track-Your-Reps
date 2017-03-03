@@ -14,27 +14,31 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var votingPostions = [VotingPosition]()
     
+    var members = [Member]() {
+        didSet {
+            tableView.reloadData()
+            print("didset members")
+            print("members are \(members)")
+            for each in members {
+                ProPublica().fetchMember(memberID: each.id) { (votingpositions) in
+                    print("got the array of positions")
+                    each.latestPosition = votingpositions[0]
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
+    }
+    
     var currentState: String? {
         didSet {
+            print("set current state to \(currentState)")
             ProPublica().fetchAllMembersForState(currentstate: currentState!) { (returnMembers) in
                 self.members = returnMembers.flatMap { return $0 }
             }
         }
     }
     
-    var members = [Member]() {
-        didSet {
-            tableView.reloadData()
-            ProPublica().fetchMember(memberID: "K000388") { (votingpositions) in
-                print("voting positions are now \(votingpositions)")
-                self.votingPostions = votingpositions
-            }
-        }
-    }
-    
-    // for each member in members, fetchmember with member.ID
-    // when you get it, take out the latest voting position
-    // append latesting position to that member
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +60,14 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
         cell.nameLabel.text = members[indexPath.row].name
         cell.partyLabel.text = String(describing: members[indexPath.row].party)
         cell.twitterLabel.text = "@" + "\(members[indexPath.row].twitterID)"
-        cell.recentLabel.text = "Voting on Intelligence Bill in 30 minutes"
         
+        if let latest = members[indexPath.row].latestPosition {
+             cell.recentLabel.text = "Voted \(latest.position!) on \(latest.description!)"
+            
+             cell.dateLabel.text = "\(latest.date!) at \(latest.time!)"
+        }
+
+
         return cell
     }
     

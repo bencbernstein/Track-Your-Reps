@@ -11,9 +11,11 @@ import Foundation
 class Member {
     var name: String
     var party: Party
+    var latestPosition: VotingPosition?
     var twitterID: String
     var phone: Int
     var id: String
+    //var votingPositions: [VotingPosition]
     
     init(id: String, name: String, party: Party, twitterID: String, phone: Int) {
         self.name = name
@@ -21,6 +23,7 @@ class Member {
         self.twitterID = twitterID
         self.phone = phone
         self.id = id
+        
         
     }
     
