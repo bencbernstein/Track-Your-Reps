@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
- <string>Please allow general location so we can get your representatives. </string>
- <key>NSLocationWhenInUseUsageDescription</key>
- <string>Please allow general location so we can get your representatives.</string>
+	<string>Please allow general location so we can get your representatives. </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow general location so we can get your representatives.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -26,8 +26,6 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
