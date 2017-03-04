@@ -18,6 +18,8 @@ class EventSummaryViewController: UIViewController {
     
     func setupView() {
         
+        self.view.backgroundColor = UIColor.white
+        
         let eventTitleLabel: UILabel = {
             let label = UILabel()
             label.text = "Event Title"
