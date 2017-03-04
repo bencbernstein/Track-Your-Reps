@@ -1,89 +1,76 @@
 //
-//  FeedTableViewCell.swift
-//  Track Your Reps
+//  BookTableViewCell.swift
+//  DynamicCellHeightProgrammatic
 //
-//  Created by Benjamin Bernstein on 3/4/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
+//  Created by Satinder Singh on 7/3/16.
+//  Copyright © 2016 Satinder. All rights reserved.
 //
 
 import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     
+    let eventTitleLabel = UILabel()
+    let eventActionLabel = UILabel()
+    let repActionLabel = UILabel()
+    
     static let reuseID = "feedcell"
     var hasAddedConstraints = false
     
-    let eventTitleLabel: UILabel = {
-        let label = UILabel()
-        //label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let eventActionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let repActionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
-    
-    // cell color
-    override init (style: UITableViewCellStyle, reuseIdentifier: String?) {
+    // MARK: Initalizers
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = UIColor.white
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
         if !hasAddedConstraints {
-            let marginsGuide = contentView.layoutMarginsGuide
+            let marginGuide = contentView.layoutMarginsGuide
+            
+            // configure titleLabel
             contentView.addSubview(eventTitleLabel)
-            eventTitleLabel.translatesAutoresizingMaskIntoConstraints = false
             
-            eventTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-            eventTitleLabel.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.6).isActive = true
-            eventTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-            // eventTitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 20).is
-            //eventTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 20).isActive = true
             
+            // configure authorLabel
             contentView.addSubview(eventActionLabel)
-            eventActionLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            eventTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+            eventTitleLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+            eventTitleLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+            eventTitleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+            
+            eventTitleLabel.numberOfLines = 0
+            eventTitleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
 
-            eventActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: 10).isActive = true
-            eventActionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-            eventActionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 0.8).isActive = true
+            eventActionLabel.translatesAutoresizingMaskIntoConstraints = false
+            eventActionLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+            eventActionLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+            eventActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor).isActive = true
+            eventActionLabel.numberOfLines = 0
+            
+            eventActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
+            eventActionLabel.textColor = UIColor.lightGray
             
             contentView.addSubview(repActionLabel)
             repActionLabel.translatesAutoresizingMaskIntoConstraints = false
+            repActionLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+            repActionLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+            repActionLabel.topAnchor.constraint(equalTo: eventActionLabel.bottomAnchor).isActive = true
+            repActionLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
+            repActionLabel.numberOfLines = 0
             
-            repActionLabel.topAnchor.constraint(equalTo: eventActionLabel.bottomAnchor, constant: 10).isActive = true
-            repActionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-            repActionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 0.8).isActive = true
-    
+            repActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
+            repActionLabel.textColor = UIColor.lightGray
+            repActionLabel.textAlignment = .right
             
-
             
-            hasAddedConstraints = true
+           
+          
+            
         }
+        hasAddedConstraints = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {

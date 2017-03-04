@@ -1,4 +1,4 @@
-//
+
 //  TableViewController.swift
 //  Track Your Reps
 //
@@ -12,12 +12,13 @@ class FeedTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.lightGray
+        
         setupView()
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+            }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -25,21 +26,15 @@ class FeedTableViewController: UITableViewController {
 
     
     func setupView() {
-        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: FeedTableViewCell.reuseID)
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: FeedTableViewCell.reuseID)
         
-  
+      
     }
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-     
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -49,15 +44,16 @@ class FeedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventSummaryVC = EventSummaryViewController()
         self.navigationController?.pushViewController(eventSummaryVC, animated: true)
+       
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedcell", for: indexPath) as! FeedTableViewCell
+        cell.eventTitleLabel.text = "Event Title Text."
         cell.eventActionLabel.text = "Event Action Text. This is a description of the event that has happened."
-        cell.eventTitleLabel.text = "Event Title Text"
-        cell.repActionLabel.text = "Representative voted .Decision"
+        cell.repActionLabel.text = "Rep voted [X]"
 
-        
+     
         return cell
     }
 

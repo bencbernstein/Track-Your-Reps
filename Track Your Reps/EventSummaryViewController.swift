@@ -22,13 +22,15 @@ class EventSummaryViewController: UIViewController {
         
         let eventTitleLabel: UILabel = {
             let label = UILabel()
+            label.font = UIFont(name: "Avenir-DemiBold", size: 16)
             label.text = "Event Title"
             return label
         }()
         
         let eventSummaryLabel: UILabel = {
             let label = UILabel()
-            label.text = "Event Summary. Nulla accumsan, lectus ac eleifend convallis, lectus mauris tristique enim, ut ultricies felis nibh a nisi. Fusce efficitur lectus eu ultrices condimentum. Pellentesque in elementum velit. Sed fermentum, dolor vel dapibus pretium, lacus ligula placerat dolor, id laoreet tellus ligula id diam. Curabitur lacinia odio id lectus rhoncus rhoncus ac nec odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Duis a nibh non urna viverra finibus. Ut justo tortor, euismod vitae laoreet nec, porttitor nec massa. Nam tincidunt bibendum eleifend."
+            label.font = UIFont(name: "Avenir-Book", size: 12)
+            label.text = "Event Summary. Nulla accumsan, lectus ac eleifend convallis, lectus mauris tristique enim, ut ultricies felis nibh a nisi. Fusce efficitur lectus eu ultrices condimentum. Pellentesque in elementum velit. Sed fermentum, dolor vel dapibus pretium, lacus."
             label.numberOfLines = 0
             return label
         }()
@@ -40,7 +42,7 @@ class EventSummaryViewController: UIViewController {
         eventSummaryLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(eventSummaryLabel)
         
-        eventTitleLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 70).isActive = true
+        eventTitleLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 80).isActive = true
         eventTitleLabel.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: 20).isActive = true
         eventTitleLabel.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.8).isActive = true
         
