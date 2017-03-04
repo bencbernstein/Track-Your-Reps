@@ -57,7 +57,7 @@ class FeedTableViewCell: UITableViewCell {
             repActionLabel.numberOfLines = 0
             
             repActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
-            repActionLabel.textColor = UIColor.lightGray
+            repActionLabel.textColor = UIColor.black
             repActionLabel.textAlignment = .right
             
             

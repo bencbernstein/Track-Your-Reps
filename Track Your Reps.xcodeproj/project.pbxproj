@@ -10,6 +10,7 @@
 		B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEA1E6758AC00A96B3F /* ProPublica.swift */; };
 		B549CFED1E67845700A96B3F /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEC1E67845700A96B3F /* Member.swift */; };
 		B549CFEF1E6792B600A96B3F /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEE1E6792B600A96B3F /* MainCell.swift */; };
+		B5567D391E6B836A000260B4 /* RepSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryViewController.swift */; };
 		B57DD3F11E6B28ED00C4E277 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableViewController.swift */; };
 		B57DD3F31E6B2B2400C4E277 /* RepsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F21E6B2B2400C4E277 /* RepsTableViewController.swift */; };
 		B57DD3F51E6B2B7100C4E277 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F41E6B2B7100C4E277 /* ContainerViewController.swift */; };
@@ -31,6 +32,7 @@
 		B549CFEA1E6758AC00A96B3F /* ProPublica.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProPublica.swift; sourceTree = "<group>"; };
 		B549CFEC1E67845700A96B3F /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = ../Member.swift; sourceTree = "<group>"; };
 		B549CFEE1E6792B600A96B3F /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		B5567D381E6B836A000260B4 /* RepSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepSummaryViewController.swift; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		B57DD3F21E6B2B2400C4E277 /* RepsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepsTableViewController.swift; sourceTree = "<group>"; };
 		B57DD3F41E6B2B7100C4E277 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -79,13 +81,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B5567D3A1E6B83CD000260B4 /* Table Views */ = {
+			isa = PBXGroup;
+			children = (
+				B57DD3F01E6B28ED00C4E277 /* FeedTableViewController.swift */,
+				B57DD3F21E6B2B2400C4E277 /* RepsTableViewController.swift */,
+				B57DD3F81E6B2F9900C4E277 /* Cells */,
+			);
+			name = "Table Views";
+			sourceTree = "<group>";
+		};
+		B5567D3B1E6B83D2000260B4 /* Detail Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5567D381E6B836A000260B4 /* RepSummaryViewController.swift */,
+				B57DD3FB1E6B573000C4E277 /* EventSummaryViewController.swift */,
+			);
+			name = "Detail Views";
+			sourceTree = "<group>";
+		};
 		B57DD3EF1E6B281700C4E277 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B57DD3F81E6B2F9900C4E277 /* Cells */,
-				B57DD3F01E6B28ED00C4E277 /* FeedTableViewController.swift */,
-				B57DD3FB1E6B573000C4E277 /* EventSummaryViewController.swift */,
-				B57DD3F21E6B2B2400C4E277 /* RepsTableViewController.swift */,
+				B5567D3B1E6B83D2000260B4 /* Detail Views */,
+				B5567D3A1E6B83CD000260B4 /* Table Views */,
 				B57DD3F41E6B2B7100C4E277 /* ContainerViewController.swift */,
 			);
 			name = ViewControllers;
@@ -282,6 +301,7 @@
 				B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* RepTableViewCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableViewController.swift in Sources */,
+				B5567D391E6B836A000260B4 /* RepSummaryViewController.swift in Sources */,
 				B57DD3F11E6B28ED00C4E277 /* FeedTableViewController.swift in Sources */,
 				B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */,
 				B58A34F41E6757FB0059DB2B /* ViewController.swift in Sources */,

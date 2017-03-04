@@ -12,8 +12,6 @@ class RepsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.lightGray
         setupView()
         
     }
@@ -24,24 +22,30 @@ class RepsTableViewController: UITableViewController {
     }
     
     func setupView() {
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(RepTableViewCell.self, forCellReuseIdentifier: RepTableViewCell.reuseID)
     }
     
     // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
-    
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 5
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repSummaryVC = RepSummaryViewController()
+        self.navigationController?.pushViewController(repSummaryVC, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "repcell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "repcell", for: indexPath) as! RepTableViewCell
+        //cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
+        cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
+        cell.repNameLabel.text = "Rep Name"
+        cell.repContactLabel.text = "Phone // Twitter "
         return cell
     }
     
