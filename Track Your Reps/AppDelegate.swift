@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Track Your Reps
-//
-//  Created by Benjamin Bernstein on 3/1/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -18,25 +10,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = UIColor.white
-        let controller = ContainerViewController() as UIViewController
+        let controller = TabBarController() as UIViewController
         let navigationController = UINavigationController(rootViewController: controller)
-        self.window?.rootViewController = navigationController
-    
-        self.window?.makeKeyAndVisible()
-
-        
-        
+        setupWindow(with: navigationController)
         return true
     }
     
-    func setWindowRoot(to controller: UIViewController?) {
-        window?.rootViewController = controller
-        
+    func setupWindow(with navigationController: UINavigationController) {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.backgroundColor = UIColor.white
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
     }
-    
-    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -59,7 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    
 }
-

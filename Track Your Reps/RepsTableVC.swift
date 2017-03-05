@@ -1,53 +1,45 @@
-//
-//  TableViewController.swift
-//  Track Your Reps
-//
-//  Created by Benjamin Bernstein on 3/4/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
-//
-
 import UIKit
 
-class RepsTableViewController: UITableViewController {
+class RepsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        
+        setupLayout()
     }
+}
+
+
+// MARK: - Layout
+
+extension RepsTableVC {
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func setupView() {
+    func setupLayout() {
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(RepTableViewCell.self, forCellReuseIdentifier: RepTableViewCell.reuseID)
+        tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
     }
-    
-    // MARK: - Table view data source
+}
 
-    
+
+// MARK: - Table View Methods
+
+extension RepsTableVC {
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 5
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repSummaryVC = RepSummaryViewController()
+        let repSummaryVC = RepSummaryVC()
         self.navigationController?.pushViewController(repSummaryVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "repcell", for: indexPath) as! RepTableViewCell
-        //cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
+        let cell = tableView.dequeueReusableCell(withIdentifier: RepTableCell.reuseID, for: indexPath) as! RepTableCell
         cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
         cell.repNameLabel.text = "Rep Name"
         cell.repContactLabel.text = "Phone // Twitter "
         return cell
     }
-    
-    
 }
