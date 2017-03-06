@@ -1,4 +1,4 @@
-#########################
+pen#########################
 # .gitignore file for Xcode 7 Source Projects
 # can be used for watchOS, tvOS, iOS, OSX, Swift development
 #
@@ -221,3 +221,4 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+Secret.swift

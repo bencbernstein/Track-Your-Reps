@@ -11,6 +11,7 @@
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
 		B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEA1E6758AC00A96B3F /* ProPublica.swift */; };
 		B549CFED1E67845700A96B3F /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEC1E67845700A96B3F /* Member.swift */; };
+		B54D2B111E6E0DEC00011A19 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secret.swift */; };
 		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
 		B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */; };
 		B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */; };
@@ -33,6 +34,7 @@
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
 		B549CFEA1E6758AC00A96B3F /* ProPublica.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublica.swift; path = Models/ProPublica.swift; sourceTree = "<group>"; };
 		B549CFEC1E67845700A96B3F /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = Models/Member.swift; sourceTree = "<group>"; };
+		B54D2B101E6E0DEC00011A19 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableVC.swift; path = Views/FeedTableVC.swift; sourceTree = "<group>"; };
 		B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepsTableVC.swift; path = Views/RepsTableVC.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		A70396241E6CF086001BC549 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B54D2B101E6E0DEC00011A19 /* Secret.swift */,
 				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
 			);
 			name = Lib;
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */,
+				B54D2B111E6E0DEC00011A19 /* Secret.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
 				A70396231E6CCA78001BC549 /* Networking.swift in Sources */,
