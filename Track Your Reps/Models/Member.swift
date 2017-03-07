@@ -23,8 +23,7 @@ class Member {
         self.twitterID = twitterID
         self.phone = phone
         self.id = id
-        
-        
+  
     }
     
 }
