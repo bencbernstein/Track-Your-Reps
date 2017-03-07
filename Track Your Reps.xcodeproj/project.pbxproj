@@ -13,6 +13,7 @@
 		B549CFED1E67845700A96B3F /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEC1E67845700A96B3F /* Member.swift */; };
 		B54D2B111E6E0DEC00011A19 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secret.swift */; };
 		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
+		B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
 		B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */; };
 		B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */; };
 		B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */; };
@@ -36,6 +37,7 @@
 		B549CFEC1E67845700A96B3F /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = Models/Member.swift; sourceTree = "<group>"; };
 		B54D2B101E6E0DEC00011A19 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
+		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SenateJSON.json; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableVC.swift; path = Views/FeedTableVC.swift; sourceTree = "<group>"; };
 		B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepsTableVC.swift; path = Views/RepsTableVC.swift; sourceTree = "<group>"; };
 		B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				B54D2B101E6E0DEC00011A19 /* Secret.swift */,
 				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
+				B57A4F381E6F5DB700DC1326 /* SenateJSON.json */,
 			);
 			name = Lib;
 			path = ..;
@@ -295,6 +298,7 @@
 				B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */,
 				B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */,
 				B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */,
+				B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */,
 				A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */,
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B549CFED1E67845700A96B3F /* Member.swift in Sources */,
