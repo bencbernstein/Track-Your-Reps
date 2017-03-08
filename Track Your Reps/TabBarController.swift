@@ -1,5 +1,6 @@
 import UIKit
 
+
 class TabBarController: UITabBarController, UITabBarControllerDelegate, OnBoardDelegate {
     
     let defaults = UserDefaults.standard
@@ -21,9 +22,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, OnBoardD
     }
 }
 
-
-
-// MARK: - View Controllers
 
 typealias ViewControllersInitializer = TabBarController
 extension ViewControllersInitializer {
@@ -48,9 +46,8 @@ extension ViewControllersInitializer {
 }
 
 
-// MARK: - OnBoard Methods
-
-extension ViewControllersInitializer {
+typealias OnBoarding = TabBarController
+extension OnBoarding {
     
     func onBoardIfNeeded() {
         if let loadedState = defaults.string(forKey: "state") {
@@ -60,11 +57,10 @@ extension ViewControllersInitializer {
             onBoardVC.delegate = self
             self.present(onBoardVC, animated: true, completion: nil)
             // this gets called immediately below ..
-                   }
+        }
     }
     
     func StateResponse(state: String) {
         defaults.set(state, forKey: "state")
     }
 }
-

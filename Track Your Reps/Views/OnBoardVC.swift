@@ -1,12 +1,10 @@
-//
-//  OnBoardViewController.swift
-//  Track Your Reps
-//
-//  Created by Benjamin Bernstein on 3/7/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
-//
-
 import UIKit
+
+
+protocol OnBoardDelegate {
+    func StateResponse(state: String)
+}
+
 
 class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -23,24 +21,18 @@ class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
+        setupView()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func buttonAction(sender: UIButton!) {
         let state = statePickerData[pickerView.selectedRow(inComponent: 0)]
         self.delegate?.StateResponse(state: state)
         self.dismiss(animated: true, completion: nil)
-
     }
-    
 }
 
-//MARK: - PickerView Delegates and Data Sources
+
+// MARK: - PickerView Delegates and Data Sources
 
 extension OnBoardViewController {
     
@@ -57,42 +49,41 @@ extension OnBoardViewController {
     }
 }
 
+
+// MARK: - Layout
+
 extension OnBoardViewController {
     
-    func setUpView() {
+    func setupView() {
         self.view.backgroundColor = UIColor.white
         pickerView.delegate = self
         pickerView.dataSource = self
-        setUpWelcomeLabel()
-        setUpPickerView()
-        setUpSubmitButton()
+        setupWelcomeLabel()
+        setupPickerView()
+        setupSubmitButton()
         [welcomeLabel, pickerView,submitButton].forEach { self.view.addSubview($0)}
-        setUpConstraints()
-        
+        setupConstraints()
     }
     
-    func setUpWelcomeLabel() {
+    func setupWelcomeLabel() {
         welcomeLabel.font = UIFont(name: "Avenir-DemiBold", size: 16)
         welcomeLabel.text = "Please select your state so we can find your reps."
         welcomeLabel.textAlignment = .center
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
-    func setUpPickerView() {
+    func setupPickerView() {
         pickerView.translatesAutoresizingMaskIntoConstraints = false
-    
     }
 
-    func setUpSubmitButton() {
+    func setupSubmitButton() {
         submitButton.setTitle("Submit", for: .normal)
-        submitButton.setTitleColor(UIColor.blue, for: .normal)
+        submitButton.setTitleColor(.blue, for: .normal)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         submitButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-    
     }
     
-    func setUpConstraints() {
+    func setupConstraints() {
         welcomeLabel.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: 20).isActive = true
         welcomeLabel.centerXAnchor.constraint(equalTo: marginsGuide.centerXAnchor).isActive = true
         welcomeLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 80).isActive = true
@@ -104,21 +95,5 @@ extension OnBoardViewController {
       
         submitButton.centerXAnchor.constraint(equalTo: marginsGuide.centerXAnchor).isActive = true
         submitButton.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 20).isActive = true
-        
-
-
-        }
+    }
 }
-
-
-protocol OnBoardDelegate {
-    func StateResponse(state: String)
-  
-}
-
-
-
-
-
-    
-   
