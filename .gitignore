@@ -221,4 +221,4 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
-Secret.swift
+Secrets.swift

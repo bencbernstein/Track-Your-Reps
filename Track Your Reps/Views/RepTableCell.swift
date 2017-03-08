@@ -66,7 +66,7 @@ extension RepTableCell {
         repImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
         repImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
         repImage.trailingAnchor.constraint(equalTo: repNameLabel.leadingAnchor).isActive = true
-        repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
+        // repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
         repImage.clipsToBounds = true
         repImage.backgroundColor = .red
     }
