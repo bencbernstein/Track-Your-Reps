@@ -1,6 +1,4 @@
 import UIKit
-import Moya
-import SwiftyJSON
 
 class RepSummaryVC: UIViewController {
     
@@ -14,7 +12,6 @@ class RepSummaryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        exampleRequest()
     }
 }
 
@@ -51,35 +48,5 @@ extension RepSummaryVC {
         }
         eventTitleLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 80).isActive = true
         repSummaryLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: 20).isActive = true
-    }
-}
-
-
-// MARK: - API
-
-typealias Backend = RepSummaryVC
-extension Backend {
-    
-    func exampleRequest() {
-        
-        let key = Secrets.proPublicaApiKey
-        
-        let endpointClosure = { (target: ProPublicaAPI) -> Endpoint<ProPublicaAPI> in
-            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-            return defaultEndpoint.adding(newHTTPHeaderFields: ["X-API-Key": key.rawValue])
-        }
-        
-        let provider = MoyaProvider<ProPublicaAPI>(endpointClosure: endpointClosure)
-        
-        provider.request(.membersForState(state: "NY")) { result in
-            switch result {
-            case let .success(moyaResponse):
-                let data = moyaResponse.data
-                let json = JSON(data: data)
-                print(json)
-            case let .failure(error):
-                print("Error: \(error)")
-            }
-        }
     }
 }
