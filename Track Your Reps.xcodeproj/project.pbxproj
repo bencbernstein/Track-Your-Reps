@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A70396231E6CCA78001BC549 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* Networking.swift */; };
+		A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */; };
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
 		A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */; };
 		A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		0DE53F1ECEE94284723FF3F5 /* Pods-Track Your Reps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Track Your Reps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Track Your Reps/Pods-Track Your Reps.release.xcconfig"; sourceTree = "<group>"; };
 		9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Track_Your_Reps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A70396221E6CCA78001BC549 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = "Track Your Reps/Networking/Networking.swift"; sourceTree = "<group>"; };
+		A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaAPI.swift; path = "Track Your Reps/Networking/ProPublicaAPI.swift"; sourceTree = "<group>"; };
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
 		A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateBiosJSON.json; path = "Track Your Reps/Lib/SenateBiosJSON.json"; sourceTree = "<group>"; };
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		A70396211E6CCA15001BC549 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				A70396221E6CCA78001BC549 /* Networking.swift */,
+				A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */,
 				A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */,
 			);
 			name = Networking;
