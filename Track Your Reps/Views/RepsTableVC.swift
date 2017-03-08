@@ -1,16 +1,25 @@
 import UIKit
+import Moya
+import SwiftyJSON
 
 class RepsTableVC: UITableViewController {
     
+    var congressMembers = [CongressMember]()
+    
+    var userState: String {
+        return UserDefaults.standard.string(forKey: "state")!
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        congressMembers = CongressMember.all(for: "NY")
         setupLayout()
     }
 }
 
 
 // MARK: - Layout
-
+    
 extension RepsTableVC {
     
     func setupLayout() {
@@ -26,8 +35,7 @@ extension RepsTableVC {
 extension RepsTableVC {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 5
+        return congressMembers.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -37,9 +45,10 @@ extension RepsTableVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepTableCell.reuseID, for: indexPath) as! RepTableCell
-        cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
-        cell.repNameLabel.text = "Rep Name"
-        cell.repContactLabel.text = "Phone // Twitter "
+        // cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
+        let member = congressMembers[indexPath.row]
+        cell.repNameLabel.text = member.fullName
+        cell.repContactLabel.text = "Twitter: \(member.twitter_account)"
         return cell
     }
 }

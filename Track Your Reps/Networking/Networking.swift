@@ -8,6 +8,7 @@ enum ProPublicaAPI {
     case membersForState(state: String)
 }
 
+
 extension ProPublicaAPI: TargetType {
     
     public var parameterEncoding: ParameterEncoding {
@@ -58,3 +59,19 @@ extension ProPublicaAPI: TargetType {
 }
 
 
+extension ProPublicaAPI {
+    
+    var proPublicaApiKey: String { return Secrets.proPublicaApiKey.rawValue }
+    
+    func headers() -> [String: String] {
+        let assigned: [String: String] = [
+            "X-API-Key": proPublicaApiKey
+        ]
+        return assigned
+    }
+}
+
+
+func url(_ route: Moya.TargetType) -> String {
+    return route.baseURL.appendingPathComponent(route.path).absoluteString
+}

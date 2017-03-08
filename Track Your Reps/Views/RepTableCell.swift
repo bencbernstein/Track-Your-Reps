@@ -29,7 +29,6 @@ class RepTableCell: UITableViewCell {
 
 
 // MARK: - Layout
-
 extension RepTableCell {
     
     func setupView() {
