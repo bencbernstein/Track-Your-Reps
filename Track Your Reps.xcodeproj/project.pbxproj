@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		A70396231E6CCA78001BC549 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* Networking.swift */; };
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
+		A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */; };
 		B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEA1E6758AC00A96B3F /* ProPublica.swift */; };
 		B549CFED1E67845700A96B3F /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEC1E67845700A96B3F /* Member.swift */; };
-		B54D2B111E6E0DEC00011A19 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secret.swift */; };
+		B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secrets.swift */; };
 		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
 		B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
 		B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */; };
@@ -25,7 +26,7 @@
 		B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */; };
 		B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */; };
 		B5B189D81E68992F00F9E6AF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B189D71E68992F00F9E6AF /* MapKit.framework */; };
-		B5E1072F1E6F68460017A15B /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E1072E1E6F68460017A15B /* OnBoardViewController.swift */; };
+		B5E1072F1E6F68460017A15B /* OnBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E1072E1E6F68460017A15B /* OnBoardVC.swift */; };
 		FE72E0A8F71CCE302DBAFE90 /* Pods_Track_Your_Reps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,11 +35,12 @@
 		9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Track_Your_Reps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70396221E6CCA78001BC549 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = "Track Your Reps/Networking/Networking.swift"; sourceTree = "<group>"; };
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
+		A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateBiosJSON.json; path = "Track Your Reps/Lib/SenateBiosJSON.json"; sourceTree = "<group>"; };
 		B549CFEA1E6758AC00A96B3F /* ProPublica.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublica.swift; path = Models/ProPublica.swift; sourceTree = "<group>"; };
 		B549CFEC1E67845700A96B3F /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = Models/Member.swift; sourceTree = "<group>"; };
-		B54D2B101E6E0DEC00011A19 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		B54D2B101E6E0DEC00011A19 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Track Your Reps/Lib/Secrets.swift"; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
-		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SenateJSON.json; sourceTree = "<group>"; };
+		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateJSON.json; path = "Track Your Reps/Lib/SenateJSON.json"; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableVC.swift; path = Views/FeedTableVC.swift; sourceTree = "<group>"; };
 		B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepsTableVC.swift; path = Views/RepsTableVC.swift; sourceTree = "<group>"; };
 		B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		B58A34FD1E6757FB0059DB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VotingPosition.swift; path = Models/VotingPosition.swift; sourceTree = "<group>"; };
 		B5B189D71E68992F00F9E6AF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		B5E1072E1E6F68460017A15B /* OnBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewController.swift; path = Views/OnBoardViewController.swift; sourceTree = "<group>"; };
+		B5E1072E1E6F68460017A15B /* OnBoardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardVC.swift; path = Views/OnBoardVC.swift; sourceTree = "<group>"; };
 		BDA79378503B9B55821DD638 /* Pods-Track Your Reps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Track Your Reps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Track Your Reps/Pods-Track Your Reps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,8 +101,9 @@
 		A70396241E6CF086001BC549 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				B54D2B101E6E0DEC00011A19 /* Secret.swift */,
+				B54D2B101E6E0DEC00011A19 /* Secrets.swift */,
 				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
+				A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */,
 				B57A4F381E6F5DB700DC1326 /* SenateJSON.json */,
 			);
 			name = Lib;
@@ -116,7 +119,7 @@
 				B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */,
 				B57DD3F61E6B2F9500C4E277 /* RepTableCell.swift */,
 				B57DD3F91E6B30E700C4E277 /* FeedTableCell.swift */,
-				B5E1072E1E6F68460017A15B /* OnBoardViewController.swift */,
+				B5E1072E1E6F68460017A15B /* OnBoardVC.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			files = (
 				B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */,
 				B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */,
+				A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */,
-				B54D2B111E6E0DEC00011A19 /* Secret.swift in Sources */,
+				B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
 				A70396231E6CCA78001BC549 /* Networking.swift in Sources */,
@@ -303,7 +307,7 @@
 				B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */,
 				B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */,
 				A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */,
-				B5E1072F1E6F68460017A15B /* OnBoardViewController.swift in Sources */,
+				B5E1072F1E6F68460017A15B /* OnBoardVC.swift in Sources */,
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B549CFED1E67845700A96B3F /* Member.swift in Sources */,
 				B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */,

@@ -62,11 +62,11 @@ extension Backend {
     
     func exampleRequest() {
         
-        let key = Secret.key
+        let key = Secrets.proPublicaApiKey
         
         let endpointClosure = { (target: ProPublicaAPI) -> Endpoint<ProPublicaAPI> in
             let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-            return defaultEndpoint.adding(newHTTPHeaderFields: ["X-API-Key": key])
+            return defaultEndpoint.adding(newHTTPHeaderFields: ["X-API-Key": key.rawValue])
         }
         
         let provider = MoyaProvider<ProPublicaAPI>(endpointClosure: endpointClosure)
