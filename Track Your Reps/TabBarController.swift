@@ -12,12 +12,13 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, OnBoardD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        onBoardIfNeeded()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        onBoardIfNeeded()
         setupViewControllers()
     }
 }
@@ -48,19 +49,19 @@ extension ViewControllersInitializer {
 
 typealias OnBoarding = TabBarController
 extension OnBoarding {
-    
+
     func onBoardIfNeeded() {
-        if let loadedState = defaults.string(forKey: "state") {
-            print("User's state is set as \(loadedState)")
+        if let state = defaults.string(forKey: "state")  {
+            print("User's state is set as \(state)")
         } else {
             let onBoardVC = OnBoardViewController()
             onBoardVC.delegate = self
             self.present(onBoardVC, animated: true, completion: nil)
-            // this gets called immediately below ..
         }
     }
     
     func StateResponse(state: String) {
         defaults.set(state, forKey: "state")
+        print("set state response to \(state)")
     }
 }

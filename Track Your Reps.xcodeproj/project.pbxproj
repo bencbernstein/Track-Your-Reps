@@ -13,7 +13,9 @@
 		A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */; };
 		A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */; };
 		A7C2D7D41E6FC6BC00B8E325 /* SenateJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
-		B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */ = {isa = PBXBuildFile; fileRef = B549CFEA1E6758AC00A96B3F /* ProPublica.swift */; };
+		B52420951E705B8E007FB0CD /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420941E705B8E007FB0CD /* DataStore.swift */; };
+		B52420971E705C03007FB0CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420961E705C03007FB0CD /* User.swift */; };
+		B52420991E70620B007FB0CD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420981E70620B007FB0CD /* Event.swift */; };
 		B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secrets.swift */; };
 		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
 		B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
@@ -26,7 +28,6 @@
 		B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A34F11E6757FB0059DB2B /* AppDelegate.swift */; };
 		B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F81E6757FB0059DB2B /* Assets.xcassets */; };
 		B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */; };
-		B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */; };
 		B5B189D81E68992F00F9E6AF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B189D71E68992F00F9E6AF /* MapKit.framework */; };
 		B5E1072F1E6F68460017A15B /* OnBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E1072E1E6F68460017A15B /* OnBoardVC.swift */; };
 		FE72E0A8F71CCE302DBAFE90 /* Pods_Track_Your_Reps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */; };
@@ -40,7 +41,9 @@
 		A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateBiosJSON.json; path = "Track Your Reps/Lib/SenateBiosJSON.json"; sourceTree = "<group>"; };
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
 		A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CongressMember.swift; path = Models/CongressMember.swift; sourceTree = "<group>"; };
-		B549CFEA1E6758AC00A96B3F /* ProPublica.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublica.swift; path = Models/ProPublica.swift; sourceTree = "<group>"; };
+		B52420941E705B8E007FB0CD /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		B52420961E705C03007FB0CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B52420981E70620B007FB0CD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B54D2B101E6E0DEC00011A19 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Track Your Reps/Lib/Secrets.swift"; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
 		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateJSON.json; path = "Track Your Reps/Lib/SenateJSON.json"; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		B58A34F81E6757FB0059DB2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B58A34FB1E6757FB0059DB2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58A34FD1E6757FB0059DB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VotingPosition.swift; path = Models/VotingPosition.swift; sourceTree = "<group>"; };
 		B5B189D71E68992F00F9E6AF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B5E1072E1E6F68460017A15B /* OnBoardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardVC.swift; path = Views/OnBoardVC.swift; sourceTree = "<group>"; };
 		BDA79378503B9B55821DD638 /* Pods-Track Your Reps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Track Your Reps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Track Your Reps/Pods-Track Your Reps.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,9 +167,10 @@
 		B5B189D91E68998300F9E6AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B549CFEA1E6758AC00A96B3F /* ProPublica.swift */,
 				A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */,
-				B5AD32D71E68F18300D2CB91 /* VotingPosition.swift */,
+				B52420941E705B8E007FB0CD /* DataStore.swift */,
+				B52420961E705C03007FB0CD /* User.swift */,
+				B52420981E70620B007FB0CD /* Event.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -302,14 +305,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B549CFEB1E6758AC00A96B3F /* ProPublica.swift in Sources */,
 				B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
+				B52420991E70620B007FB0CD /* Event.swift in Sources */,
 				A70396231E6CCA78001BC549 /* Networking.swift in Sources */,
 				B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */,
 				B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */,
-				B5AD32D81E68F18300D2CB91 /* VotingPosition.swift in Sources */,
+				B52420951E705B8E007FB0CD /* DataStore.swift in Sources */,
 				B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */,
 				A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */,
 				A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */,
@@ -319,6 +322,7 @@
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
 				B57DD3FA1E6B30E700C4E277 /* FeedTableCell.swift in Sources */,
 				A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */,
+				B52420971E705C03007FB0CD /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

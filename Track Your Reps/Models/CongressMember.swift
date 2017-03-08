@@ -1,7 +1,8 @@
 import Foundation
 import SwiftyJSON
+import Moya
 
-struct CongressMember {
+class CongressMember {
     
     var api_uri: String
     var domain: String
@@ -27,6 +28,8 @@ struct CongressMember {
     var url: String
     var votes_with_party_pct: String
     
+    var events = [Event]()
+
     var fullName: String {
         return "\(first_name) \(last_name)"
     }
@@ -55,7 +58,32 @@ struct CongressMember {
         self.state = json["state"].stringValue
         self.missed_votes_pct = json["missed_votes_pct"].stringValue
         self.votes_with_party_pct = json["votes_with_party_pct"].stringValue
+        eventCall(for: id)
     }
+}
+
+typealias Events = CongressMember
+extension Events {
+    
+    func eventCall(for id: String)  {
+        
+        let endpoint: ProPublicaAPI = .votesForMember(id: id)
+        ProPublicaProvider.sharedProvider.request(endpoint) { (result) in
+            switch result {
+            case let .success(moyaResponse):
+                let data = moyaResponse.data
+                let json = JSON(data: data)
+                if let votes = json["results"][0]["votes"].array {
+                    votes.forEach({ (vote) in
+                        self.events.append(Event(from: vote, name: self.fullName)!)
+                    })
+                }
+            default:
+                print("awful")
+            }
+        }
+    }
+    
 }
 
 
@@ -66,6 +94,8 @@ extension CongressMember {
         return members.flatMap { (member: JSON) -> CongressMember? in
             let isFromState = member["state"].stringValue == state
             return isFromState ? CongressMember(from: member) : nil
+            
+            
         }
     }
     

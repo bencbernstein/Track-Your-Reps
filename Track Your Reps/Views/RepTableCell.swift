@@ -61,7 +61,7 @@ extension RepTableCell {
     func setupRepImage() {
         repImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
         repImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        repImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        //repImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
         repImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
         repImage.heightAnchor.constraint(equalTo: repImage.widthAnchor).isActive = true
         repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")

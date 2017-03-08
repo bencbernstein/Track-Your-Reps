@@ -15,7 +15,6 @@ class RepSummaryVC: UIViewController {
     }
 }
 
-
 // MARK: - Layout
 
 extension RepSummaryVC {
