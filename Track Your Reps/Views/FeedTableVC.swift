@@ -2,12 +2,12 @@ import UIKit
 
 class FeedTableVC: UITableViewController {
     
-    
-    let congressMembers = DataStore.sharedInstance.members
+    let congressMembers = User.sharedInstance.dataStore.members
     var allEvents = [Event]()
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("line 10 congressmembers are\(congressMembers[0].events)")
         setupLayout()
     }
     
@@ -41,7 +41,7 @@ extension FeedTableVC {
 extension FeedTableVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if congressMembers.isEmpty {
+        if (congressMembers.isEmpty) {
             return 0
         } else {
             return congressMembers[0].events.count

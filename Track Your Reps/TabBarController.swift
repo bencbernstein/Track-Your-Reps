@@ -4,7 +4,7 @@ import UIKit
 class TabBarController: UITabBarController, UITabBarControllerDelegate, OnBoardDelegate {
     
     let defaults = UserDefaults.standard
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = tabBarItem.title
@@ -12,7 +12,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, OnBoardD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        print("User class state is \(User.sharedInstance.state)")
         
     }
     

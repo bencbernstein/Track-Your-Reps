@@ -14,8 +14,7 @@ final class DataStore {
     let provider = ProPublicaProvider.sharedProvider
     var members : [CongressMember] = []
 
-    static let sharedInstance = DataStore()
-    private init () {
+    init () {
         print("members are \(members)")
         members = CongressMember.all(for: UserDefaults.standard.string(forKey: "state")!)
         print("members are \(members)")

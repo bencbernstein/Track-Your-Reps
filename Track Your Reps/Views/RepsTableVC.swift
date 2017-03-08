@@ -4,7 +4,7 @@ import SwiftyJSON
 
 class RepsTableVC: UITableViewController {
     
-    let congressMembers = DataStore.sharedInstance.members
+    let congressMembers = User.sharedInstance.dataStore.members
 
     override func viewDidLoad() {
         super.viewDidLoad()
