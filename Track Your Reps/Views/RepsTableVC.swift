@@ -12,7 +12,7 @@ class RepsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        congressMembers = CongressMember.all(for: "NY")
+        congressMembers = CongressMember.all(for: userState)
         setupLayout()
     }
 }
