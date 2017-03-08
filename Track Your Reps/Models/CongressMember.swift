@@ -27,6 +27,8 @@ struct CongressMember {
     var url: String
     var votes_with_party_pct: String
     
+    var wikipediaBio: String = ""
+    
     var fullName: String {
         return "\(first_name) \(last_name)"
     }
@@ -63,9 +65,17 @@ extension CongressMember {
     
     static func all(for state: String) -> [CongressMember] {
         let members = proPublicaJson()["results"][0]["members"].arrayValue
-        return members.flatMap { (member: JSON) -> CongressMember? in
-            let isFromState = member["state"].stringValue == state
-            return isFromState ? CongressMember(from: member) : nil
+        var membersForState = members.flatMap { (member: JSON) -> CongressMember? in
+            return member["state"].stringValue == state ? CongressMember(from: member) : nil
+        }
+        addBio(for: &membersForState)
+        return membersForState
+    }
+    
+    fileprivate static func addBio(for members: inout [CongressMember]) {
+        biosJson().arrayValue.forEach { bioJson in
+            guard let i = members.map({ $0.id }).index(of:  bioJson["id"].stringValue) else { return }
+            members[i].wikipediaBio = bioJson["biography"].stringValue
         }
     }
     
@@ -83,4 +93,3 @@ extension CongressMember {
         return JSON(data: jsonData! as Data)
     }
 }
-
