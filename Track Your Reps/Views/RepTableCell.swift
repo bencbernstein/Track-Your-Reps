@@ -1,8 +1,8 @@
 import UIKit
 
 class RepTableCell: UITableViewCell {
-
-    let repImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    
+    let repImage = UIImageView()
     let repNameLabel = UILabel()
     let repContactLabel = UILabel()
     
@@ -15,7 +15,7 @@ class RepTableCell: UITableViewCell {
     var marginsGuide: UILayoutGuide {
         return contentView.layoutMarginsGuide
     }
-
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -41,8 +41,7 @@ extension RepTableCell {
     }
     
     func setupRepNameLabel() {
-        repNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        repNameLabel.leadingAnchor.constraint(equalTo: repImage.leadingAnchor).isActive = true
+        repNameLabel.leadingAnchor.constraint(equalTo: repImage.trailingAnchor, constant: 10).isActive = true
         repNameLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
         repNameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
         repNameLabel.numberOfLines = 0
@@ -51,8 +50,7 @@ extension RepTableCell {
     }
     
     func setupRepContactLabel() {
-        repContactLabel.translatesAutoresizingMaskIntoConstraints = false
-        repContactLabel.leadingAnchor.constraint(equalTo: repImage.trailingAnchor).isActive = true
+        repContactLabel.leadingAnchor.constraint(equalTo: repNameLabel.leadingAnchor).isActive = true
         repContactLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
         repContactLabel.topAnchor.constraint(equalTo: repNameLabel.bottomAnchor).isActive = true
         repContactLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
@@ -62,12 +60,12 @@ extension RepTableCell {
     }
     
     func setupRepImage() {
-        repImage.translatesAutoresizingMaskIntoConstraints = false
         repImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
         repImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        repImage.trailingAnchor.constraint(equalTo: repNameLabel.leadingAnchor).isActive = true
+        repImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        repImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
+        repImage.heightAnchor.constraint(equalTo: repImage.widthAnchor).isActive = true
         repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
-        repImage.clipsToBounds = true
         repImage.backgroundColor = .red
     }
 }
