@@ -4,19 +4,13 @@ import SwiftyJSON
 
 class RepsTableVC: UITableViewController {
     
-    var congressMembers = [CongressMember]()
-    
-    var userState: String {
-        return UserDefaults.standard.string(forKey: "state")!
-    }
-    
+    let congressMembers = User.sharedInstance.dataStore.members
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        congressMembers = CongressMember.all(for: "NY")
         setupLayout()
     }
 }
-
 
 // MARK: - Layout
     
@@ -28,7 +22,6 @@ extension RepsTableVC {
         tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
     }
 }
-
 
 // MARK: - Table View Methods
 

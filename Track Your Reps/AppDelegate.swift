@@ -20,7 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
+        if let loadedState = UserDefaults.standard.string(forKey: "state") {
+            print("line 24")
+            User.sharedInstance.state = loadedState
+            self.window?.makeKeyAndVisible()
+        } else {
+            // do onboarding here
+            self.window?.makeKeyAndVisible()
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

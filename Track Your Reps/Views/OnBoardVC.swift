@@ -5,7 +5,6 @@ protocol OnBoardDelegate {
     func StateResponse(state: String)
 }
 
-
 class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var welcomeLabel = UILabel()
@@ -27,9 +26,11 @@ class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func buttonAction(sender: UIButton!) {
         let state = statePickerData[pickerView.selectedRow(inComponent: 0)]
         self.delegate?.StateResponse(state: state)
-        self.dismiss(animated: true, completion: nil)
+        super.dismiss(animated: true, completion: nil)
     }
+    
 }
+
 
 
 // MARK: - PickerView Delegates and Data Sources

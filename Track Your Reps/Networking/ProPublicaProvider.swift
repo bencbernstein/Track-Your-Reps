@@ -20,26 +20,5 @@ class ProPublicaProvider {
         let endpoint = Endpoint<ProPublicaAPI>(url: url(target), sampleResponseClosure: sampleResponseClosure, method: method, parameters: parameters, parameterEncoding: target.parameterEncoding)
         return endpoint.adding(newHTTPHeaderFields: target.headers())
     }
+    
 }
-
-
-//// Example Request
-//
-//class Backend {
-//
-//    let provider = ProPublicaProvider.sharedProvider
-//    
-//    func exampleRequest() {
-//        
-//        let endpoint: ProPublicaAPI = .votesForMember(id: "10")
-//        
-//        ProPublicaProvider.sharedProvider.request(endpoint) { (result) in
-//            switch result {
-//            case let .success(moyaResponse):
-//                print(moyaResponse.data)
-//            default:
-//                print("awful")
-//            }
-//        }
-//    }
-//}

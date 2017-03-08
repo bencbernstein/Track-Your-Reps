@@ -21,7 +21,7 @@ extension ProPublicaAPI: TargetType {
         switch self {
             
         case .votesForMember(let id):
-            return "/members/house/\(id)/votes.json"
+            return "/members/\(id)/votes.json"
             
         case .membersForState(let state):
             return "/members/house/\(state)/current.json"
