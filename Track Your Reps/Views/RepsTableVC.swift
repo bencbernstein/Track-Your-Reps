@@ -39,6 +39,7 @@ extension RepsTableVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repSummaryVC = RepSummaryVC()
+        repSummaryVC.member = congressMembers[indexPath.row]
         self.navigationController?.pushViewController(repSummaryVC, animated: true)
     }
     
