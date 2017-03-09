@@ -14,7 +14,7 @@ class RepTableCell: UITableViewCell {
         didSet {
             guard let member = member else { return }
             contactLabel.text = "Twitter: \(member.twitterAccount)"
-            memberImage.image = cropImage(for: member)
+            memberImage.image = cropCircularImage(for: member)
             nameLabel.text = member.fullName
         }
     }
@@ -43,17 +43,7 @@ class RepTableCell: UITableViewCell {
 // MARK: - Layout
 
 extension RepTableCell {
-    
-    func cropImage(for member: CongressMember) -> UIImage? {
-        guard let memberImage = UIImage(named: member.id) else { return nil }
-        let imageWidth = CGFloat(memberImage.size.width)
-        // Crop from the bottom, because the face is in the upper half
-        let square = cropBottom(image: memberImage, width: imageWidth)
-        let radius = Float(imageWidth) / 2
-        let circle = cropCircle(image: square, radius: radius)
-        return circle
-    }
-    
+        
     func setupView() {
         views.forEach { contentView.addSubview($0) }
         views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
