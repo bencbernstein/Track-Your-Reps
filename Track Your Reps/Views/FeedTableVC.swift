@@ -1,3 +1,7 @@
+///
+/// FeedTableVC.swift
+///
+
 import UIKit
 
 class FeedTableVC: UITableViewController {
@@ -7,12 +11,12 @@ class FeedTableVC: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("line 10 congressmembers are\(congressMembers[0].events)")
         setupLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         congressMembers.forEach { (member) in
             member.events.forEach({ (event) in
                 allEvents.append(event)
@@ -58,7 +62,7 @@ extension FeedTableVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableCell.reuseID, for: indexPath) as! FeedTableCell
         
         cell.eventTitleLabel.text = allEvents[indexPath.row].description
-        cell.repActionLabel.text = allEvents[indexPath.row].repName! + " voted " + allEvents[indexPath.row].position!
+        // cell.repActionLabel.text = allEvents[indexPath.row].repName! + " voted " + allEvents[indexPath.row].position!
         return cell
     }
 }

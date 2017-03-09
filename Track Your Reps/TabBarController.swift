@@ -1,25 +1,34 @@
+///
+/// TabBarController.swift
+///
+
 import UIKit
 
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate, OnBoardDelegate {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
-    let defaults = UserDefaults.standard
-   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = tabBarItem.title
+    // USA State (ex. NY)
+    var userState: String? {
+        return UserDefaults.standard.string(forKey: "state")
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        print("User class state is \(User.sharedInstance.state)")
-        
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        onBoardIfNeeded()
+        self.title = tabBarItem.title
+        setupUser()
         setupViewControllers()
+    }
+    
+    func setupUser() {
+        guard let userState = userState else { onboardUser(); return }
+        User.sharedInstance.state = userState
+        User.sharedInstance.dataStore.members = CongressMember.all(for: userState)
+        print("User state: \(User.sharedInstance.state)")
+    }
+    
+    func onboardUser() {
+        let onBoardVC = OnBoardViewController()
+        self.present(onBoardVC, animated: true, completion: nil)
     }
 }
 
@@ -43,25 +52,5 @@ extension ViewControllersInitializer {
         let repsBarItem = UITabBarItem(title: "Reps", image: nil, selectedImage: nil)
         repsTableView.tabBarItem = repsBarItem
         return repsTableView
-    }
-}
-
-
-typealias OnBoarding = TabBarController
-extension OnBoarding {
-
-    func onBoardIfNeeded() {
-        if let state = defaults.string(forKey: "state")  {
-            print("User's state is set as \(state)")
-        } else {
-            let onBoardVC = OnBoardViewController()
-            onBoardVC.delegate = self
-            self.present(onBoardVC, animated: true, completion: nil)
-        }
-    }
-    
-    func StateResponse(state: String) {
-        defaults.set(state, forKey: "state")
-        print("set state response to \(state)")
     }
 }

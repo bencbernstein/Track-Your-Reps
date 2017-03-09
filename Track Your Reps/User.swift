@@ -1,21 +1,16 @@
-//
-//  User.swift
-//  Track Your Reps
-//
-//  Created by Benjamin Bernstein on 3/8/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
-//
+///
+/// User.swift
+///
 
 import Foundation
 
 final class User {
-    let defaults = UserDefaults.standard
-    static let sharedInstance = User()
-    var state = ""
-    var dataStore = DataStore()
-    private init () {
-      
-    }
     
-  
+    static let sharedInstance = User()
+    
+    var dataStore = DataStore()
+    let defaults = UserDefaults.standard
+    var state = ""
+    
+    private init() {}
 }

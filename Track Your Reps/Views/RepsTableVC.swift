@@ -1,6 +1,10 @@
-import UIKit
+///
+/// RepsTableVC.swift
+///
+
 import Moya
 import SwiftyJSON
+import UIKit
 
 class RepsTableVC: UITableViewController {
     
@@ -12,6 +16,7 @@ class RepsTableVC: UITableViewController {
     }
 }
 
+
 // MARK: - Layout
     
 extension RepsTableVC {
@@ -22,6 +27,7 @@ extension RepsTableVC {
         tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
     }
 }
+
 
 // MARK: - Table View Methods
 
@@ -38,10 +44,7 @@ extension RepsTableVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepTableCell.reuseID, for: indexPath) as! RepTableCell
-        // cell.repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
-        let member = congressMembers[indexPath.row]
-        cell.repNameLabel.text = member.fullName
-        cell.repContactLabel.text = "Twitter: \(member.twitter_account)"
+        cell.member = congressMembers[indexPath.row]
         return cell
     }
 }

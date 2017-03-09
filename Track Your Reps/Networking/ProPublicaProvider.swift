@@ -1,3 +1,7 @@
+///
+/// ProPublicaProvider.swift
+///
+
 import Foundation
 import Moya
 
@@ -20,5 +24,4 @@ class ProPublicaProvider {
         let endpoint = Endpoint<ProPublicaAPI>(url: url(target), sampleResponseClosure: sampleResponseClosure, method: method, parameters: parameters, parameterEncoding: target.parameterEncoding)
         return endpoint.adding(newHTTPHeaderFields: target.headers())
     }
-    
 }

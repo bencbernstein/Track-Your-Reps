@@ -1,10 +1,6 @@
-//
-//  Event.swift
-//  Track Your Reps
-//
-//  Created by Benjamin Bernstein on 3/8/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
-//
+///
+/// Event.swift
+///
 
 import Foundation
 import SwiftyJSON
@@ -12,23 +8,20 @@ import SwiftyJSON
 struct Event {
     
     var bill: String?
-    var repName: String?
-    var description: String?
-    var question: String?
     var date: String?
-    var time: String?
+    var description: String?
     var position: String?
+    var question: String?
+    var repId: String?
+    var time: String?
     
-    init?(from json: JSON, name: String) {
+    init(from json: JSON, for member: CongressMember) {
         self.bill = json["bill"].stringValue
-        self.description = json["description"].stringValue
-        self.question  = json["question"].stringValue
         self.date = json["date"].stringValue
-        self.time = json["time"].stringValue
+        self.description = json["description"].stringValue
         self.position = json["position"].stringValue
-        self.repName = name
-        
-        
+        self.question  = json["question"].stringValue
+        self.repId = member.id
+        self.time = json["time"].stringValue
     }
-    
 }
