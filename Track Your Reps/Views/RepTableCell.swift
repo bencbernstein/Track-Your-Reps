@@ -1,13 +1,24 @@
+///
+/// RepsTableCell.swift
+///
+
 import UIKit
 
 class RepTableCell: UITableViewCell {
     
-    let repImage = UIImageView()
-    let repNameLabel = UILabel()
-    let repContactLabel = UILabel()
+    let contactLabel = UILabel()
+    let memberImage = UIImageView()
+    let nameLabel = UILabel()
     
-    var views: [UIView] {
-        return [repImage, repNameLabel, repContactLabel]
+    var member: CongressMember? {
+        didSet {
+            guard let member = member else { return }
+            contactLabel.text = "Twitter: \(member.twitterAccount)"
+            print(member.id)
+            memberImage.image = UIImage(named: member.id)
+            print(memberImage.image == nil)
+            nameLabel.text = member.fullName
+        }
     }
     
     static let reuseID = "reps"
@@ -16,11 +27,14 @@ class RepTableCell: UITableViewCell {
         return contentView.layoutMarginsGuide
     }
     
+    var views: [UIView] {
+        return [memberImage, nameLabel, contactLabel]
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -29,42 +43,41 @@ class RepTableCell: UITableViewCell {
 
 
 // MARK: - Layout
+
 extension RepTableCell {
     
     func setupView() {
         views.forEach { contentView.addSubview($0) }
         views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
-        setupRepNameLabel()
-        setupRepContactLabel()
-        setupRepImage()
+        setupNameLabel()
+        setupContactLabel()
+        setupImage()
     }
     
-    func setupRepNameLabel() {
-        repNameLabel.leadingAnchor.constraint(equalTo: repImage.trailingAnchor, constant: 10).isActive = true
-        repNameLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        repNameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        repNameLabel.numberOfLines = 0
-        repNameLabel.font = UIFont(name: "Avenir-Book", size: 12)
-        repNameLabel.textColor = .black
+    func setupNameLabel() {
+        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 10).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
+        nameLabel.numberOfLines = 0
+        nameLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        nameLabel.textColor = .black
     }
     
-    func setupRepContactLabel() {
-        repContactLabel.leadingAnchor.constraint(equalTo: repNameLabel.leadingAnchor).isActive = true
-        repContactLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        repContactLabel.topAnchor.constraint(equalTo: repNameLabel.bottomAnchor).isActive = true
-        repContactLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
-        repContactLabel.numberOfLines = 0
-        repContactLabel.font = UIFont(name: "Avenir-Book", size: 12)
-        repContactLabel.textColor = .lightGray
+    func setupContactLabel() {
+        contactLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
+        contactLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        contactLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
+        contactLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        contactLabel.numberOfLines = 0
+        contactLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        contactLabel.textColor = .lightGray
     }
     
-    func setupRepImage() {
-        repImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
-        repImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        //repImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
-        repImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
-        repImage.heightAnchor.constraint(equalTo: repImage.widthAnchor).isActive = true
-        repImage.image = #imageLiteral(resourceName: "kirsten_gillibrand")
-        repImage.backgroundColor = .red
+    func setupImage() {
+//        memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
+//        memberImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
+//        memberImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+//        memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
+//        memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
     }
 }

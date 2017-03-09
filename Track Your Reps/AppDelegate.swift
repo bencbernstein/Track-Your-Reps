@@ -1,3 +1,7 @@
+///
+/// AppDelegate.swift
+///
+
 import UIKit
 
 @UIApplicationMain
@@ -10,25 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         let controller = TabBarController() as UIViewController
         let navigationController = UINavigationController(rootViewController: controller)
         setupWindow(with: navigationController)
+    
         return true
     }
-    
+
     func setupWindow(with navigationController: UINavigationController) {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = UIColor.white
+        self.window?.backgroundColor = .white
         self.window?.rootViewController = navigationController
-        if let loadedState = UserDefaults.standard.string(forKey: "state") {
-            print("line 24")
-            User.sharedInstance.state = loadedState
-            self.window?.makeKeyAndVisible()
-        } else {
-            // do onboarding here
-            self.window?.makeKeyAndVisible()
-        }
-        
+        self.window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
