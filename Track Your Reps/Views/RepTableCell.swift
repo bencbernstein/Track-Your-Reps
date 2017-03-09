@@ -14,9 +14,7 @@ class RepTableCell: UITableViewCell {
         didSet {
             guard let member = member else { return }
             contactLabel.text = "Twitter: \(member.twitterAccount)"
-            print(member.id)
-            memberImage.image = UIImage(named: member.id)
-            print(memberImage.image == nil)
+            memberImage.image = cropImage(for: member)
             nameLabel.text = member.fullName
         }
     }
@@ -46,6 +44,16 @@ class RepTableCell: UITableViewCell {
 
 extension RepTableCell {
     
+    func cropImage(for member: CongressMember) -> UIImage? {
+        guard let memberImage = UIImage(named: member.id) else { return nil }
+        let imageWidth = CGFloat(memberImage.size.width)
+        // Crop from the bottom, because the face is in the upper half
+        let square = cropBottom(image: memberImage, width: imageWidth)
+        let radius = Float(imageWidth) / 2
+        let circle = cropCircle(image: square, radius: radius)
+        return circle
+    }
+    
     func setupView() {
         views.forEach { contentView.addSubview($0) }
         views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
@@ -74,10 +82,10 @@ extension RepTableCell {
     }
     
     func setupImage() {
-//        memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
-//        memberImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-//        memberImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
-//        memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
-//        memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
+        memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
+        memberImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
+        memberImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
+        memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
     }
 }
