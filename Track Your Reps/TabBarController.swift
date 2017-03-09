@@ -28,7 +28,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func onboardUser() {
         let onBoardVC = OnBoardViewController()
-        self.present(onBoardVC, animated: true, completion: nil)
+        parent?.present(onBoardVC, animated: true, completion: nil)
     }
 }
 

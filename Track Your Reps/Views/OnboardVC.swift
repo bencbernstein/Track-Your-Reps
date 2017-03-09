@@ -41,6 +41,7 @@ extension OnBoardViewController {
         return statePickerData.count
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return statePickerData[row]
     }
@@ -55,6 +56,10 @@ extension OnBoardViewController {
         self.view.backgroundColor = UIColor.white
         pickerView.delegate = self
         pickerView.dataSource = self
+        
+        //set initial view to new york
+        pickerView.selectRow(36, inComponent: 0, animated: true)
+        
         setupWelcomeLabel()
         setupPickerView()
         setupSubmitButton()
