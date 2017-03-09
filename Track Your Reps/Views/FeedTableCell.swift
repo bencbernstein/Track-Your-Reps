@@ -43,7 +43,7 @@ extension FeedTableCell {
     func setupLabels() {
         eventActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
         eventActionLabel.textColor = .lightGray
-        eventTitleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+        eventTitleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
         repActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
         repActionLabel.textAlignment = .right
         setupConstraints()
@@ -55,7 +55,8 @@ extension FeedTableCell {
     }
     
     func setupCommonConstraints(_ label: UILabel) {
-        label.numberOfLines = 1
+        // keep at 0 for autolayout
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
         label.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true

@@ -68,15 +68,18 @@ class CongressMember {
         self.votesWithPartyPct = json["votes_with_party_pct"].stringValue
         
         // Calls ProPublicaApi to fill signifigant events array
-        events(for: id)
+        events(for: id) { 
+            //alert notification events are done fetching
+            let doneFetchingEvents = Notification.Name("doneFetchingEvents")
+            NotificationCenter.default.post(name: doneFetchingEvents, object: nil)
+        }
     }
 }
-
 
 typealias EventsApiCaller = CongressMember
 extension EventsApiCaller {
     
-    func events(for memberId: String) {
+    func events(for memberId: String, completion: @escaping () -> Void) {
         
         let endpoint: ProPublicaAPI = .votesForMember(id: memberId)
         
@@ -87,6 +90,7 @@ extension EventsApiCaller {
                 let json = JSON(data: data)
                 guard let votes = json["results"][0]["votes"].array else { return }
                 self.events = votes.map { Event(from: $0, for: self) }
+                completion()
             default:
                 print("Events call for member \(self.fullName) err'd.")
             }

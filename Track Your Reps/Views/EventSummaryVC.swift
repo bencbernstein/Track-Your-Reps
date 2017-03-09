@@ -19,7 +19,6 @@ class EventSummaryVC: UIViewController {
     }
 }
 
-
 // MARK: - Layout
 
 extension EventSummaryVC {
