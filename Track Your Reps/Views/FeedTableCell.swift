@@ -9,6 +9,14 @@ class FeedTableCell: UITableViewCell {
     let eventActionLabel = UILabel()
     let eventTitleLabel = UILabel()
     let repActionLabel = UILabel()
+    
+    var event: Event? {
+        didSet {
+            eventActionLabel.text = event?.question
+            eventTitleLabel.text = event?.eventDescription
+            repActionLabel.text = event?.congressMembers.map({ $0.fullName }).joined(separator: ", ")
+        }
+    }
 
     var labels: [UILabel] {
         return [eventTitleLabel, eventActionLabel, repActionLabel]
@@ -55,7 +63,6 @@ extension FeedTableCell {
     }
     
     func setupCommonConstraints(_ label: UILabel) {
-        // keep at 0 for autolayout
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true

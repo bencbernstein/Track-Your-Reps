@@ -16,14 +16,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(true)
         self.title = tabBarItem.title
         setupUser()
-        setupViewControllers()
     }
     
     func setupUser() {
         guard let userState = userState else { onboardUser(); return }
         User.sharedInstance.state = userState
-        User.sharedInstance.dataStore.members = CongressMember.all(for: userState)
-        print("User state: \(User.sharedInstance.state)")
+        User.sharedInstance.fetchMembers()
+        User.sharedInstance.fetchEvents() {
+            self.setupViewControllers()
+        }
     }
     
     func onboardUser() {
@@ -37,17 +38,17 @@ typealias ViewControllersInitializer = TabBarController
 extension ViewControllersInitializer {
     
     func setupViewControllers() {
-        self.viewControllers = [createFeedTableView(), createRepsTableView()]
+        self.viewControllers = [feedTableView(), repsTableView()]
     }
     
-    func createFeedTableView() -> FeedTableVC {
+    func feedTableView() -> FeedTableVC {
         let feedTableView = FeedTableVC()
         let feedBarItem = UITabBarItem(title: "Feed", image: nil, selectedImage: nil)
         feedTableView.tabBarItem = feedBarItem
         return feedTableView
     }
     
-    func createRepsTableView() -> RepsTableVC {
+    func repsTableView() -> RepsTableVC {
         let repsTableView = RepsTableVC()
         let repsBarItem = UITabBarItem(title: "Reps", image: nil, selectedImage: nil)
         repsTableView.tabBarItem = repsBarItem
