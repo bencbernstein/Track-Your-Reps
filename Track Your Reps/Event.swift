@@ -23,6 +23,13 @@ struct Event: CustomStringConvertible, Hashable {
     var shortDescription: String {
         return "\(eventDescription) - \(time)"
     }
+    
+    var memberPositions: String {
+        return congressMembers.flatMap { member in
+            guard let event = member.events.filter({ $0 == self }).first else { return nil }
+            return "\(member.fullName) voted \(event.position)"
+        }.joined(separator: "\n")
+    }
 
     init(from json: JSON, for member: CongressMember) {
         self.chamber = json["chamber"].stringValue
