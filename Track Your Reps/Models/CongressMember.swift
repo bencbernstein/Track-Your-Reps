@@ -6,6 +6,7 @@ import Foundation
 import SwiftyJSON
 import Moya
 
+
 class CongressMember {
     
     // Data from ProPublica
@@ -14,6 +15,7 @@ class CongressMember {
     var dwNominate: String
     var id: String
     var idealPoint: String
+    var events = [Event]()
     var facebookAccount: String
     var facebookId: String
     var firstName: String
@@ -33,9 +35,6 @@ class CongressMember {
     var url: String
     var votesWithPartyPct: String
     
-    var events = [Event]()
-    
-    // Data from Wikipedia
     var wikipediaBio: String = ""
     
     var fullName: String {
@@ -66,22 +65,12 @@ class CongressMember {
         self.totalVotes = json["total_votes"].stringValue
         self.url = json["url"].stringValue
         self.votesWithPartyPct = json["votes_with_party_pct"].stringValue
-        
-        // Calls ProPublicaApi to fill signifigant events array
-        events(for: id) { 
-            //alert notification events are done fetching
-            let doneFetchingEvents = Notification.Name("doneFetchingEvents")
-            NotificationCenter.default.post(name: doneFetchingEvents, object: nil)
-        }
     }
-}
-
-typealias EventsApiCaller = CongressMember
-extension EventsApiCaller {
     
-    func events(for memberId: String, completion: @escaping () -> Void) {
+    
+    func fetchEvents(completion: @escaping ([Event]) -> Void) {
         
-        let endpoint: ProPublicaAPI = .votesForMember(id: memberId)
+        let endpoint: ProPublicaAPI = .votesForMember(id: self.id)
         
         ProPublicaProvider.sharedProvider.request(endpoint) { (result) in
             switch result {
@@ -89,8 +78,8 @@ extension EventsApiCaller {
                 let data = moyaResponse.data
                 let json = JSON(data: data)
                 guard let votes = json["results"][0]["votes"].array else { return }
-                self.events = votes.map { Event(from: $0, for: self) }
-                completion()
+                let events = votes.map { Event(from: $0, for: self) }
+                completion(events)
             default:
                 print("Events call for member \(self.fullName) err'd.")
             }
