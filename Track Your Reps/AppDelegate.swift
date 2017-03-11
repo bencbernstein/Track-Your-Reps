@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let controller = TabBarController() as UIViewController
         let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.navigationBar.isTranslucent = false
         setupWindow(with: navigationController)
     
         return true

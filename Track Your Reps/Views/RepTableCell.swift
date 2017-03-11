@@ -13,7 +13,6 @@ class RepTableCell: UITableViewCell {
     var member: CongressMember? {
         didSet {
             guard let member = member else { return }
-            contactLabel.text = "Twitter: \(member.twitterAccount)"
             memberImage.image = cropCircularImage(for: member)
             nameLabel.text = member.fullName
         }
@@ -39,43 +38,27 @@ class RepTableCell: UITableViewCell {
     }
 }
 
-
 // MARK: - Layout
-
 extension RepTableCell {
         
     func setupView() {
         views.forEach { contentView.addSubview($0) }
         views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         setupNameLabel()
-        setupContactLabel()
         setupImage()
     }
     
     func setupNameLabel() {
-        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 10).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        nameLabel.numberOfLines = 0
         nameLabel.font = UIFont(name: "Avenir-Book", size: 12)
         nameLabel.textColor = .black
-    }
-    
-    func setupContactLabel() {
-        contactLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-        contactLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        contactLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
-        contactLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
-        contactLabel.numberOfLines = 0
-        contactLabel.font = UIFont(name: "Avenir-Book", size: 12)
-        contactLabel.textColor = .lightGray
+        nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 10).isActive = true
     }
     
     func setupImage() {
         memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
-        memberImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        memberImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
-        memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
-        memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
+        memberImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        memberImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
+        memberImage.widthAnchor.constraint(equalTo:  memberImage.heightAnchor).isActive = true
     }
 }
