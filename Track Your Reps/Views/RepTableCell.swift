@@ -42,9 +42,7 @@ class RepTableCell: UITableViewCell {
     }
 }
 
-
 // MARK: - Layout
-
 extension RepTableCell {
         
     func setupView() {
@@ -57,10 +55,12 @@ extension RepTableCell {
     }
     
     func setupNameLabel() {
+        nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: memberImage.centerYAnchor).isActive = true
+
+        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = truee
         nameLabel.font = UIFont(name: "Montserrat-SemiBold", size: 12)
+
     }
     
     func partyColor( _ member: CongressMember) -> UIColor {
@@ -89,13 +89,12 @@ extension RepTableCell {
         twitterImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         twitterImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         twitterImage.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
-  
     }
     
     func setupImage() {
         memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
         memberImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
-        memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
+        memberImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
+        memberImage.widthAnchor.constraint(equalTo:  memberImage.heightAnchor).isActive = true
     }
 }
