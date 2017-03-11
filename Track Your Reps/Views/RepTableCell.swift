@@ -9,12 +9,16 @@ class RepTableCell: UITableViewCell {
     let contactLabel = UILabel()
     let memberImage = UIImageView()
     let nameLabel = UILabel()
+    let twitterImage = UIImageView()
+    let phoneImage = UIImageView()
+ 
     
     var member: CongressMember? {
         didSet {
             guard let member = member else { return }
             memberImage.image = cropCircularImage(for: member)
-            nameLabel.text = member.fullName
+            nameLabel.text = member.fullName.uppercased()
+            nameLabel.textColor = partyColor(member)
         }
     }
     
@@ -25,7 +29,7 @@ class RepTableCell: UITableViewCell {
     }
     
     var views: [UIView] {
-        return [memberImage, nameLabel, contactLabel]
+        return [memberImage, nameLabel, contactLabel, twitterImage, phoneImage]
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -45,14 +49,43 @@ extension RepTableCell {
         views.forEach { contentView.addSubview($0) }
         views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         setupNameLabel()
+        setupTwitter()
+        setupPhone()
         setupImage()
     }
     
     func setupNameLabel() {
-        nameLabel.font = UIFont(name: "Avenir-Book", size: 12)
-        nameLabel.textColor = .black
         nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 10).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
+        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
+    }
+    
+    func partyColor( _ member: CongressMember) -> UIColor {
+        switch member.party {
+        case "R":
+            return Palette.red.color
+        case "D":
+            return Palette.blue.color
+        default:
+            return Palette.green.color
+        }
+    }
+    
+    func setupPhone() {
+        phoneImage.image = #imageLiteral(resourceName: "Phone")
+        phoneImage.trailingAnchor.constraint(equalTo: twitterImage.leadingAnchor, constant: -8).isActive = true
+        phoneImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        phoneImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
+        phoneImage.heightAnchor.constraint(equalTo: phoneImage.widthAnchor).isActive = true
+        
+    }
+    
+    func setupTwitter() {
+        twitterImage.image = #imageLiteral(resourceName: "Twitter")
+        twitterImage.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        twitterImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        twitterImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
+        twitterImage.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
     }
     
     func setupImage() {

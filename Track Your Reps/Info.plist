@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string></string>
+		<string>Montserrat-Black.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Italic.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Please allow general location so we can get your representatives. </string>
 	<key>NSLocationWhenInUseUsageDescription</key>

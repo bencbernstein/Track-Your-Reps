@@ -32,13 +32,13 @@ extension EventSummaryVC {
     }
     
     func setupTitleLabel() {
-        eventTitleLabel.font = UIFont(name: "Avenir-DemiBold", size: 16)
+        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
         eventTitleLabel.text = "Event Title"
         eventTitleLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupSummaryLabel() {
-        eventSummaryLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        eventSummaryLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
         eventSummaryLabel.text = "Event Summary. Nulla accumsan, lectus ac eleifend convallis, lectus mauris tristique enim, ut ultricies felis nibh a nisi. Fusce efficitur lectus eu ultrices condimentum. Pellentesque in elementum velit. Sed fermentum, dolor vel dapibus pretium, lacus."
         eventSummaryLabel.numberOfLines = 0
     }
