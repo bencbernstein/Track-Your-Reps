@@ -60,7 +60,7 @@ extension RepTableCell {
         nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
         nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo: memberImage.centerYAnchor).isActive = true
-        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
+        nameLabel.font = UIFont(name: "Montserrat-SemiBold", size: 12)
     }
     
     func partyColor( _ member: CongressMember) -> UIColor {
