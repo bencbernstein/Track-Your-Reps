@@ -9,10 +9,7 @@ import UIKit
 class RepsTableVC: UITableViewController {
     
     let congressMembers = User.sharedInstance.dataStore.members
-    
-    let pink: 
-
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.pink.color
         setupLayout()
