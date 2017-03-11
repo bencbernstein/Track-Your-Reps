@@ -15,12 +15,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         view.backgroundColor = UIColor.white
-        
-         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
-        
-//        tabBar.selectionIndicatorImage = UIImage()
-        
-        
+        tabBar.barTintColor = Palette.pink.color
+        tabBar.tintColor = .black
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
+        //tabBar.selectionIndicatorImage = UIImage()
         setupUser()
     }
     
@@ -28,7 +26,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         guard let userState = userState else { onboardUser(); return }
         User.sharedInstance.state = userState
         User.sharedInstance.fetchMembers()
-        
         User.sharedInstance.fetchEvents() {
             self.setupViewControllers()
         }

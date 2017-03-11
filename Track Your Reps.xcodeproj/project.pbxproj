@@ -10,6 +10,8 @@
 		A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */; };
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
 		A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */; };
+		A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8BE431E74571500DE0162 /* TypeExtensions.swift */; };
+		A7B8BE461E74B67B00DE0162 /* RecentEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8BE451E74B67B00DE0162 /* RecentEventsVC.swift */; };
 		A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */; };
 		A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */; };
 		A7C2D7D41E6FC6BC00B8E325 /* SenateJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
@@ -45,6 +47,8 @@
 		A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaAPI.swift; path = "Track Your Reps/Networking/ProPublicaAPI.swift"; sourceTree = "<group>"; };
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
 		A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateBiosJSON.json; path = "Track Your Reps/Lib/SenateBiosJSON.json"; sourceTree = "<group>"; };
+		A7B8BE431E74571500DE0162 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeExtensions.swift; path = "Track Your Reps/Lib/TypeExtensions.swift"; sourceTree = "<group>"; };
+		A7B8BE451E74B67B00DE0162 /* RecentEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentEventsVC.swift; path = Views/RecentEventsVC.swift; sourceTree = "<group>"; };
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
 		A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CongressMember.swift; path = Models/CongressMember.swift; sourceTree = "<group>"; };
 		B52420941E705B8E007FB0CD /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 			children = (
 				B5C54D471E71DD0F0070210B /* ImageProcessing.swift */,
 				B54D2B101E6E0DEC00011A19 /* Secrets.swift */,
+				A7B8BE431E74571500DE0162 /* TypeExtensions.swift */,
 				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
 				A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */,
 				B57A4F381E6F5DB700DC1326 /* SenateJSON.json */,
@@ -136,6 +141,7 @@
 				B5567D381E6B836A000260B4 /* RepSummaryVC.swift */,
 				B57DD3FB1E6B573000C4E277 /* EventSummaryVC.swift */,
 				B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */,
+				A7B8BE451E74B67B00DE0162 /* RecentEventsVC.swift */,
 				B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */,
 				B57DD3F61E6B2F9500C4E277 /* RepTableCell.swift */,
 				B57DD3F91E6B30E700C4E277 /* FeedTableCell.swift */,
@@ -332,6 +338,7 @@
 				B5C54D481E71DD0F0070210B /* ImageProcessing.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
+				A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */,
 				B52420991E70620B007FB0CD /* Event.swift in Sources */,
 				A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */,
 				B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */,
@@ -346,6 +353,7 @@
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
 				B57DD3FA1E6B30E700C4E277 /* FeedTableCell.swift in Sources */,
 				A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */,
+				A7B8BE461E74B67B00DE0162 /* RecentEventsVC.swift in Sources */,
 				B52420971E705C03007FB0CD /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -36,9 +36,25 @@ class CongressMember {
     var votesWithPartyPct: String
     
     var wikipediaBio: String = ""
+    var wikipediaUrl: String = ""
     
     var fullName: String {
         return "\(firstName) \(lastName)"
+    }
+    
+    var recentDecisions: [(String, String)] {
+        return formatRecentDecisions()
+    }
+    
+    var shortDescription: String {
+        switch party {
+        case "D":
+            return "Democratic Senator from \(state)"
+        case "R":
+            return "Republican Senator from \(state)"
+        default:
+            return "Senator from \(state)"
+        }
     }
     
     init?(from json: JSON) {
@@ -85,6 +101,16 @@ class CongressMember {
             }
         }
     }
+    
+    func formatRecentDecisions() -> [(String, String)] {
+        return events.map { event in
+            let position = event.position
+            let question = event.question
+            let decision = "Voted \(position.uppercased()) \(question)"
+            let description = event.eventDescription.trunc(length: 60, trailing: " . . .")
+            return (decision, description)
+        }
+    }
 }
 
 
@@ -104,6 +130,7 @@ extension CongressMemberJsonParser {
         biosJson().arrayValue.forEach { bioJson in
             guard let i = members.map({ $0.id }).index(of:  bioJson["id"].stringValue) else { return }
             members[i].wikipediaBio = bioJson["biography"].stringValue
+            members[i].wikipediaUrl = "https://wikipedia.org\(bioJson["url"].stringValue)"
         }
     }
     

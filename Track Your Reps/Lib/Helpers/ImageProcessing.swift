@@ -12,7 +12,7 @@ func cropCircularImage(for member: CongressMember) -> UIImage? {
     // Crop from the bottom, because the face is in the upper half
     let square = cropBottom(image: memberImage, width: imageWidth)
     let radius = Float(imageWidth) / 2
-    let circle = cropCircle(image: square, radius: radius)
+    let circle = cropCircle(for: member, image: square, radius: radius)
     return circle
 }
 
@@ -23,13 +23,15 @@ func cropBottom(image: UIImage, width: CGFloat) -> UIImage {
     return croppedImage
 }
 
-func cropCircle(image: UIImage, radius: Float) -> UIImage {
+func cropCircle(for member: CongressMember, image: UIImage, radius: Float) -> UIImage {
     let imageView: UIImageView = UIImageView(image: image)
     var layer: CALayer = CALayer()
     layer = imageView.layer
     
     layer.masksToBounds = true
     layer.cornerRadius = CGFloat(radius)
+    layer.borderWidth = 5
+    layer.borderColor = member.partyColor().cgColor
     
     UIGraphicsBeginImageContext(imageView.bounds.size)
     layer.render(in: UIGraphicsGetCurrentContext()!)
