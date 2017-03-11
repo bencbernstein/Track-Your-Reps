@@ -9,27 +9,23 @@ import UIKit
 class RepsTableVC: UITableViewController {
     
     let congressMembers = User.sharedInstance.dataStore.members
+    
+    let pink: 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.pink.color
         setupLayout()
     }
-}
-
-
-// MARK: - Layout
-    
-extension RepsTableVC {
     
     func setupLayout() {
-        tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
+        self.tableView.backgroundColor = UIColor.lightGray
+        self.tableView.rowHeight = view.frame.size.height / 8
+        self.tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
     }
 }
 
-
 // MARK: - Table View Methods
-
 extension RepsTableVC {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
