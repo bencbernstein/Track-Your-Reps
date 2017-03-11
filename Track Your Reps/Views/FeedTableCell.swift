@@ -6,20 +6,22 @@ import UIKit
 
 class FeedTableCell: UITableViewCell {
     
-    let eventActionLabel = UILabel()
-    let eventTitleLabel = UILabel()
+    let eventQuestionLabel = UILabel()
+    let eventTimeLabel = UILabel()
+    let eventDescriptionLabel = UILabel()
     let repActionLabel = UILabel()
     
     var event: Event? {
         didSet {
-            eventActionLabel.text = event?.question
-            eventTitleLabel.text = event?.eventDescription
-            repActionLabel.text = event?.congressMembers.map({ $0.fullName }).joined(separator: ", ")
+            eventQuestionLabel.text = event?.question
+            eventDescriptionLabel.text = event?.eventDescription
+            repActionLabel.text = event?.memberPositions.uppercased()
+            eventTimeLabel.text = event?.date
         }
     }
 
-    var labels: [UILabel] {
-        return [eventTitleLabel, eventActionLabel, repActionLabel]
+    var leftLabels: [UILabel] {
+        return [eventQuestionLabel, eventDescriptionLabel, repActionLabel]
     }
     
     static let reuseID = "events"
@@ -44,21 +46,28 @@ class FeedTableCell: UITableViewCell {
 extension FeedTableCell {
     
     func setupView() {
-        labels.forEach { contentView.addSubview($0) }
+        leftLabels.forEach { contentView.addSubview($0) }
+        contentView.addSubview(eventTimeLabel)
         setupLabels()
     }
     
     func setupLabels() {
-        eventActionLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-        eventActionLabel.textColor = .lightGray
-        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-        repActionLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-        repActionLabel.textAlignment = .right
+        eventQuestionLabel.font = UIFont(name: "Montserrat-Light", size: 12)
+        eventQuestionLabel.textColor = .lightGray
+        
+        eventTimeLabel.font = UIFont(name: "Montserrat-Light", size: 10)
+        eventTimeLabel.textColor = .lightGray
+        
+        eventDescriptionLabel.font = UIFont(name: "Montserrat-Light", size: 12)
+        repActionLabel.font = UIFont(name: "Montserrat-Regular", size: 10)
+        
         setupConstraints()
     }
     
     func setupConstraints() {
-        labels.forEach { setupCommonConstraints($0) }
+        leftLabels.forEach { setupCommonConstraints($0) }
+        eventTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventTimeLabel.numberOfLines = 0
         setupUniqueConstraints()
     }
     
@@ -66,14 +75,21 @@ extension FeedTableCell {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
     }
     
     func setupUniqueConstraints() {
-        eventActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor).isActive = true
-        eventTitleLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        eventTitleLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        repActionLabel.topAnchor.constraint(equalTo: eventActionLabel.bottomAnchor).isActive = true
+        
+        eventQuestionLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
+        eventQuestionLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        
+        eventTimeLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
+        eventTimeLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        
+        
+        eventDescriptionLabel.topAnchor.constraint(equalTo: eventQuestionLabel.bottomAnchor).isActive = true
+        eventDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
+       
+        repActionLabel.topAnchor.constraint(equalTo: eventDescriptionLabel.bottomAnchor, constant: 10).isActive = true
         repActionLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
     }
 }
