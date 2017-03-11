@@ -14,9 +14,13 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        self.view.backgroundColor = UIColor.purple
-//        navigationController?.navigationBar.tintColor = UIColor.purple
-        self.title = tabBarItem.title
+        view.backgroundColor = UIColor.white
+        
+         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
+        
+//        tabBar.selectionIndicatorImage = UIImage()
+        
+        
         setupUser()
     }
     
@@ -24,10 +28,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         guard let userState = userState else { onboardUser(); return }
         User.sharedInstance.state = userState
         User.sharedInstance.fetchMembers()
-        self.setupViewControllers()
-//        User.sharedInstance.fetchEvents() {
-//            self.setupViewControllers()
-//        }
+        
+        User.sharedInstance.fetchEvents() {
+            self.setupViewControllers()
+        }
     }
     
     func onboardUser() {
@@ -46,14 +50,14 @@ extension ViewControllersInitializer {
     
     func feedTableView() -> FeedTableVC {
         let feedTableView = FeedTableVC()
-        let feedBarItem = UITabBarItem(title: "Feed", image: nil, selectedImage: nil)
+        let feedBarItem = UITabBarItem(title: "Feed", image: #imageLiteral(resourceName: "Home"), selectedImage: nil)
         feedTableView.tabBarItem = feedBarItem
         return feedTableView
     }
     
     func repsTableView() -> RepsTableVC {
         let repsTableView = RepsTableVC()
-        let repsBarItem = UITabBarItem(title: "Reps", image: nil, selectedImage: nil)
+        let repsBarItem = UITabBarItem(title: "Reps", image: #imageLiteral(resourceName: "Reps"), selectedImage: nil)
         repsTableView.tabBarItem = repsBarItem
         return repsTableView
     }

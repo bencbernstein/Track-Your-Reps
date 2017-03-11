@@ -76,16 +76,16 @@ extension RepTableCell {
     
     func setupPhone() {
         phoneImage.image = #imageLiteral(resourceName: "Phone")
-        phoneImage.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        phoneImage.trailingAnchor.constraint(equalTo: twitterImage.leadingAnchor, constant: -8).isActive = true
         phoneImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        phoneImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
+        phoneImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
         phoneImage.heightAnchor.constraint(equalTo: phoneImage.widthAnchor).isActive = true
         
     }
     
     func setupTwitter() {
         twitterImage.image = #imageLiteral(resourceName: "Twitter")
-        twitterImage.trailingAnchor.constraint(equalTo: phoneImage.leadingAnchor, constant: 20).isActive = true
+        twitterImage.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
         twitterImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         twitterImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         twitterImage.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
