@@ -12,6 +12,7 @@ class RepsTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = Palette.pink.color
         setupLayout()
     }
 }
@@ -22,8 +23,6 @@ class RepsTableVC: UITableViewController {
 extension RepsTableVC {
     
     func setupLayout() {
-        self.tableView.estimatedRowHeight = 100
-        self.tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
     }
 }
@@ -32,6 +31,10 @@ extension RepsTableVC {
 // MARK: - Table View Methods
 
 extension RepsTableVC {
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return congressMembers.count

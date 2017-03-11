@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let controller = TabBarController() as UIViewController
         let navigationController = UINavigationController(rootViewController: controller)
+        //navigationController.navigationBar.barTintColor = UIColor.clear
         setupWindow(with: navigationController)
     
         return true
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupWindow(with navigationController: UINavigationController) {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = .white
+        self.window?.backgroundColor = UIColor.purple
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }

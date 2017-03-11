@@ -55,13 +55,13 @@ extension RepSummaryVC {
     }
     
     func setupNameLabel() {
-        nameLabel.font = UIFont(name: "Avenir-DemiBold", size: 16)
+        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
         nameLabel.text = member?.fullName
         nameLabel.textAlignment = .center
     }
     
     func setupSummaryLabel() {
-        summaryLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        summaryLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
         summaryLabel.text = member?.wikipediaBio
         summaryLabel.numberOfLines = 0
     }
