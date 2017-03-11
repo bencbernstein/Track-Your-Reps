@@ -57,7 +57,7 @@ extension RepTableCell {
         nameLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
         nameLabel.numberOfLines = 0
-        nameLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
         nameLabel.textColor = .black
     }
     
@@ -67,14 +67,13 @@ extension RepTableCell {
         contactLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         contactLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
         contactLabel.numberOfLines = 0
-        contactLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        contactLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
         contactLabel.textColor = .lightGray
     }
     
     func setupImage() {
         memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
-        memberImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        memberImage.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        memberImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.15).isActive = true
         memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
     }

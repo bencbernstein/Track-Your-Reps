@@ -17,6 +17,10 @@
 		B52420971E705C03007FB0CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420961E705C03007FB0CD /* User.swift */; };
 		B52420991E70620B007FB0CD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420981E70620B007FB0CD /* Event.swift */; };
 		B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secrets.swift */; };
+		B54EB18F1E737D1F005943B1 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */; };
+		B54EB1901E737D1F005943B1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */; };
+		B54EB1911E737D1F005943B1 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */; };
+		B54EB1921E737D1F005943B1 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */; };
 		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
 		B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
 		B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */; };
@@ -46,6 +50,10 @@
 		B52420961E705C03007FB0CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B52420981E70620B007FB0CD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B54D2B101E6E0DEC00011A19 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Track Your Reps/Lib/Secrets.swift"; sourceTree = "<group>"; };
+		B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
 		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateJSON.json; path = "Track Your Reps/Lib/SenateJSON.json"; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableVC.swift; path = Views/FeedTableVC.swift; sourceTree = "<group>"; };
@@ -163,6 +171,10 @@
 				B58A34F81E6757FB0059DB2B /* Assets.xcassets */,
 				B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */,
 				B58A34FD1E6757FB0059DB2B /* Info.plist */,
+				B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */,
+				B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */,
+				B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */,
+				B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */,
 			);
 			path = "Track Your Reps";
 			sourceTree = "<group>";
@@ -246,10 +258,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54EB1921E737D1F005943B1 /* Montserrat-Regular.ttf in Resources */,
 				A7C2D7D41E6FC6BC00B8E325 /* SenateJSON.json in Resources */,
+				B54EB18F1E737D1F005943B1 /* Montserrat-Black.ttf in Resources */,
+				B54EB1901E737D1F005943B1 /* Montserrat-Bold.ttf in Resources */,
 				B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */,
 				B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */,
 				A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */,
+				B54EB1911E737D1F005943B1 /* Montserrat-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

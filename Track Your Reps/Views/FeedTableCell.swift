@@ -49,10 +49,10 @@ extension FeedTableCell {
     }
     
     func setupLabels() {
-        eventActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        eventActionLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
         eventActionLabel.textColor = .lightGray
-        eventTitleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
-        repActionLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
+        repActionLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
         repActionLabel.textAlignment = .right
         setupConstraints()
     }

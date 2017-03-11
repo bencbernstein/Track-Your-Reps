@@ -68,7 +68,7 @@ extension OnBoardViewController {
     }
     
     func setupWelcomeLabel() {
-        welcomeLabel.font = UIFont(name: "Avenir-DemiBold", size: 16)
+        welcomeLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
         welcomeLabel.text = "Please select your state so we can find your reps."
         welcomeLabel.textAlignment = .center
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
