@@ -12,6 +12,7 @@ class RepsTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = Palette.pink.color
         setupLayout()
     }
 }
@@ -22,8 +23,6 @@ class RepsTableVC: UITableViewController {
 extension RepsTableVC {
     
     func setupLayout() {
-        self.tableView.estimatedRowHeight = 100
-        self.tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(RepTableCell.self, forCellReuseIdentifier: RepTableCell.reuseID)
     }
 }

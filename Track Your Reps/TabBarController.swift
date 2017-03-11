@@ -14,6 +14,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+//        self.view.backgroundColor = UIColor.purple
+//        navigationController?.navigationBar.tintColor = UIColor.purple
         self.title = tabBarItem.title
         setupUser()
     }
@@ -22,9 +24,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         guard let userState = userState else { onboardUser(); return }
         User.sharedInstance.state = userState
         User.sharedInstance.fetchMembers()
-        User.sharedInstance.fetchEvents() {
-            self.setupViewControllers()
-        }
+        self.setupViewControllers()
+//        User.sharedInstance.fetchEvents() {
+//            self.setupViewControllers()
+//        }
     }
     
     func onboardUser() {

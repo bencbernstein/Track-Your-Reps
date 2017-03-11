@@ -21,6 +21,7 @@
 		B54EB1901E737D1F005943B1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */; };
 		B54EB1911E737D1F005943B1 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */; };
 		B54EB1921E737D1F005943B1 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */; };
+		B54EB1941E738339005943B1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54EB1931E738339005943B1 /* Colors.swift */; };
 		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
 		B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
 		B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */; };
@@ -54,6 +55,7 @@
 		B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		B54EB1931E738339005943B1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
 		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateJSON.json; path = "Track Your Reps/Lib/SenateJSON.json"; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableVC.swift; path = Views/FeedTableVC.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
 				A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */,
 				B57A4F381E6F5DB700DC1326 /* SenateJSON.json */,
+				B54EB1931E738339005943B1 /* Colors.swift */,
 			);
 			name = Lib;
 			path = ..;
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */,
+				B54EB1941E738339005943B1 /* Colors.swift in Sources */,
 				B5C54D481E71DD0F0070210B /* ImageProcessing.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
