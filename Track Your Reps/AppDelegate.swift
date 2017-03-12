@@ -15,9 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let controller = TabBarController() as UIViewController
-        let navigationController = UINavigationController(rootViewController: controller)
+        let tabBarController = TabBarController() as UIViewController
+        let navigationController = UINavigationController(rootViewController: tabBarController)
         navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.barTintColor = Palette.pink.color
         setupWindow(with: navigationController)
     
         return true
