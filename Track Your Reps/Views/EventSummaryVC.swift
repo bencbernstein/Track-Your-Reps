@@ -6,6 +6,8 @@ import UIKit
 
 class EventSummaryVC: UIViewController {
     
+    var event: Event?
+    
     var eventTitleLabel = UILabel()
     var eventSummaryLabel = UILabel()
     
@@ -33,15 +35,18 @@ extension EventSummaryVC {
     
     func setupTitleLabel() {
         eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        eventTitleLabel.text = "Event Title"
+        eventTitleLabel.text = event?.question.uppercased()
+        eventTitleLabel.textAlignment = .center
         eventTitleLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupSummaryLabel() {
-        eventSummaryLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-        eventSummaryLabel.text = "Event Summary. Nulla accumsan, lectus ac eleifend convallis, lectus mauris tristique enim, ut ultricies felis nibh a nisi. Fusce efficitur lectus eu ultrices condimentum. Pellentesque in elementum velit. Sed fermentum, dolor vel dapibus pretium, lacus."
+        eventSummaryLabel.font = UIFont(name: "Montserrat-Regular", size: 14)
+        eventSummaryLabel.text = event?.eventDescription
+        eventSummaryLabel.textAlignment = .center
         eventSummaryLabel.numberOfLines = 0
     }
+    
     
     func setupLabelConstraints() {
         [eventTitleLabel, eventSummaryLabel].forEach { label in

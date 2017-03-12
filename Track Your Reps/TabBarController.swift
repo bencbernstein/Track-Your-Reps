@@ -19,9 +19,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.tintColor = .black
         
         tabBar.itemPositioning = UITabBarItemPositioning.centered
-//        tabBar
-//        tabBar.itemWidth = self.view.frame.width * 0.2
-        
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
         //tabBar.selectionIndicatorImage = UIImage()
         setupUser()

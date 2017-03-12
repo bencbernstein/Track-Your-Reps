@@ -44,6 +44,7 @@ extension FeedTableVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventSummaryVC = EventSummaryVC()
+        eventSummaryVC.event = events[indexPath.row]
         self.navigationController?.pushViewController(eventSummaryVC, animated: true)
     }
     
