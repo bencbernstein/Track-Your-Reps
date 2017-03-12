@@ -107,7 +107,7 @@ class CongressMember {
             let position = event.position
             let question = event.question
             let decision = "Voted \(position.uppercased()) \(question)"
-            let description = event.eventDescription.trunc(length: 60, trailing: " . . .")
+            let description = event.eventDescription.trunc(length: 100, trailing: " . . .")
             return (decision, description)
         }
     }

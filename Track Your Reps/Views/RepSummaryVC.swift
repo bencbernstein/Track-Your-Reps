@@ -9,7 +9,7 @@ class RepSummaryVC: UIViewController {
     
     let collapsableBar = UIImageView()
     let hideSummaryView = UIView()
-    var SUMMARY_LABEL_LINE_HEIGHT: CGFloat = 8
+    var SUMMARY_LABEL_LINE_HEIGHT: CGFloat = 4
     var nameLabel = UILabel()
     var member: CongressMember?
     let memberImage = UIImageView()
@@ -68,12 +68,12 @@ extension RepSummaryVC {
         topBorder.heightAnchor.constraint(equalToConstant: 2).isActive = true
         topBorder.topAnchor.constraint(equalTo: hideSummaryView.topAnchor).isActive = true
         
-        setArrowImage(direction: "down")
+        setArrowImage(direction: "up")
         setupCollapsableBar()
         
-        var recentEventsTitle = UILabel()
-        var recentDecision1 = UILabel()
-        var recentDecisionSubtext1 = UILabel()
+        let recentEventsTitle = UILabel()
+        let recentDecision1 = UILabel()
+        let recentDecisionSubtext1 = UILabel()
         
         for label in [recentEventsTitle, recentDecision1, recentDecisionSubtext1] {
             hideSummaryView.addSubview(label)
@@ -82,7 +82,7 @@ extension RepSummaryVC {
         }
         
         recentEventsTitle.text = "RECENT DECISIONS"
-        recentEventsTitle.font = UIFont(name: "Montserrat-Bold", size: 16)
+        recentEventsTitle.font = UIFont(name: "Montserrat-Regular", size: 16)
         
         recentEventsTitle.topAnchor.constraint(equalTo: hideSummaryView.topAnchor, constant: 20).isActive = true
     
@@ -93,6 +93,9 @@ extension RepSummaryVC {
         
         recentDecision1.font = UIFont(name: "Montserrat-Regular", size: 12)
         recentDecisionSubtext1.font = UIFont(name: "Montserrat-Regular", size: 12)
+        
+        recentDecisionSubtext1.numberOfLines = 0
+        recentDecisionSubtext1.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
         
         recentDecision1.topAnchor.constraint(equalTo: recentEventsTitle.bottomAnchor, constant: 20).isActive = true
 
@@ -105,7 +108,7 @@ extension RepSummaryVC {
     }
     
     func setupNameLabel() {
-        nameLabel.font = UIFont(name: "Montserrat-Bold", size: 18)
+        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 18)
         nameLabel.text = member?.fullName.uppercased()
     }
     
@@ -142,7 +145,7 @@ extension RepSummaryVC {
     
     func setArrowImage(direction: String) {
         guard let arrow = UIImage(named: "arrow_\(direction)") else { return }
-        collapsableBar.image = resizeImage(image: arrow, newWidth: 50)
+        collapsableBar.image = resizeImage(image: arrow, newWidth: 40)
     }
 
     // MARK: - Constraints
@@ -161,12 +164,12 @@ extension RepSummaryVC {
     }
     
     func setupCollapsableBarConstraints() {
-        collapsableBar.topAnchor.constraint(equalTo: hideSummaryView.topAnchor, constant: -25).isActive = true
+        collapsableBar.topAnchor.constraint(equalTo: hideSummaryView.topAnchor, constant: -20).isActive = true
         collapsableBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     func setupHideSummaryViewConstraints() {
-        topConstraint = hideSummaryView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height * -0.33)
+        topConstraint = hideSummaryView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height * -0.40)
         topConstraint.isActive = true
         hideSummaryView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         hideSummaryView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -175,25 +178,25 @@ extension RepSummaryVC {
     
     func setupMemberImageConstraints() {
         memberImage.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: viewDimensions.w * 0.05).isActive = true
-        memberImage.trailingAnchor.constraint(equalTo: summaryLabel.trailingAnchor).isActive = true
+        memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
         memberImage.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.33).isActive = true
         memberImage.heightAnchor.constraint(equalTo: memberImage.widthAnchor).isActive = true
     }
     
     func setupNameLabelConstraints() {
         nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: viewDimensions.w * 0.05).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: viewDimensions.w * 0.05).isActive = true
     }
     
     func setupPhoneImageConstraints() {
         phoneImage.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
-        phoneImage.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
+        phoneImage.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         phoneImage.widthAnchor.constraint(equalTo: memberImage.heightAnchor, multiplier: 0.2).isActive = true
         phoneImage.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
     }
     
     func setupShortDescriptionLabelConstraints() {
-        shortDescriptionLabel.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
+        shortDescriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         shortDescriptionLabel.centerYAnchor.constraint(equalTo: memberImage.centerYAnchor).isActive = true
         shortDescriptionLabel.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.5).isActive = true
     }
@@ -206,7 +209,7 @@ extension RepSummaryVC {
     
     func setupTwitterImageConstraints() {
         twitterImage.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
-        twitterImage.leadingAnchor.constraint(equalTo: phoneImage.trailingAnchor, constant: viewDimensions.w * 0.05).isActive = true
+        twitterImage.leadingAnchor.constraint(equalTo: phoneImage.trailingAnchor, constant: viewDimensions.w * 0.03).isActive = true
         twitterImage.widthAnchor.constraint(equalTo: memberImage.heightAnchor, multiplier: 0.2).isActive = true
         twitterImage.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
     }
