@@ -27,9 +27,15 @@ class FeedTableVC: UITableViewController {
 extension FeedTableVC {
     
     func setupLayout() {
+        parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Marker"), landscapeImagePhone: #imageLiteral(resourceName: "Marker"), style: .plain, target: self, action: #selector(openOnBoard))
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.register(FeedTableCell.self, forCellReuseIdentifier: FeedTableCell.reuseID)
+    }
+    
+    func openOnBoard() {
+        let onboardVC = OnBoardViewController()
+        present(onboardVC, animated: true, completion: nil)
     }
 }
 

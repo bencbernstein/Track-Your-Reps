@@ -23,8 +23,7 @@ struct Event: CustomStringConvertible, Hashable {
     var shortDescription: String {
         return "\(eventDescription) - \(time)"
     }
-    
-    
+
     var memberPositions: NSMutableAttributedString? {
         let returnString = NSMutableAttributedString(string: "")
         for member in congressMembers {
@@ -44,7 +43,6 @@ struct Event: CustomStringConvertible, Hashable {
         
         return returnString
     }
-
 
     init(from json: JSON, for member: CongressMember) {
         self.chamber = json["chamber"].stringValue
