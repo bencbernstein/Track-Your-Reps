@@ -24,12 +24,27 @@ struct Event: CustomStringConvertible, Hashable {
         return "\(eventDescription) - \(time)"
     }
     
-    var memberPositions: String {
-        return congressMembers.flatMap { member in
+    
+    var memberPositions: NSMutableAttributedString? {
+        let returnString = NSMutableAttributedString(string: "")
+        for member in congressMembers {
             guard let event = member.events.filter({ $0 == self }).first else { return nil }
-            return "\(member.fullName) voted \(event.position)"
-        }.joined(separator: "\n")
+            let memberNameString = NSMutableAttributedString(
+                string: (member.fullName + " voted " + event.position + "\n").uppercased(),
+                attributes: [NSForegroundColorAttributeName:Palette.grey.color])
+            memberNameString.addAttribute(NSForegroundColorAttributeName, value: member.partyColor(), range: NSRange(location:0, length: member.fullName.characters.count))
+            memberNameString.addAttribute(NSForegroundColorAttributeName, value: event.positionColor(), range: NSRange(location:memberNameString.string.characters.count - (event.position.characters.count + 1), length: event.position.characters.count))
+
+            returnString.append(memberNameString)
+        }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        returnString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, returnString.length))
+        
+        return returnString
     }
+
 
     init(from json: JSON, for member: CongressMember) {
         self.chamber = json["chamber"].stringValue
@@ -44,6 +59,7 @@ struct Event: CustomStringConvertible, Hashable {
         self.time = json["time"].stringValue
     }
 }
+
 
 
 // MARK - Protocols

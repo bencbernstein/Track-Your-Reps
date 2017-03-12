@@ -49,3 +49,18 @@ extension CongressMember {
         }
     }
 }
+
+extension Event {
+    
+    func positionColor() -> UIColor {
+        switch self.position {
+        case "Yes":
+            return Palette.blue.color
+        case "No":
+            return Palette.red.color
+        default:
+            return Palette.green.color
+        }
+    }
+}
+
