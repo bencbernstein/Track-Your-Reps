@@ -17,6 +17,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         view.backgroundColor = UIColor.white
         tabBar.barTintColor = Palette.pink.color
         tabBar.tintColor = .black
+        
+        tabBar.itemPositioning = UITabBarItemPositioning.centered
+//        tabBar
+//        tabBar.itemWidth = self.view.frame.width * 0.2
+        
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
         //tabBar.selectionIndicatorImage = UIImage()
         setupUser()
@@ -47,7 +52,7 @@ extension ViewControllersInitializer {
     
     func feedTableView() -> FeedTableVC {
         let feedTableView = FeedTableVC()
-        let feedBarItem = UITabBarItem(title: "Feed", image: #imageLiteral(resourceName: "Home"), selectedImage: nil)
+        let feedBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "Home"), selectedImage: nil)
         feedTableView.tabBarItem = feedBarItem
         return feedTableView
     }

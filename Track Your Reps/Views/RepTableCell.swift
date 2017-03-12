@@ -57,8 +57,8 @@ extension RepTableCell {
         nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
 
-        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = truee
-        nameLabel.font = UIFont(name: "Montserrat-SemiBold", size: 12)
+        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
+        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
 
     }
     
