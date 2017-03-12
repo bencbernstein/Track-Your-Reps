@@ -68,7 +68,7 @@ extension RepSummaryVC {
         topBorder.heightAnchor.constraint(equalToConstant: 2).isActive = true
         topBorder.topAnchor.constraint(equalTo: hideSummaryView.topAnchor).isActive = true
         
-        setArrowImage(direction: "up")
+        setArrowImage(direction: "down")
         setupCollapsableBar()
         
         let recentEventsTitle = UILabel()

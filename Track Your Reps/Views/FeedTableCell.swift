@@ -54,10 +54,10 @@ extension FeedTableCell {
     
     func setupLabels() {
         eventQuestionLabel.font = UIFont(name: "Montserrat-Light", size: 14)
-        eventQuestionLabel.textColor = .lightGray
+        eventQuestionLabel.textColor = Palette.grey.color
         
         eventTimeLabel.font = UIFont(name: "Montserrat-Light", size: 12)
-        eventTimeLabel.textColor = .lightGray
+        eventTimeLabel.textColor = Palette.grey.color
         
         eventDescriptionLabel.font = UIFont(name: "Montserrat-Light", size: 14)
         repActionLabel.font = UIFont(name: "Montserrat-Regular", size: 12)

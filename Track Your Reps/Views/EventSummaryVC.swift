@@ -10,6 +10,7 @@ class EventSummaryVC: UIViewController {
     
     var eventTitleLabel = UILabel()
     var eventSummaryLabel = UILabel()
+    var eventMemberPositions = UILabel()
     
     var marginsGuide: UILayoutGuide {
         return view.layoutMarginsGuide
@@ -29,7 +30,8 @@ extension EventSummaryVC {
         self.view.backgroundColor = UIColor.white
         setupTitleLabel()
         setupSummaryLabel()
-        [eventTitleLabel, eventSummaryLabel].forEach { view.addSubview($0) }
+        setupMemberPositions()
+        [eventTitleLabel, eventSummaryLabel, eventMemberPositions].forEach { view.addSubview($0) }
         setupLabelConstraints()
     }
     
@@ -38,6 +40,13 @@ extension EventSummaryVC {
         eventTitleLabel.text = event?.question.uppercased()
         eventTitleLabel.textAlignment = .center
         eventTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setupMemberPositions() {
+        eventMemberPositions.font = UIFont(name: "Montserrat-Regular", size: 12)
+        eventMemberPositions.attributedText = event?.memberPositions
+        eventMemberPositions.textAlignment = .center
+        eventMemberPositions.numberOfLines = 0
     }
     
     func setupSummaryLabel() {
@@ -49,12 +58,13 @@ extension EventSummaryVC {
     
     
     func setupLabelConstraints() {
-        [eventTitleLabel, eventSummaryLabel].forEach { label in
+        [eventTitleLabel, eventSummaryLabel, eventMemberPositions].forEach { label in
             label.translatesAutoresizingMaskIntoConstraints = false
             label.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: 20).isActive = true
             label.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.8).isActive = true
         }
         eventTitleLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 80).isActive = true
         eventSummaryLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: 20).isActive = true
+        eventMemberPositions.topAnchor.constraint(equalTo: eventSummaryLabel.bottomAnchor, constant: 20).isActive = true
     }
 }

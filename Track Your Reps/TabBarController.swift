@@ -20,7 +20,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         tabBar.itemPositioning = UITabBarItemPositioning.centered
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
-        //tabBar.selectionIndicatorImage = UIImage()
         setupUser()
     }
     
