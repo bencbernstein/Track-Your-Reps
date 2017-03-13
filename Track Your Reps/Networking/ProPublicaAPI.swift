@@ -8,8 +8,9 @@ import Moya
 
 
 enum ProPublicaAPI {
-    case votesForMember(id: String)
+    case bill(id: String)
     case membersForState(state: String)
+    case votesForMember(id: String)
 }
 
 
@@ -24,14 +25,17 @@ extension ProPublicaAPI: TargetType {
     var path: String {
         switch self {
             
-        case .votesForMember(let id):
-            return "/members/\(id)/votes.json"
+        case .bill(let id):
+            return "/115/bills/\(id)"
             
         case .membersForState(let state):
             return "/members/house/\(state)/current.json"
+            
+        case .votesForMember(let id):
+            return "/members/\(id)/votes.json"
         }
     }
-    
+
     var base: String {
         return "https://api.propublica.org/congress/v1"
     }
@@ -53,11 +57,14 @@ extension ProPublicaAPI: TargetType {
     var sampleData: Data {
         switch self {
             
-        case .votesForMember:
-            return stubbedResponse(.votesForMember)
+        case .bill:
+            return stubbedResponse(.bill)
             
         case .membersForState:
             return stubbedResponse(.membersForState)
+            
+        case .votesForMember:
+            return stubbedResponse(.votesForMember)
         }
     }
 }

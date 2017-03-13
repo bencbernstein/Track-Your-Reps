@@ -14,6 +14,8 @@ final class User {
     let defaults = UserDefaults.standard
     var state = ""
     
+    weak var delegate: SetupViewControllersDelegate?
+    
     private init() {}
 }
 
@@ -24,7 +26,7 @@ extension User {
         dataStore.members = CongressMember.all(for: state)
     }
     
-    func fetchEvents(handler: @escaping () -> ()) {
+    func fetchEvents() {
         let backgroundQueue = DispatchQueue.global()
         let group = DispatchGroup()
         
@@ -41,7 +43,7 @@ extension User {
         group.notify(queue: DispatchQueue.main, execute: {
             self.selectMostRecentEvents()
             self.mergeEvents()
-            handler()
+            self.fetchBills()
         })
     }
     
@@ -73,12 +75,49 @@ extension User {
     }
         
     fileprivate func resetEvents(for member: CongressMember, _ mergedEvents: [(Int, [CongressMember])]) -> CongressMember {
-        let newMember = member
-        newMember.events = newMember.events.map { event in
-            var newEvent = event
-            mergedEvents.forEach { if event.hashValue == $0.0 { newEvent.congressMembers = $0.1 } }
-            return newEvent
+        let memberCopy = member
+        memberCopy.events = memberCopy.events.map { event in
+            var eventCopy = event
+            mergedEvents.forEach { if event.hashValue == $0.0 { eventCopy.congressMembers = $0.1 } }
+            return eventCopy
         }
-        return newMember
+        return memberCopy
+    }
+    
+    fileprivate func fetchBills() {
+        let backgroundQueue = DispatchQueue.global()
+        let group = DispatchGroup()
+        
+        let eventSet = Set(dataStore.members.flatMap({ $0.events }))
+        var withBills = [Event]()
+        
+        for event in eventSet where event.isBill {
+            group.enter()
+            backgroundQueue.async(group: group, execute: {
+                event.fetchBill() { bill in
+                    var eventCopy = event
+                    eventCopy.bill = bill
+                    withBills.append(eventCopy)
+                    group.leave()
+                }
+            })
+        }
+        
+        group.notify(queue: DispatchQueue.main, execute: {
+            self.dataStore.members = self.dataStore.members.map { member in
+                return self.resetEvents(for: member, eventsWithBills: withBills)
+            }
+            self.delegate?.setupViewControllers()
+        })
+    }
+    
+    fileprivate func resetEvents(for member: CongressMember, eventsWithBills withBills: [Event]) -> CongressMember {
+        let memberCopy = member
+        memberCopy.events = memberCopy.events.map { event in
+            var eventCopy = event
+            withBills.forEach { if event.hashValue == $0.hashValue { eventCopy = $0 } }
+            return eventCopy
+        }
+        return memberCopy
     }
 }
