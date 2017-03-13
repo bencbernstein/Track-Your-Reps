@@ -13,7 +13,7 @@ class FeedTableCell: UITableViewCell {
     
     var event: Event? {
         didSet {
-            eventQuestionLabel.text = event?.question
+            eventQuestionLabel.text = "\(event!.isBill ? "I'm a bill! - " : "")\(event?.question)"
             eventDescriptionLabel.text = event?.eventDescription
             repActionLabel.attributedText = event?.memberPositions
             eventTimeLabel.text = event?.date

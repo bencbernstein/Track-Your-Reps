@@ -4,8 +4,11 @@
 
 import UIKit
 
+protocol SetupViewControllersDelegate: class {
+    func setupViewControllers()
+}
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
+class TabBarController: UITabBarController, UITabBarControllerDelegate, SetupViewControllersDelegate {
     
     // USA State (ex. NY)
     var userState: String? {
@@ -25,11 +28,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func setupUser() {
         guard let userState = userState else { onboardUser(); return }
+        User.sharedInstance.delegate = self
         User.sharedInstance.state = userState
         User.sharedInstance.fetchMembers()
-        User.sharedInstance.fetchEvents() {
-            self.setupViewControllers()
-        }
+        User.sharedInstance.fetchEvents()
     }
     
     func onboardUser() {
