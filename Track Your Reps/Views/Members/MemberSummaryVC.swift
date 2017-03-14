@@ -40,6 +40,7 @@ class MemberSummaryVC: UIViewController {
     }
 }
 
+
 // MARK: - Layout
 extension MemberSummaryVC {
     
@@ -71,35 +72,9 @@ extension MemberSummaryVC {
         setArrowImage(direction: "down")
         setupCollapsableBar()
         
-        let recentEventsTitle = UILabel()
-        let recentDecision1 = UILabel()
-        let recentDecisionSubtext1 = UILabel()
-        
-        for label in [recentEventsTitle, recentDecision1, recentDecisionSubtext1] {
-            hideSummaryView.addSubview(label)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
-        }
-        
-        recentEventsTitle.text = "RECENT DECISIONS"
-        recentEventsTitle.font = UIFont(name: "Montserrat-Regular", size: 16)
-        
-        recentEventsTitle.topAnchor.constraint(equalTo: hideSummaryView.topAnchor, constant: 20).isActive = true
-    
-        let recentDecisions = member?.recentDecisions
-        guard let decision1 = recentDecisions?[0] else { return }
-        recentDecision1.text = decision1.0
-        recentDecisionSubtext1.text = decision1.1
-        
-        recentDecision1.font = UIFont(name: "Montserrat-Regular", size: 12)
-        recentDecisionSubtext1.font = UIFont(name: "Montserrat-Regular", size: 12)
-        
-        recentDecisionSubtext1.numberOfLines = 0
-        recentDecisionSubtext1.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        
-        recentDecision1.topAnchor.constraint(equalTo: recentEventsTitle.bottomAnchor, constant: 20).isActive = true
-
-        recentDecisionSubtext1.topAnchor.constraint(equalTo: recentDecision1.bottomAnchor, constant: 5).isActive = true
+        guard let member = member else { return }
+        let recentActions = RecentActions(member: member)
+        hideSummaryView.addSubview(recentActions)
     }
     
     func setupImage() {

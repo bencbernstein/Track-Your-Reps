@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */; };
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
+		A75D546D1E781EE30062ABF4 /* RecentActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75D546C1E781EE30062ABF4 /* RecentActions.swift */; };
 		A75FBE7D1E6FA44700FA1C60 /* SenateBios.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */; };
 		A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8BE431E74571500DE0162 /* TypeExtensions.swift */; };
 		A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */; };
@@ -49,6 +50,7 @@
 		9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Track_Your_Reps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaAPI.swift; path = "Track Your Reps/Networking/ProPublicaAPI.swift"; sourceTree = "<group>"; };
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
+		A75D546C1E781EE30062ABF4 /* RecentActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentActions.swift; sourceTree = "<group>"; };
 		A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SenateBios.json; sourceTree = "<group>"; };
 		A7B8BE431E74571500DE0162 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeExtensions.swift; path = "Track Your Reps/Lib/TypeExtensions.swift"; sourceTree = "<group>"; };
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
@@ -188,10 +190,20 @@
 			path = "Track Your Reps/Views/Members";
 			sourceTree = SOURCE_ROOT;
 		};
+		A75D546B1E781EC90062ABF4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A75D546C1E781EE30062ABF4 /* RecentActions.swift */,
+			);
+			name = Components;
+			path = Views/Components;
+			sourceTree = "<group>";
+		};
 		B57DD3EF1E6B281700C4E277 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				B5E1072E1E6F68460017A15B /* OnboardVC.swift */,
+				A75D546B1E781EC90062ABF4 /* Components */,
 				A75D54691E77AF190062ABF4 /* Events */,
 				A75D546A1E77AF1E0062ABF4 /* Members */,
 			);
@@ -221,13 +233,13 @@
 			children = (
 				B58A34F11E6757FB0059DB2B /* AppDelegate.swift */,
 				B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */,
-				B57DD3EF1E6B281700C4E277 /* Views */,
-				B5B189D91E68998300F9E6AF /* Models */,
 				A70396241E6CF086001BC549 /* Lib */,
+				B5B189D91E68998300F9E6AF /* Models */,
 				A70396211E6CCA15001BC549 /* Networking */,
+				B57DD3EF1E6B281700C4E277 /* Views */,
 				B58A34F81E6757FB0059DB2B /* Assets.xcassets */,
-				B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */,
 				B58A34FD1E6757FB0059DB2B /* Info.plist */,
+				B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */,
 			);
 			path = "Track Your Reps";
 			sourceTree = "<group>";
@@ -396,6 +408,7 @@
 				A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */,
 				A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */,
 				B5E1072F1E6F68460017A15B /* OnboardVC.swift in Sources */,
+				A75D546D1E781EE30062ABF4 /* RecentActions.swift in Sources */,
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */,
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
