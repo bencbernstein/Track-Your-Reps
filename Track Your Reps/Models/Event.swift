@@ -20,55 +20,24 @@ struct Event: CustomStringConvertible, Hashable {
     var session: String
     var time: String
     
-    var isBill: Bool { return billId != "" }
+    var isBill: Bool {
+        return billId != ""
+    }
+    
+    var positionImage: UIImage? {
+        switch position {
+        case "Yes":
+            return #imageLiteral(resourceName: "Check")
+        case "No":
+            return #imageLiteral(resourceName: "X")
+        default:
+            return nil
+        }
+    }
     
     var shortDescription: String {
         return "\(eventDescription) - \(time)"
     }
-
-    var memberPositions: NSMutableAttributedString? {
-        let returnString = NSMutableAttributedString(string: "")
-        for member in congressMembers {
-            guard let event = member.events.filter({ $0 == self }).first else { return nil }
-            let memberNameString = NSMutableAttributedString(
-                string: (member.fullName + " voted ").uppercased(),
-                attributes: [NSForegroundColorAttributeName:Palette.grey.color])
-            
-            let xImage = NSTextAttachment()
-            xImage.image = #imageLiteral(resourceName: "X")
-            xImage.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
-            let xString = NSAttributedString(attachment: xImage)
-            
-            let checkImage = NSTextAttachment()
-            checkImage.image = #imageLiteral(resourceName: "Check")
-            checkImage.bounds = CGRect(x: 0, y: 0, width: 18, height: 18)
-            let checkString = NSAttributedString(attachment: checkImage)
-            
-            switch event.position {
-            case "Yes":
-                memberNameString.append(checkString)
-                memberNameString.append(NSAttributedString(string: "\n"))
-            case "No":
-                memberNameString.append(xString)
-                memberNameString.append(NSAttributedString(string: "\n"))
-            default:
-                memberNameString.append(NSMutableAttributedString(string: event.position))
-            }
-            
-
-            returnString.append(memberNameString)
-            
-        }
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        paragraphStyle.alignment = .right
-        returnString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, returnString.length))
-            
-        return returnString
-    }
-    
-    
 
     init(from json: JSON, for member: CongressMember) {
         self.billId = json["bill"]["bill_uri"].stringValue.components(separatedBy: "/").last ?? ""
@@ -102,7 +71,7 @@ struct Event: CustomStringConvertible, Hashable {
 }
 
 
-// MARK - Protocols
+// MARK: - Protocols
 extension Event {
     
     var description: String {
@@ -115,5 +84,47 @@ extension Event {
     
     static func ==(lhs: Event, rhs: Event) -> Bool {
         return lhs.shortDescription == rhs.shortDescription
+    }
+}
+
+
+// MARK: - UI
+extension Event {
+    
+    var memberPositions: NSMutableAttributedString? {
+        let returnString = NSMutableAttributedString(string: "")
+        for member in congressMembers {
+            guard let event = member.events.filter({ $0 == self }).first else { return nil }
+            let memberNameString = NSMutableAttributedString(
+                string: (member.fullName + " voted ").uppercased(),
+                attributes: [NSForegroundColorAttributeName:Palette.grey.color])
+            
+            let xImage = NSTextAttachment()
+            xImage.image = #imageLiteral(resourceName: "X")
+            xImage.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
+            let xString = NSAttributedString(attachment: xImage)
+            
+            let checkImage = NSTextAttachment()
+            checkImage.image = #imageLiteral(resourceName: "Check")
+            checkImage.bounds = CGRect(x: 0, y: 0, width: 18, height: 18)
+            let checkString = NSAttributedString(attachment: checkImage)
+            
+            switch event.position {
+            case "Yes":
+                memberNameString.append(checkString)
+                memberNameString.append(NSAttributedString(string: "\n"))
+            case "No":
+                memberNameString.append(xString)
+                memberNameString.append(NSAttributedString(string: "\n"))
+            default:
+                memberNameString.append(NSMutableAttributedString(string: event.position))
+            }
+            returnString.append(memberNameString)
+        }
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.alignment = .right
+        returnString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, returnString.length))
+        return returnString
     }
 }

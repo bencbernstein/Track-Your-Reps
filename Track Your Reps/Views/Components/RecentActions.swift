@@ -13,7 +13,7 @@ class RecentActions: UIView {
     
     let RECENT_ACTIONS_COUNT = 3
     
-    lazy var recentActions: [(heading: String, subheading: String)] = self.getRecentDecisions()
+    lazy var recentActions: [(heading: NSMutableAttributedString, subheading: String)] = self.getRecentDecisions()
     
     init(member: CongressMember) {
         
@@ -27,8 +27,8 @@ class RecentActions: UIView {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.text = "RECENT DECISIONS"
-            $0.font = UIFont(name: "Montserrat-Bold", size: 14)
-            $0.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            $0.font = UIFont(name: "Montserrat-Bold", size: 18)
+            $0.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         }
     
         for i in 0..<RECENT_ACTIONS_COUNT {
@@ -41,7 +41,7 @@ class RecentActions: UIView {
         let heading = UILabel().then {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.text = recentActions[index].heading
+            $0.attributedText = recentActions[index].heading
             $0.font = UIFont(name: "Montserrat-Regular", size: 12)
         }
         
@@ -62,9 +62,14 @@ class RecentActions: UIView {
         subheading.topAnchor.constraint(equalTo: heading.bottomAnchor, constant: 10).isActive = true
     }
     
-    func getRecentDecisions() -> [(String, String)] {
-        return member.events.map { event in
-            let heading = "Voted \(event.position) \(event.question)"
+    func getRecentDecisions() -> [(NSMutableAttributedString, String)] {
+        return member.events.flatMap { event in
+            guard let position = event.positionImage else { return nil }
+            let heading = multiColorText(
+                textToColor: [("Voted", Palette.grey.color), (event.question.lowercased(), Palette.grey.color)],
+                withImage: position,
+                at: 6
+            )
             let subheading = event.eventDescription.trunc(length: 50)
             return (heading, subheading)
         }

@@ -12,7 +12,7 @@ class EventSummaryVC: UIViewController {
     var eventSummaryLabel = UILabel()
     var eventMemberPositions = UILabel()
     
-    var marginsGuide: UILayoutGuide {
+    var margins: UILayoutGuide {
         return view.layoutMarginsGuide
     }
     
@@ -60,10 +60,10 @@ extension EventSummaryVC {
     func setupLabelConstraints() {
         [eventTitleLabel, eventSummaryLabel, eventMemberPositions].forEach { label in
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: 20).isActive = true
-            label.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.8).isActive = true
+            label.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20).isActive = true
+            label.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.8).isActive = true
         }
-        eventTitleLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 80).isActive = true
+        eventTitleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 80).isActive = true
         eventSummaryLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: 20).isActive = true
         eventMemberPositions.topAnchor.constraint(equalTo: eventSummaryLabel.bottomAnchor, constant: 20).isActive = true
     }

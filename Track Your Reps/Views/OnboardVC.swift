@@ -12,7 +12,7 @@ class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var submitButton = UIButton()
     var welcomeLabel = UILabel()
     
-    var marginsGuide: UILayoutGuide {
+    var margins: UILayoutGuide {
         return view.layoutMarginsGuide
     }
 
@@ -83,16 +83,16 @@ extension OnBoardViewController {
     }
     
     func setupConstraints() {
-        welcomeLabel.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: 20).isActive = true
-        welcomeLabel.centerXAnchor.constraint(equalTo: marginsGuide.centerXAnchor).isActive = true
-        welcomeLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: 80).isActive = true
+        welcomeLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20).isActive = true
+        welcomeLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        welcomeLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 80).isActive = true
         welcomeLabel.numberOfLines = 0
         
         pickerView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20).isActive = true
-        pickerView.widthAnchor.constraint(equalTo: marginsGuide.widthAnchor, multiplier: 0.7).isActive = true
-        pickerView.centerXAnchor.constraint(equalTo: marginsGuide.centerXAnchor).isActive = true
+        pickerView.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.7).isActive = true
+        pickerView.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
       
-        submitButton.centerXAnchor.constraint(equalTo: marginsGuide.centerXAnchor).isActive = true
+        submitButton.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
         submitButton.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 20).isActive = true
     }
 }
