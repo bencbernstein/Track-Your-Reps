@@ -1,10 +1,10 @@
 ///
-/// RepsTableCell.swift
+/// MembersTableCell.swift
 ///
 
 import UIKit
 
-class RepTableCell: UITableViewCell {
+class MemberTableCell: UITableViewCell {
     
     let contactLabel = UILabel()
     let memberImage = UIImageView()
@@ -21,7 +21,7 @@ class RepTableCell: UITableViewCell {
         }
     }
     
-    static let reuseID = "reps"
+    static let reuseID = "members"
     
     var marginsGuide: UILayoutGuide {
         return contentView.layoutMarginsGuide
@@ -42,7 +42,7 @@ class RepTableCell: UITableViewCell {
 }
 
 // MARK: - Layout
-extension RepTableCell {
+extension MemberTableCell {
         
     func setupView() {
         views.forEach { contentView.addSubview($0) }
@@ -56,10 +56,8 @@ extension RepTableCell {
     func setupNameLabel() {
         nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
-
         nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
         nameLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-
     }
     
     func setupPhone() {
@@ -68,7 +66,6 @@ extension RepTableCell {
         phoneImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         phoneImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.30).isActive = true
         phoneImage.heightAnchor.constraint(equalTo: phoneImage.widthAnchor).isActive = true
-        
     }
     
     func setupTwitter() {
