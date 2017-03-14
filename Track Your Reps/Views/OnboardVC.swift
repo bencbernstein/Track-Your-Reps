@@ -7,10 +7,10 @@ import UIKit
 
 class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var welcomeLabel = UILabel()
-    var submitButton = UIButton()
     var pickerView = UIPickerView()
-    let statePickerData = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY", "AE", "AA", "AP"]
+    let states = ["AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    var submitButton = UIButton()
+    var welcomeLabel = UILabel()
     
     var marginsGuide: UILayoutGuide {
         return view.layoutMarginsGuide
@@ -22,7 +22,7 @@ class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     func buttonAction(sender: UIButton!) {
-        let state = statePickerData[pickerView.selectedRow(inComponent: 0)]
+        let state = states[pickerView.selectedRow(inComponent: 0)]
         UserDefaults.standard.set(state, forKey: "state")
         super.dismiss(animated: true, completion: nil)
     }
@@ -30,7 +30,6 @@ class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
 
 // MARK: - PickerView Delegates and Data Sources
-
 extension OnBoardViewController {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -38,18 +37,16 @@ extension OnBoardViewController {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return statePickerData.count
+        return states.count
     }
     
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return statePickerData[row]
+        return states[row]
     }
 }
 
 
 // MARK: - Layout
-
 extension OnBoardViewController {
     
     func setupView() {
@@ -57,8 +54,8 @@ extension OnBoardViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        //set initial view to new york
-        pickerView.selectRow(36, inComponent: 0, animated: true)
+        // Set initial view to New York
+        pickerView.selectRow(30, inComponent: 0, animated: true)
         
         setupWelcomeLabel()
         setupPickerView()

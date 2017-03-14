@@ -17,12 +17,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, SetupVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        view.backgroundColor = UIColor.white
-        tabBar.barTintColor = Palette.pink.color
-        tabBar.tintColor = .black
-        
-        tabBar.itemPositioning = UITabBarItemPositioning.centered
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
+        setupLayout()
         setupUser()
     }
     
@@ -41,24 +36,37 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, SetupVie
 }
 
 
+// MARK: - Layout
+extension TabBarController {
+    
+    func setupLayout() {
+        view.backgroundColor = UIColor.white
+        tabBar.barTintColor = Palette.pink.color
+        tabBar.tintColor = .black
+        tabBar.itemPositioning = UITabBarItemPositioning.centered
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
+    }
+}
+
+
 typealias ViewControllersInitializer = TabBarController
 extension ViewControllersInitializer {
     
     func setupViewControllers() {
-        self.viewControllers = [feedTableView(), repsTableView()]
+        self.viewControllers = [eventsTableView(), membersTableView()]
     }
     
-    func feedTableView() -> FeedTableVC {
-        let feedTableView = FeedTableVC()
-        let feedBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "Home"), selectedImage: nil)
-        feedTableView.tabBarItem = feedBarItem
-        return feedTableView
+    func eventsTableView() -> EventsTableVC {
+        let eventsTableView = EventsTableVC()
+        let eventsBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "Home"), selectedImage: nil)
+        eventsTableView.tabBarItem = eventsBarItem
+        return eventsTableView
     }
     
-    func repsTableView() -> RepsTableVC {
-        let repsTableView = RepsTableVC()
-        let repsBarItem = UITabBarItem(title: "Reps", image: #imageLiteral(resourceName: "Reps"), selectedImage: nil)
-        repsTableView.tabBarItem = repsBarItem
-        return repsTableView
+    func membersTableView() -> MembersTableVC {
+        let membersTableView = MembersTableVC()
+        let membersBarItem = UITabBarItem(title: "Reps", image: #imageLiteral(resourceName: "Reps"), selectedImage: nil)
+        membersTableView.tabBarItem = membersBarItem
+        return membersTableView
     }
 }

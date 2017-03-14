@@ -35,6 +35,7 @@ class CongressMember {
     var url: String
     var votesWithPartyPct: String
     
+    // Data from Wikipedia
     var wikipediaBio: String = ""
     var wikipediaUrl: String = ""
     
@@ -82,7 +83,6 @@ class CongressMember {
         self.url = json["url"].stringValue
         self.votesWithPartyPct = json["votes_with_party_pct"].stringValue
     }
-    
     
     func fetchEvents(completion: @escaping ([Event]) -> Void) {
         
@@ -135,11 +135,11 @@ extension CongressMemberJsonParser {
     }
     
     fileprivate static func proPublicaJson() -> JSON {
-        return jsonFromPath("SenateJSON")
+        return jsonFromPath("Senate")
     }
     
     fileprivate static func biosJson() -> JSON {
-        return jsonFromPath("SenateBiosJSON")
+        return jsonFromPath("SenateBios")
     }
     
     fileprivate static func jsonFromPath(_ path: String) -> JSON {

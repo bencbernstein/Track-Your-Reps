@@ -1,11 +1,11 @@
 ///
-/// RepSummaryVC.swift
+/// MemberSummaryVC.swift
 ///
 
 import Social
 import UIKit
 
-class RepSummaryVC: UIViewController {
+class MemberSummaryVC: UIViewController {
     
     let collapsableBar = UIImageView()
     let hideSummaryView = UIView()
@@ -41,7 +41,7 @@ class RepSummaryVC: UIViewController {
 }
 
 // MARK: - Layout
-extension RepSummaryVC {
+extension MemberSummaryVC {
     
     func setupView() {
         self.view.backgroundColor = .white
@@ -103,7 +103,7 @@ extension RepSummaryVC {
     }
     
     func setupImage() {
-        guard let member = member else { print("RepSummaryVC -> No member"); return }
+        guard let member = member else { print("MemberSummaryVC -> No member"); return }
         memberImage.image = cropCircularImage(for: member)
     }
     
@@ -221,7 +221,7 @@ extension RepSummaryVC {
 }
 
 // MARK: - Collapsable Text
-extension RepSummaryVC {
+extension MemberSummaryVC {
     
     func setupCollapsableBar() {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.collapsableBarTapped(_:)))
@@ -245,7 +245,7 @@ extension RepSummaryVC {
 }
 
 // MARK: - Links
-extension RepSummaryVC {
+extension MemberSummaryVC {
     
     // Mark: - Wikipedia
     func setupWikipediaLink() {

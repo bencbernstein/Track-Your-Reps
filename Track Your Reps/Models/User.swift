@@ -105,19 +105,16 @@ extension User {
         
         group.notify(queue: DispatchQueue.main, execute: {
             self.dataStore.members = self.dataStore.members.map { member in
-                return self.resetEvents(for: member, eventsWithBills: withBills)
+                member.events = self.resetEvents(for: member, eventsWithBills: withBills)
+                return member
             }
             self.delegate?.setupViewControllers()
         })
     }
     
-    fileprivate func resetEvents(for member: CongressMember, eventsWithBills withBills: [Event]) -> CongressMember {
-        let memberCopy = member
-        memberCopy.events = memberCopy.events.map { event in
-            var eventCopy = event
-            withBills.forEach { if event.hashValue == $0.hashValue { eventCopy = $0 } }
-            return eventCopy
+    fileprivate func resetEvents(for member: CongressMember, eventsWithBills withBills: [Event]) -> [Event] {
+        return member.events.map { event in
+            return withBills.filter({ $0 == event }).first ?? event
         }
-        return memberCopy
     }
 }

@@ -1,10 +1,10 @@
 ///
-/// FeedTableVC.swift
+/// EventsTableVC.swift
 ///
 
 import UIKit
 
-class FeedTableVC: UITableViewController {
+class EventsTableVC: UITableViewController {
     
     var events = [Event]()
     
@@ -25,13 +25,13 @@ class FeedTableVC: UITableViewController {
 
 // MARK: - Layout
 
-extension FeedTableVC {
+extension EventsTableVC {
     
     func setupLayout() {
         parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Marker"), landscapeImagePhone: #imageLiteral(resourceName: "Marker"), style: .plain, target: self, action: #selector(openOnBoard))
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.register(FeedTableCell.self, forCellReuseIdentifier: FeedTableCell.reuseID)
+        self.tableView.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
     }
     
     func openOnBoard() {
@@ -43,7 +43,7 @@ extension FeedTableVC {
 
 // MARK: - Table View Methods
 
-extension FeedTableVC {
+extension EventsTableVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -56,7 +56,7 @@ extension FeedTableVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableCell.reuseID, for: indexPath) as! FeedTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: EventTableCell.reuseID, for: indexPath) as! EventTableCell
         cell.event = events[indexPath.row]
         return cell
     }

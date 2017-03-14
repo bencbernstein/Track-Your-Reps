@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */; };
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
-		A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */; };
+		A75FBE7D1E6FA44700FA1C60 /* SenateBios.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */; };
 		A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8BE431E74571500DE0162 /* TypeExtensions.swift */; };
-		A7B8BE461E74B67B00DE0162 /* RecentEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8BE451E74B67B00DE0162 /* RecentEventsVC.swift */; };
 		A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */; };
 		A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */; };
-		A7C2D7D41E6FC6BC00B8E325 /* SenateJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
+		A7C2D7D41E6FC6BC00B8E325 /* Senate.json in Resources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* Senate.json */; };
 		B52420951E705B8E007FB0CD /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420941E705B8E007FB0CD /* DataStore.swift */; };
 		B5321AF71E775F3F007A12BE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF51E775F3F007A12BE /* Event.swift */; };
 		B5321AF81E775F3F007A12BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF61E775F3F007A12BE /* User.swift */; };
@@ -28,13 +27,13 @@
 		B54EB1941E738339005943B1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54EB1931E738339005943B1 /* Colors.swift */; };
 		B54EB1971E739A9C005943B1 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */; };
 		B54EB1981E73A203005943B1 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */; };
-		B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* RepSummaryVC.swift */; };
-		B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
-		B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */; };
-		B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */; };
+		B5567D391E6B836A000260B4 /* MemberSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* MemberSummaryVC.swift */; };
+		B57A4F391E6F5DB700DC1326 /* Senate.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* Senate.json */; };
+		B57DD3F11E6B28ED00C4E277 /* EventsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* EventsTableVC.swift */; };
+		B57DD3F31E6B2B2400C4E277 /* MembersTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F21E6B2B2400C4E277 /* MembersTableVC.swift */; };
 		B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */; };
-		B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F61E6B2F9500C4E277 /* RepTableCell.swift */; };
-		B57DD3FA1E6B30E700C4E277 /* FeedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F91E6B30E700C4E277 /* FeedTableCell.swift */; };
+		B57DD3F71E6B2F9500C4E277 /* MemberTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F61E6B2F9500C4E277 /* MemberTableCell.swift */; };
+		B57DD3FA1E6B30E700C4E277 /* EventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F91E6B30E700C4E277 /* EventTableCell.swift */; };
 		B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3FB1E6B573000C4E277 /* EventSummaryVC.swift */; };
 		B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A34F11E6757FB0059DB2B /* AppDelegate.swift */; };
 		B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58A34F81E6757FB0059DB2B /* Assets.xcassets */; };
@@ -50,9 +49,8 @@
 		9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Track_Your_Reps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaAPI.swift; path = "Track Your Reps/Networking/ProPublicaAPI.swift"; sourceTree = "<group>"; };
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
-		A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateBiosJSON.json; path = "Track Your Reps/Lib/SenateBiosJSON.json"; sourceTree = "<group>"; };
+		A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SenateBios.json; sourceTree = "<group>"; };
 		A7B8BE431E74571500DE0162 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeExtensions.swift; path = "Track Your Reps/Lib/TypeExtensions.swift"; sourceTree = "<group>"; };
-		A7B8BE451E74B67B00DE0162 /* RecentEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentEventsVC.swift; path = Views/RecentEventsVC.swift; sourceTree = "<group>"; };
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
 		A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CongressMember.swift; path = Models/CongressMember.swift; sourceTree = "<group>"; };
 		B52420941E705B8E007FB0CD /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -68,14 +66,14 @@
 		B54EB1931E738339005943B1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
-		B5567D381E6B836A000260B4 /* RepSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepSummaryVC.swift; path = Views/RepSummaryVC.swift; sourceTree = "<group>"; };
-		B57A4F381E6F5DB700DC1326 /* SenateJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SenateJSON.json; path = "Track Your Reps/Lib/SenateJSON.json"; sourceTree = "<group>"; };
-		B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableVC.swift; path = Views/FeedTableVC.swift; sourceTree = "<group>"; };
-		B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepsTableVC.swift; path = Views/RepsTableVC.swift; sourceTree = "<group>"; };
+		B5567D381E6B836A000260B4 /* MemberSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSummaryVC.swift; sourceTree = "<group>"; };
+		B57A4F381E6F5DB700DC1326 /* Senate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Senate.json; sourceTree = "<group>"; };
+		B57DD3F01E6B28ED00C4E277 /* EventsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsTableVC.swift; path = "Track Your Reps/Views/Events/EventsTableVC.swift"; sourceTree = SOURCE_ROOT; };
+		B57DD3F21E6B2B2400C4E277 /* MembersTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MembersTableVC.swift; path = "Track Your Reps/Views/Members/MembersTableVC.swift"; sourceTree = SOURCE_ROOT; };
 		B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		B57DD3F61E6B2F9500C4E277 /* RepTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepTableCell.swift; path = Views/RepTableCell.swift; sourceTree = "<group>"; };
-		B57DD3F91E6B30E700C4E277 /* FeedTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableCell.swift; path = Views/FeedTableCell.swift; sourceTree = "<group>"; };
-		B57DD3FB1E6B573000C4E277 /* EventSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventSummaryVC.swift; path = Views/EventSummaryVC.swift; sourceTree = "<group>"; };
+		B57DD3F61E6B2F9500C4E277 /* MemberTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableCell.swift; sourceTree = "<group>"; };
+		B57DD3F91E6B30E700C4E277 /* EventTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableCell.swift; sourceTree = "<group>"; };
+		B57DD3FB1E6B573000C4E277 /* EventSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSummaryVC.swift; sourceTree = "<group>"; };
 		B58A34EE1E6757FB0059DB2B /* Track Your Reps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Track Your Reps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58A34F11E6757FB0059DB2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58A34F81E6757FB0059DB2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,30 +129,71 @@
 		A70396241E6CF086001BC549 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				B5C54D471E71DD0F0070210B /* ImageProcessing.swift */,
-				B54D2B101E6E0DEC00011A19 /* Secrets.swift */,
-				A7B8BE431E74571500DE0162 /* TypeExtensions.swift */,
-				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
-				A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */,
-				B57A4F381E6F5DB700DC1326 /* SenateJSON.json */,
 				B54EB1931E738339005943B1 /* Colors.swift */,
+				B5C54D471E71DD0F0070210B /* ImageProcessing.swift */,
+				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
+				B54D2B101E6E0DEC00011A19 /* Secrets.swift */,
 				B5321AFB1E778CC9007A12BE /* TimeSince.swift */,
+				A7B8BE431E74571500DE0162 /* TypeExtensions.swift */,
+				A75D54681E77ABEA0062ABF4 /* Data */,
+				A75D54671E77A8BB0062ABF4 /* Fonts */,
 			);
 			name = Lib;
 			path = ..;
 			sourceTree = "<group>";
 		};
+		A75D54671E77A8BB0062ABF4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */,
+				B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */,
+				B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */,
+				B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */,
+				B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */,
+				B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */,
+			);
+			name = Fonts;
+			path = "Track Your Reps/Lib/Fonts";
+			sourceTree = "<group>";
+		};
+		A75D54681E77ABEA0062ABF4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */,
+				B57A4F381E6F5DB700DC1326 /* Senate.json */,
+			);
+			name = Data;
+			path = "Track Your Reps/Lib/Data";
+			sourceTree = "<group>";
+		};
+		A75D54691E77AF190062ABF4 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				B57DD3FB1E6B573000C4E277 /* EventSummaryVC.swift */,
+				B57DD3F91E6B30E700C4E277 /* EventTableCell.swift */,
+				B57DD3F01E6B28ED00C4E277 /* EventsTableVC.swift */,
+			);
+			name = Events;
+			path = Views/Events;
+			sourceTree = "<group>";
+		};
+		A75D546A1E77AF1E0062ABF4 /* Members */ = {
+			isa = PBXGroup;
+			children = (
+				B5567D381E6B836A000260B4 /* MemberSummaryVC.swift */,
+				B57DD3F61E6B2F9500C4E277 /* MemberTableCell.swift */,
+				B57DD3F21E6B2B2400C4E277 /* MembersTableVC.swift */,
+			);
+			name = Members;
+			path = "Track Your Reps/Views/Members";
+			sourceTree = SOURCE_ROOT;
+		};
 		B57DD3EF1E6B281700C4E277 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B5567D381E6B836A000260B4 /* RepSummaryVC.swift */,
-				B57DD3FB1E6B573000C4E277 /* EventSummaryVC.swift */,
-				B57DD3F01E6B28ED00C4E277 /* FeedTableVC.swift */,
-				A7B8BE451E74B67B00DE0162 /* RecentEventsVC.swift */,
-				B57DD3F21E6B2B2400C4E277 /* RepsTableVC.swift */,
-				B57DD3F61E6B2F9500C4E277 /* RepTableCell.swift */,
-				B57DD3F91E6B30E700C4E277 /* FeedTableCell.swift */,
 				B5E1072E1E6F68460017A15B /* OnboardVC.swift */,
+				A75D54691E77AF190062ABF4 /* Events */,
+				A75D546A1E77AF1E0062ABF4 /* Members */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -180,21 +219,15 @@
 		B58A34F01E6757FB0059DB2B /* Track Your Reps */ = {
 			isa = PBXGroup;
 			children = (
+				B58A34F11E6757FB0059DB2B /* AppDelegate.swift */,
 				B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */,
 				B57DD3EF1E6B281700C4E277 /* Views */,
 				B5B189D91E68998300F9E6AF /* Models */,
 				A70396241E6CF086001BC549 /* Lib */,
 				A70396211E6CCA15001BC549 /* Networking */,
-				B58A34F11E6757FB0059DB2B /* AppDelegate.swift */,
 				B58A34F81E6757FB0059DB2B /* Assets.xcassets */,
 				B58A34FA1E6757FB0059DB2B /* LaunchScreen.storyboard */,
 				B58A34FD1E6757FB0059DB2B /* Info.plist */,
-				B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */,
-				B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */,
-				B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */,
-				B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */,
-				B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */,
-				B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */,
 			);
 			path = "Track Your Reps";
 			sourceTree = "<group>";
@@ -202,9 +235,9 @@
 		B5B189D91E68998300F9E6AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B5321AF91E775F48007A12BE /* Bill.swift */,
 				A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */,
 				B52420941E705B8E007FB0CD /* DataStore.swift */,
-				B5321AF91E775F48007A12BE /* Bill.swift */,
 				B5321AF51E775F3F007A12BE /* Event.swift */,
 				B5321AF61E775F3F007A12BE /* User.swift */,
 			);
@@ -281,13 +314,13 @@
 			files = (
 				B54EB1981E73A203005943B1 /* Montserrat-Light.ttf in Resources */,
 				B54EB1921E737D1F005943B1 /* Montserrat-Regular.ttf in Resources */,
-				A7C2D7D41E6FC6BC00B8E325 /* SenateJSON.json in Resources */,
+				A7C2D7D41E6FC6BC00B8E325 /* Senate.json in Resources */,
 				B54EB18F1E737D1F005943B1 /* Montserrat-Black.ttf in Resources */,
 				B54EB1901E737D1F005943B1 /* Montserrat-Bold.ttf in Resources */,
 				B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */,
 				B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */,
 				B54EB1971E739A9C005943B1 /* Montserrat-SemiBold.ttf in Resources */,
-				A75FBE7D1E6FA44700FA1C60 /* SenateBiosJSON.json in Resources */,
+				A75FBE7D1E6FA44700FA1C60 /* SenateBios.json in Resources */,
 				B54EB1911E737D1F005943B1 /* Montserrat-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,16 +383,16 @@
 				B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */,
 				B54EB1941E738339005943B1 /* Colors.swift in Sources */,
 				B5C54D481E71DD0F0070210B /* ImageProcessing.swift in Sources */,
-				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
-				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
+				B57DD3F71E6B2F9500C4E277 /* MemberTableCell.swift in Sources */,
+				B57DD3F31E6B2B2400C4E277 /* MembersTableVC.swift in Sources */,
 				A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */,
 				B5321AFC1E778CC9007A12BE /* TimeSince.swift in Sources */,
 				A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */,
 				B5321AF71E775F3F007A12BE /* Event.swift in Sources */,
-				B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */,
-				B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */,
+				B5567D391E6B836A000260B4 /* MemberSummaryVC.swift in Sources */,
+				B57DD3F11E6B28ED00C4E277 /* EventsTableVC.swift in Sources */,
 				B52420951E705B8E007FB0CD /* DataStore.swift in Sources */,
-				B57A4F391E6F5DB700DC1326 /* SenateJSON.json in Sources */,
+				B57A4F391E6F5DB700DC1326 /* Senate.json in Sources */,
 				A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */,
 				A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */,
 				B5E1072F1E6F68460017A15B /* OnboardVC.swift in Sources */,
@@ -367,10 +400,9 @@
 				B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */,
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
 				B5321AFA1E775F48007A12BE /* Bill.swift in Sources */,
-				B57DD3FA1E6B30E700C4E277 /* FeedTableCell.swift in Sources */,
+				B57DD3FA1E6B30E700C4E277 /* EventTableCell.swift in Sources */,
 				B5321AF81E775F3F007A12BE /* User.swift in Sources */,
 				A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */,
-				A7B8BE461E74B67B00DE0162 /* RecentEventsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

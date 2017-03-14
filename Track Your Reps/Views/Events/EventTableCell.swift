@@ -1,20 +1,20 @@
 ///
-/// FeedTableCell.swift
+/// EventTableCell.swift
 ///
 
 import UIKit
 
-class FeedTableCell: UITableViewCell {
+class EventTableCell: UITableViewCell {
     
     let eventQuestionLabel = UITextView()
     let eventTimeLabel = UILabel()
     let eventDescriptionLabel = UILabel()
-    let repActionLabel = UILabel()
+    let memberActionLabel = UILabel()
     
     var event: Event? {
         didSet {
             guard let event = event else { return }
-            repActionLabel.attributedText = event.memberPositions
+            memberActionLabel.attributedText = event.memberPositions
             eventTimeLabel.text = formatDate(event.date)
             switch event.isBill {
             case true:
@@ -27,7 +27,7 @@ class FeedTableCell: UITableViewCell {
     }
     
     var labels: [UILabel] {
-        return [eventDescriptionLabel, repActionLabel]
+        return [eventDescriptionLabel, memberActionLabel]
     }
     
     static let reuseID = "events"
@@ -49,7 +49,7 @@ class FeedTableCell: UITableViewCell {
 
 // MARK: - Layout
 
-extension FeedTableCell {
+extension EventTableCell {
     
     func setupView() {
         labels.forEach { contentView.addSubview($0) }
@@ -73,8 +73,8 @@ extension FeedTableCell {
         eventDescriptionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
         eventDescriptionLabel.setLineHeight(lineHeight: 10)
         
-        repActionLabel.font = UIFont(name: "Montserrat-Regular", size: 14)
-        repActionLabel.attributedText = event?.memberPositions
+        memberActionLabel.font = UIFont(name: "Montserrat-Regular", size: 14)
+        memberActionLabel.attributedText = event?.memberPositions
         
         setupConstraints()
     }
@@ -110,9 +110,9 @@ extension FeedTableCell {
         eventDescriptionLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor, constant: -contentView.frame.width * 0.1).isActive = true
         eventDescriptionLabel.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true
         
-        repActionLabel.topAnchor.constraint(equalTo: eventDescriptionLabel.bottomAnchor, constant: contentView.frame.height * 0.3).isActive = true
-        repActionLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        repActionLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        memberActionLabel.topAnchor.constraint(equalTo: eventDescriptionLabel.bottomAnchor, constant: contentView.frame.height * 0.3).isActive = true
+        memberActionLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        memberActionLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
     }
     
     func formatDate(_ date: String) -> String {
@@ -131,7 +131,7 @@ extension FeedTableCell {
 
 // MARK: - Bill or NonBill Specific Layout
 
-extension FeedTableCell {
+extension EventTableCell {
     
     func setUpBill(_ event: Event) {
         eventQuestionLabel.text = event.bill?.subject.uppercased()
@@ -147,7 +147,6 @@ extension FeedTableCell {
     }
     
     func determineBackgroundColor(_ text:String) -> UIColor {
-        
         if text.contains("Education") {
             return Palette.green.color
         } else if text.contains("Natural") {
@@ -155,13 +154,10 @@ extension FeedTableCell {
         } else {
             return Palette.black.color
         }
-        
     }
     
     func setUpNonBill(_ event: Event) {
         eventQuestionLabel.text = event.question.uppercased()
         eventDescriptionLabel.text = event.eventDescription
-       
     }
 }
-
