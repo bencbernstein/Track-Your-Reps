@@ -6,4 +6,5 @@ target 'Track Your Reps' do
     pod 'Alamofire', '~> 4.4'
     pod 'Moya'
     pod 'SwiftyJSON'
+    pod 'Then'
 end

@@ -2,15 +2,19 @@
 /// MembersTableCell.swift
 ///
 
+import Then
 import UIKit
 
 class MemberTableCell: UITableViewCell {
     
-    let contactLabel = UILabel()
-    let memberImage = UIImageView()
-    let nameLabel = UILabel()
-    let phoneImage = UIImageView()
-    let twitterImage = UIImageView()
+    let memberImage: UIImageView
+    let nameLabel: UILabel
+    let phoneImage: UIImageView
+    let twitterImage: UIImageView
+    
+    var views: [UIView] {
+        return [memberImage, nameLabel, twitterImage, phoneImage]
+    }
     
     var member: CongressMember? {
         didSet {
@@ -23,63 +27,54 @@ class MemberTableCell: UITableViewCell {
     
     static let reuseID = "members"
     
-    var marginsGuide: UILayoutGuide {
+    var margins: UILayoutGuide {
         return contentView.layoutMarginsGuide
     }
     
-    var views: [UIView] {
-        return [memberImage, nameLabel, contactLabel, twitterImage, phoneImage]
-    }
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        
+        memberImage = UIImageView()
+        nameLabel = UILabel()
+        phoneImage = UIImageView()
+        twitterImage = UIImageView()
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
+        
+        views.forEach { contentView.addSubview($0) }
+        views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+
+        _ = memberImage.then {
+            $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+            $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            $0.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
+            $0.widthAnchor.constraint(equalTo:  memberImage.heightAnchor).isActive = true
+        }
+        
+        _ = nameLabel.then {
+            $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            $0.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
+            $0.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+            $0.font = UIFont(name: "Montserrat-Regular", size: 12)
+        }
+        
+        _ = phoneImage.then {
+            $0.image = #imageLiteral(resourceName: "Phone")
+            $0.trailingAnchor.constraint(equalTo: twitterImage.leadingAnchor, constant: -20).isActive = true
+            $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            $0.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.30).isActive = true
+            $0.heightAnchor.constraint(equalTo: phoneImage.widthAnchor).isActive = true
+        }
+        
+        _ = twitterImage.then {
+            $0.image = #imageLiteral(resourceName: "Twitter")
+            $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+            $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            $0.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
+            $0.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - Layout
-extension MemberTableCell {
-        
-    func setupView() {
-        views.forEach { contentView.addSubview($0) }
-        views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
-        setupNameLabel()
-        setupTwitter()
-        setupPhone()
-        setupImage()
-    }
-    
-    func setupNameLabel() {
-        nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor).isActive = true
-        nameLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-    }
-    
-    func setupPhone() {
-        phoneImage.image = #imageLiteral(resourceName: "Phone")
-        phoneImage.trailingAnchor.constraint(equalTo: twitterImage.leadingAnchor, constant: -20).isActive = true
-        phoneImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        phoneImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.30).isActive = true
-        phoneImage.heightAnchor.constraint(equalTo: phoneImage.widthAnchor).isActive = true
-    }
-    
-    func setupTwitter() {
-        twitterImage.image = #imageLiteral(resourceName: "Twitter")
-        twitterImage.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        twitterImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        twitterImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
-        twitterImage.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
-    }
-    
-    func setupImage() {
-        memberImage.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor).isActive = true
-        memberImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        memberImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
-        memberImage.widthAnchor.constraint(equalTo:  memberImage.heightAnchor).isActive = true
     }
 }

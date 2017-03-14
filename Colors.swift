@@ -67,3 +67,26 @@ extension Event {
     }
 }
 
+
+func multiColorText(textToColor: [(String, UIColor)], withImage: UIImage?, at index: Int?) -> NSMutableAttributedString {
+    let baseString = textToColor.map({ $0.0 }).joined(separator: " ")
+    let mutableString = NSMutableAttributedString(string: baseString)
+    for (str, color) in textToColor {
+        let range = baseString.range(of: str,
+                                     options: NSString.CompareOptions.literal,
+                                     range: baseString.startIndex..<baseString.endIndex,
+                                     locale: nil)
+        guard let index = range?.lowerBound else { continue }
+        let intValue = baseString.distance(from: baseString.startIndex, to: index)
+        let strLength = str.characters.count
+        mutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: intValue, length: strLength))
+    }
+    if let image = withImage, let index = index {
+        let nsImage = NSTextAttachment()
+        nsImage.image = image
+        nsImage.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
+        let attrString = NSAttributedString(attachment: nsImage)
+        mutableString.insert(attrString, at: index)
+    }
+    return mutableString
+}

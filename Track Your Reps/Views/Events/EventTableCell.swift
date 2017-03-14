@@ -32,7 +32,7 @@ class EventTableCell: UITableViewCell {
     
     static let reuseID = "events"
     
-    var marginsGuide: UILayoutGuide {
+    var margins: UILayoutGuide {
         return contentView.layoutMarginsGuide
     }
     
@@ -97,22 +97,22 @@ extension EventTableCell {
     
     func setupUniqueConstraints() {
         
-        eventQuestionLabel.topAnchor.constraint(equalTo: marginsGuide.topAnchor, constant: contentView.frame.height * 0.3).isActive = true
-        eventQuestionLabel.widthAnchor.constraint(lessThanOrEqualTo: marginsGuide.widthAnchor, multiplier: 0.8).isActive = true
+        eventQuestionLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: contentView.frame.height * 0.3).isActive = true
+        eventQuestionLabel.widthAnchor.constraint(lessThanOrEqualTo: margins.widthAnchor, multiplier: 0.8).isActive = true
         eventQuestionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         eventQuestionLabel.isScrollEnabled = false
         eventQuestionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         eventTimeLabel.topAnchor.constraint(equalTo: eventQuestionLabel.topAnchor).isActive = true
-        eventTimeLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
+        eventTimeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         
         eventDescriptionLabel.topAnchor.constraint(equalTo: eventQuestionLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
-        eventDescriptionLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor, constant: -contentView.frame.width * 0.1).isActive = true
-        eventDescriptionLabel.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true
+        eventDescriptionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.1).isActive = true
+        eventDescriptionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true
         
         memberActionLabel.topAnchor.constraint(equalTo: eventDescriptionLabel.bottomAnchor, constant: contentView.frame.height * 0.3).isActive = true
-        memberActionLabel.trailingAnchor.constraint(equalTo: marginsGuide.trailingAnchor).isActive = true
-        memberActionLabel.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor).isActive = true
+        memberActionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        memberActionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
     
     func formatDate(_ date: String) -> String {

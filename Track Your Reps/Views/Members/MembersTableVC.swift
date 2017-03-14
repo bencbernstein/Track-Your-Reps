@@ -2,8 +2,6 @@
 /// MembersTableVC.swift
 ///
 
-import Moya
-import SwiftyJSON
 import UIKit
 
 class MembersTableVC: UITableViewController {
