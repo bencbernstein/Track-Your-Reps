@@ -17,7 +17,8 @@ class FeedTableVC: UITableViewController {
     func setEvents() {
         let dataStore = User.sharedInstance.dataStore
         let uniqueEvents = Set(dataStore.members.flatMap({ $0.events }))
-        events = Array(uniqueEvents)
+        let sortedEvents = uniqueEvents.sorted { $0.0.date > $0.1.date }
+        events = Array(sortedEvents)
     }
 }
 
