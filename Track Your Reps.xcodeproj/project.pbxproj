@@ -16,8 +16,10 @@
 		A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */; };
 		A7C2D7D41E6FC6BC00B8E325 /* SenateJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* SenateJSON.json */; };
 		B52420951E705B8E007FB0CD /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420941E705B8E007FB0CD /* DataStore.swift */; };
-		B52420971E705C03007FB0CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420961E705C03007FB0CD /* User.swift */; };
-		B52420991E70620B007FB0CD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420981E70620B007FB0CD /* Event.swift */; };
+		B5321AF71E775F3F007A12BE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF51E775F3F007A12BE /* Event.swift */; };
+		B5321AF81E775F3F007A12BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF61E775F3F007A12BE /* User.swift */; };
+		B5321AFA1E775F48007A12BE /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF91E775F48007A12BE /* Bill.swift */; };
+		B5321AFC1E778CC9007A12BE /* TimeSince.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AFB1E778CC9007A12BE /* TimeSince.swift */; };
 		B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D2B101E6E0DEC00011A19 /* Secrets.swift */; };
 		B54EB18F1E737D1F005943B1 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */; };
 		B54EB1901E737D1F005943B1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */; };
@@ -54,8 +56,10 @@
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
 		A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CongressMember.swift; path = Models/CongressMember.swift; sourceTree = "<group>"; };
 		B52420941E705B8E007FB0CD /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		B52420961E705C03007FB0CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		B52420981E70620B007FB0CD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B5321AF51E775F3F007A12BE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Models/Event.swift; sourceTree = "<group>"; };
+		B5321AF61E775F3F007A12BE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		B5321AF91E775F48007A12BE /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
+		B5321AFB1E778CC9007A12BE /* TimeSince.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSince.swift; sourceTree = "<group>"; };
 		B54D2B101E6E0DEC00011A19 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Track Your Reps/Lib/Secrets.swift"; sourceTree = "<group>"; };
 		B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				A75FBE7C1E6FA44700FA1C60 /* SenateBiosJSON.json */,
 				B57A4F381E6F5DB700DC1326 /* SenateJSON.json */,
 				B54EB1931E738339005943B1 /* Colors.swift */,
+				B5321AFB1E778CC9007A12BE /* TimeSince.swift */,
 			);
 			name = Lib;
 			path = ..;
@@ -199,8 +204,9 @@
 			children = (
 				A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */,
 				B52420941E705B8E007FB0CD /* DataStore.swift */,
-				B52420961E705C03007FB0CD /* User.swift */,
-				B52420981E70620B007FB0CD /* Event.swift */,
+				B5321AF91E775F48007A12BE /* Bill.swift */,
+				B5321AF51E775F3F007A12BE /* Event.swift */,
+				B5321AF61E775F3F007A12BE /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -347,8 +353,9 @@
 				B57DD3F71E6B2F9500C4E277 /* RepTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* RepsTableVC.swift in Sources */,
 				A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */,
-				B52420991E70620B007FB0CD /* Event.swift in Sources */,
+				B5321AFC1E778CC9007A12BE /* TimeSince.swift in Sources */,
 				A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */,
+				B5321AF71E775F3F007A12BE /* Event.swift in Sources */,
 				B5567D391E6B836A000260B4 /* RepSummaryVC.swift in Sources */,
 				B57DD3F11E6B28ED00C4E277 /* FeedTableVC.swift in Sources */,
 				B52420951E705B8E007FB0CD /* DataStore.swift in Sources */,
@@ -359,10 +366,11 @@
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */,
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
+				B5321AFA1E775F48007A12BE /* Bill.swift in Sources */,
 				B57DD3FA1E6B30E700C4E277 /* FeedTableCell.swift in Sources */,
+				B5321AF81E775F3F007A12BE /* User.swift in Sources */,
 				A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */,
 				A7B8BE461E74B67B00DE0162 /* RecentEventsVC.swift in Sources */,
-				B52420971E705C03007FB0CD /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
