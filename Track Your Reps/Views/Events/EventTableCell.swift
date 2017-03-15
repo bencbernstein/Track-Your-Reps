@@ -8,7 +8,7 @@ class EventTableCell: UITableViewCell {
     
     let eventQuestionLabel = UITextView()
     let eventTimeLabel = UILabel()
-    let eventDescriptionLabel = UILabel()
+    let eventTitleLabel = UILabel()
     let memberActionLabel = UILabel()
     
     var event: Event? {
@@ -27,13 +27,23 @@ class EventTableCell: UITableViewCell {
     }
     
     var labels: [UILabel] {
-        return [eventDescriptionLabel, memberActionLabel]
+        return [eventTitleLabel, memberActionLabel]
     }
     
     static let reuseID = "events"
     
     var margins: UILayoutGuide {
         return contentView.layoutMarginsGuide
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reset()
+    }
+    
+    private func reset() {
+         eventQuestionLabel.backgroundColor = Palette.black.color
+        
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -70,8 +80,8 @@ extension EventTableCell {
         eventTimeLabel.font = UIFont(name: "Montserrat-Light", size: 14)
         eventTimeLabel.textColor = Palette.grey.color
         
-        eventDescriptionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        eventDescriptionLabel.setLineHeight(lineHeight: 10)
+        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        eventTitleLabel.setLineHeight(lineHeight: 10)
         
         memberActionLabel.font = UIFont(name: "Montserrat-Regular", size: 14)
         memberActionLabel.attributedText = event?.memberPositions
@@ -106,11 +116,11 @@ extension EventTableCell {
         eventTimeLabel.topAnchor.constraint(equalTo: eventQuestionLabel.topAnchor).isActive = true
         eventTimeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         
-        eventDescriptionLabel.topAnchor.constraint(equalTo: eventQuestionLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
-        eventDescriptionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.1).isActive = true
-        eventDescriptionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true
+        eventTitleLabel.topAnchor.constraint(equalTo: eventQuestionLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
+        eventTitleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.1).isActive = true
+        eventTitleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true
         
-        memberActionLabel.topAnchor.constraint(equalTo: eventDescriptionLabel.bottomAnchor, constant: contentView.frame.height * 0.3).isActive = true
+        memberActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: contentView.frame.height * 0.3).isActive = true
         memberActionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         memberActionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
@@ -137,27 +147,12 @@ extension EventTableCell {
         eventQuestionLabel.text = event.bill?.subject.uppercased()
         guard let safeBill = event.bill else { return }
         eventQuestionLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
+        eventTitleLabel.text = event.cleanTitle
         
-        if event.bill?.summary != "" {
-            eventDescriptionLabel.text = event.bill?.summary.replacingOccurrences(of: "(This measure has not been amended since it was introduced. The summary of that version is repeated here.) ", with: "").replacingOccurrences(of: "&quot;", with: "\"")
-        } else {
-            eventDescriptionLabel.text = event.eventDescription
-        }
-    
-    }
-    
-    func determineBackgroundColor(_ text:String) -> UIColor {
-        if text.contains("Education") {
-            return Palette.green.color
-        } else if text.contains("Natural") {
-            return Palette.blue.color
-        } else {
-            return Palette.black.color
-        }
     }
     
     func setUpNonBill(_ event: Event) {
         eventQuestionLabel.text = event.question.uppercased()
-        eventDescriptionLabel.text = event.eventDescription
+        eventTitleLabel.text = event.cleanTitle
     }
 }

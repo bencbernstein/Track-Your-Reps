@@ -14,6 +14,7 @@ struct Bill {
     var sponsor: String
     var sponsorParty: String
     var sponsorState: String
+    var number: String
     var subject: String
     var summary: String
     var title: String
@@ -21,6 +22,7 @@ struct Bill {
     
     init(from json: JSON) {
         let results = json["results"][0]
+        self.number = results["number"].stringValue
         self.committees = results["committees"].stringValue
         self.congressDotGovUrl = results["congressdotgov_url"].stringValue
         self.cosponsers = results["cosponsers"].intValue 

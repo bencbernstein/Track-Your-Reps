@@ -38,7 +38,7 @@ struct Event: CustomStringConvertible, Hashable {
     var shortDescription: String {
         return "\(eventDescription) - \(time)"
     }
-
+    
     init(from json: JSON, for member: CongressMember) {
         self.billId = json["bill"]["bill_uri"].stringValue.components(separatedBy: "/").last ?? ""
         self.chamber = json["chamber"].stringValue
@@ -79,13 +79,31 @@ extension Event {
     }
     
     var hashValue: Int {
-        return shortDescription.hashValue
+        return eventDescription.hashValue
     }
     
     static func ==(lhs: Event, rhs: Event) -> Bool {
-        return lhs.shortDescription == rhs.shortDescription
+        return lhs.hashValue == rhs.hashValue
     }
 }
+
+// MARK: - Clean Title
+extension Event {
+    
+    var cleanTitle: String {
+        if self.isBill {
+            guard let safeBill = bill else { return "No Title" }
+            if safeBill.title.contains("disapproval") || safeBill.title.contains("Disapproving") && safeBill.title.characters.count >= 140 {
+                return "\(safeBill.number), a resolution to disapprove a rule regarding \(safeBill.subject)"
+            } else {
+                return safeBill.title
+            }
+        } else {
+            return self.eventDescription
+        }
+    }
+}
+
 
 
 // MARK: - UI
