@@ -83,7 +83,7 @@ extension Event {
     }
     
     static func ==(lhs: Event, rhs: Event) -> Bool {
-        return lhs.eventDescription.hashValue == rhs.eventDescription.hashValue
+        return lhs.hashValue == rhs.hashValue
     }
 }
 
