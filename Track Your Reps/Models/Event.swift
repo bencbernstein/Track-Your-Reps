@@ -79,11 +79,11 @@ extension Event {
     }
     
     var hashValue: Int {
-        return shortDescription.hashValue
+        return eventDescription.hashValue
     }
     
     static func ==(lhs: Event, rhs: Event) -> Bool {
-        return lhs.shortDescription == rhs.shortDescription
+        return lhs.eventDescription.hashValue == rhs.eventDescription.hashValue
     }
 }
 
