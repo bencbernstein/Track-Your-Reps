@@ -44,7 +44,6 @@ class EventTableCell: UITableViewCell {
     private func reset() {
          eventCategoryLabel.backgroundColor = Palette.darkgrey.color
 
-        
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

@@ -85,6 +85,8 @@ extension Event {
     static func ==(lhs: Event, rhs: Event) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
+    
+
 }
 
 // MARK: - Clean Strings

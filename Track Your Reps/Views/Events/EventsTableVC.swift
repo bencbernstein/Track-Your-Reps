@@ -12,6 +12,7 @@ class EventsTableVC: UITableViewController {
         super.viewDidLoad()
         setEvents()
         setupLayout()
+
     }
     
     func setEvents() {
@@ -23,22 +24,19 @@ class EventsTableVC: UITableViewController {
     }
 }
 
-
 // MARK: - Layout
 
 extension EventsTableVC {
     
     func setupLayout() {
-        parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Marker"), landscapeImagePhone: #imageLiteral(resourceName: "Marker"), style: .plain, target: self, action: #selector(openOnBoard))
-        self.tableView.estimatedRowHeight = 150
+        
+        navComponents(title: "Home")
+        
+        self.tableView.estimatedRowHeight = 300
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
     }
     
-    func openOnBoard() {
-        let onboardVC = OnBoardViewController()
-        present(onboardVC, animated: true, completion: nil)
-    }
 }
 
 
