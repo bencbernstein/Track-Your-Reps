@@ -7,30 +7,24 @@ import Then
 
 class RecentActions: UIView {
     
-    var member: CongressMember
-    var viewTitle: UILabel
     var subheadings = [UILabel]()
     
-    let RECENT_ACTIONS_COUNT = 3
+    var member: CongressMember
+    var screenWidth: CGFloat
+    
+    let RECENT_ACTIONS_COUNT = 2
     
     lazy var recentActions: [(heading: NSMutableAttributedString, subheading: String)] = self.getRecentDecisions()
     
-    init(member: CongressMember) {
+    // TODO: - Figure out a way to get dimensions of superview
+    // ideally we wouldn't want to pass width here
+    init(member: CongressMember, screenWidth: CGFloat) {
         
         self.member = member
-        
-        viewTitle = UILabel()
+        self.screenWidth = screenWidth
         
         super.init(frame: CGRect.zero)
         
-        _ = viewTitle.then {
-            self.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.text = "RECENT DECISIONS"
-            $0.font = UIFont(name: "Montserrat-Bold", size: 18)
-            $0.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        }
-    
         for i in 0..<RECENT_ACTIONS_COUNT {
             layoutRecentAction(index: i)
         }
@@ -42,19 +36,23 @@ class RecentActions: UIView {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.attributedText = recentActions[index].heading
-            $0.font = UIFont(name: "Montserrat-Regular", size: 12)
+            $0.font = UIFont(name: "Montserrat-Regular", size: 14)
+            $0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         }
-        
+    
         let subheading = UILabel().then {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.text = recentActions[index].subheading
-            $0.font = UIFont(name: "Montserrat-Regular", size: 12)
+            $0.font = UIFont(name: "Montserrat-Regular", size: 14)
+            $0.numberOfLines = 0
+            $0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            $0.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
             subheadings.append($0)
         }
         
         if index == 0 {
-            heading.topAnchor.constraint(equalTo: viewTitle.bottomAnchor, constant: 20).isActive = true
+            heading.topAnchor.constraint(equalTo: self.topAnchor, constant: 60).isActive = true
         } else {
             heading.topAnchor.constraint(equalTo: subheadings[index-1].bottomAnchor, constant: 20).isActive = true
         }
@@ -70,7 +68,7 @@ class RecentActions: UIView {
                 withImage: position,
                 at: 6
             )
-            let subheading = event.eventDescription.trunc(length: 50)
+            let subheading = event.eventDescription.trunc(length: 80)
             return (heading, subheading)
         }
     }

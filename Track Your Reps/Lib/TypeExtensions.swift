@@ -2,6 +2,17 @@ import Foundation
 import UIKit
 
 extension String {
+
+    var numbersOnly: String {
+        return components(separatedBy: NSCharacterSet(charactersIn: "1234567890")
+            .inverted)
+            .joined(separator: "")
+    }
+    
+    var noContent: Bool {
+        return self == ""
+    }
+    
     func trunc(length: Int, trailing: String? = "...") -> String {
         if self.characters.count > length {
             return self.substring(to: self.startIndex.advance(length, for: self)) + (trailing ?? "")
