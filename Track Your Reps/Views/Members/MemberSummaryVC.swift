@@ -12,11 +12,11 @@ class MemberSummaryVC: UIViewController {
     let recentActionsViewBorder = UIView()
     let memberImage = UIImageView()
     let nameLabel = UILabel()
-    let phoneImage = UIImageView()
+    let phoneContainer = UIView()
     let shortDescriptionLabel = UILabel()
     let summaryLabel = UILabel()
     let summaryLabelBorder = UIView()
-    let twitterImage = UIImageView()
+    let twitterContainer = UIView()
     let wikipediaLink = UILabel()
     
     var member: CongressMember!
@@ -26,7 +26,7 @@ class MemberSummaryVC: UIViewController {
     let WIKI_BIO_CHAR_LENGTH = 500
     
     var views: [UIView] {
-        return [nameLabel, memberImage, shortDescriptionLabel, phoneImage, twitterImage, summaryLabel, summaryLabelBorder, wikipediaLink, recentActionsView, recentActionsViewBorder, recentActionsTitle]
+        return [nameLabel, memberImage, shortDescriptionLabel, phoneContainer, twitterContainer, summaryLabel, summaryLabelBorder, wikipediaLink, recentActionsView, recentActionsViewBorder, recentActionsTitle]
     }
     
     var margins: UILayoutGuide {
@@ -56,16 +56,17 @@ class MemberSummaryVC: UIViewController {
             $0.text = member.fullName.uppercased()
             $0.topAnchor.constraint(equalTo: margins.topAnchor, constant: viewDimensions.w * 0.05).isActive = true
             $0.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: viewDimensions.w * 0.05).isActive = true
+            $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         }
         
         _ = shortDescriptionLabel.then {
-            $0.font = UIFont(name: "Montserrat-Regular", size: 16)
+            $0.font = UIFont(name: "Montserrat-Regular", size: 14)
             $0.textColor = Palette.grey.color
             $0.text = member.shortDescription
             $0.numberOfLines = 0
             $0.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-            $0.centerYAnchor.constraint(equalTo: memberImage.centerYAnchor).isActive = true
-            $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.5).isActive = true
+            $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+            $0.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
         }
         
         _ = summaryLabel.then {
@@ -88,30 +89,34 @@ class MemberSummaryVC: UIViewController {
         
         // MARK: - Links
         
-        let phoneTapped = UITapGestureRecognizer(target: self, action: #selector(self.phoneTapped(_:)))
+        let imageSize = CGSize(width: viewDimensions.w * 0.1, height: viewDimensions.w * 0.1)
+        let imageOrigin = CGPoint(x: 0, y: 0)
+        let imageFrame = CGRect(origin: imageOrigin, size: imageSize)
         
-        _ = phoneImage.then {
-            $0.image = #imageLiteral(resourceName: "Phone")
-            $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(phoneTapped)
-            $0.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
-            $0.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-            $0.widthAnchor.constraint(equalTo: memberImage.heightAnchor, multiplier: 0.2).isActive = true
-            $0.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
+        if let twitterImageView = Twitter(account: member.twitterAccount, frame: imageFrame) {
+            
+            _ = twitterContainer.then {
+                $0.addSubview(twitterImageView)
+                $0.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
+                $0.trailingAnchor.constraint(equalTo: phoneContainer.leadingAnchor, constant: -35).isActive = true
+                $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
+                $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
+            }
+            
         }
-        
-        let twitterTapped = UITapGestureRecognizer(target: self, action: #selector(self.twitterTapped(_:)))
-        
-        _ = twitterImage.then {
-            $0.image = #imageLiteral(resourceName: "Twitter")
-            $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(twitterTapped)
-            $0.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
-            $0.leadingAnchor.constraint(equalTo: phoneImage.trailingAnchor, constant: viewDimensions.w * 0.03).isActive = true
-            $0.widthAnchor.constraint(equalTo: memberImage.heightAnchor, multiplier: 0.2).isActive = true
-            $0.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
+
+        if let phoneImageView = Phone(number: member.phone.numbersOnly, frame: imageFrame) {
+            
+            _ = phoneContainer.then {
+                $0.addSubview(phoneImageView)
+                $0.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
+                $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -25).isActive = true
+                $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
+                $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
+            }
+            
         }
-        
+ 
         let wikipediaTapped = UITapGestureRecognizer(target: self, action: #selector(self.wikipediaTapped(_:)))
         
         _ = wikipediaLink.then {
@@ -126,22 +131,7 @@ class MemberSummaryVC: UIViewController {
         
         setupRecentActions()
     }
-    
-    func phoneTapped(_ sender: UITapGestureRecognizer) {
-        let phoneNumber = member.phone.numbersOnly
-        if phoneNumber.noContent {
-            print("MemberSummaryVC -> No phone number: \(member.fullName)")
-            return
-        }
-        let number = "telprompt://\(phoneNumber)"
-        open(scheme: number)
-    }
-    
-    func twitterTapped(_ sender: UITapGestureRecognizer) {
-        guard let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-        vc.setInitialText("@\(member.twitterAccount)")
-        present(vc, animated: true)
-    }
+
     
     func wikipediaTapped(_ sender: UITapGestureRecognizer) {
         let url = member.wikipediaUrl
@@ -167,6 +157,7 @@ class MemberSummaryVC: UIViewController {
 
 
 // MARK: - Recent Actions
+
 extension MemberSummaryVC {
     
     func setupRecentActions() {
@@ -189,7 +180,7 @@ extension MemberSummaryVC {
         
         _ = recentActionsTitle.then {
             $0.text = "RECENT DECISIONS"
-            $0.font = UIFont(name: "Montserrat-Bold", size: 18)
+            $0.font = UIFont(name: "Montserrat-Light", size: 18)
             $0.topAnchor.constraint(equalTo: recentActionsView.topAnchor, constant: 20).isActive = true
             $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
             $0.isUserInteractionEnabled = true
@@ -215,4 +206,3 @@ extension MemberSummaryVC {
         summaryHidden = !summaryHidden
     }
 }
-

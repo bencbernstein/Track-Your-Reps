@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */; };
 		A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70396251E6CF09C001BC549 /* ResponseStubs.swift */; };
+		A70A60CB1E7AD10000970CE1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A60CA1E7AD10000970CE1 /* Contact.swift */; };
 		A75D546D1E781EE30062ABF4 /* RecentActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75D546C1E781EE30062ABF4 /* RecentActions.swift */; };
 		A75FBE7D1E6FA44700FA1C60 /* SenateBios.json in Resources */ = {isa = PBXBuildFile; fileRef = A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */; };
 		A7B8BE441E74571500DE0162 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8BE431E74571500DE0162 /* TypeExtensions.swift */; };
@@ -50,6 +51,7 @@
 		9F2D950819F6AC6A8F32D459 /* Pods_Track_Your_Reps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Track_Your_Reps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70396221E6CCA78001BC549 /* ProPublicaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaAPI.swift; path = "Track Your Reps/Networking/ProPublicaAPI.swift"; sourceTree = "<group>"; };
 		A70396251E6CF09C001BC549 /* ResponseStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubs.swift; path = "Track Your Reps/Lib/ResponseStubs.swift"; sourceTree = "<group>"; };
+		A70A60CA1E7AD10000970CE1 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		A75D546C1E781EE30062ABF4 /* RecentActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentActions.swift; sourceTree = "<group>"; };
 		A75FBE7C1E6FA44700FA1C60 /* SenateBios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SenateBios.json; sourceTree = "<group>"; };
 		A7B8BE431E74571500DE0162 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeExtensions.swift; path = "Track Your Reps/Lib/TypeExtensions.swift"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		A75D546B1E781EC90062ABF4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A70A60CA1E7AD10000970CE1 /* Contact.swift */,
 				A75D546C1E781EE30062ABF4 /* RecentActions.swift */,
 			);
 			name = Components;
@@ -394,6 +397,7 @@
 			files = (
 				B54D2B111E6E0DEC00011A19 /* Secrets.swift in Sources */,
 				B54EB1941E738339005943B1 /* Colors.swift in Sources */,
+				A70A60CB1E7AD10000970CE1 /* Contact.swift in Sources */,
 				B5C54D481E71DD0F0070210B /* ImageProcessing.swift in Sources */,
 				B57DD3F71E6B2F9500C4E277 /* MemberTableCell.swift in Sources */,
 				B57DD3F31E6B2B2400C4E277 /* MembersTableVC.swift in Sources */,
