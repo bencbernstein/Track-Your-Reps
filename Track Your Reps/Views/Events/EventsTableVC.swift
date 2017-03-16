@@ -30,7 +30,7 @@ extension EventsTableVC {
     
     func setupLayout() {
         parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Marker"), landscapeImagePhone: #imageLiteral(resourceName: "Marker"), style: .plain, target: self, action: #selector(openOnBoard))
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 150
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
     }

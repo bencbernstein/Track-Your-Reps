@@ -6,7 +6,7 @@ import UIKit
 
 class EventTableCell: UITableViewCell {
     
-    let eventQuestionLabel = UITextView()
+    let eventCategoryLabel = UITextView()
     let eventTimeLabel = UILabel()
     let eventTitleLabel = UILabel()
     let memberActionLabel = UILabel()
@@ -27,7 +27,7 @@ class EventTableCell: UITableViewCell {
     }
     
     var labels: [UILabel] {
-        return [eventTitleLabel, memberActionLabel]
+        return [eventTitleLabel, memberActionLabel, eventTimeLabel]
     }
     
     static let reuseID = "events"
@@ -42,7 +42,8 @@ class EventTableCell: UITableViewCell {
     }
     
     private func reset() {
-         eventQuestionLabel.backgroundColor = Palette.black.color
+         eventCategoryLabel.backgroundColor = Palette.darkgrey.color
+
         
     }
     
@@ -63,27 +64,27 @@ extension EventTableCell {
     
     func setupView() {
         labels.forEach { contentView.addSubview($0) }
-        contentView.addSubview(eventQuestionLabel)
+        contentView.addSubview(eventCategoryLabel)
         contentView.addSubview(eventTimeLabel)
         setupLabels()
     }
     
     func setupLabels() {
-        eventQuestionLabel.font = UIFont(name: "Montserrat-Regular", size: 14)
-        eventQuestionLabel.textColor =  Palette.white.color
-        eventQuestionLabel.backgroundColor = Palette.black.color
+        eventCategoryLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        eventCategoryLabel.textColor =  Palette.white.color
+        eventCategoryLabel.backgroundColor = Palette.darkgrey.color
         
         // TODO: calculate this more effectively without breaking constraints
-        eventQuestionLabel.textContainerInset = UIEdgeInsetsMake(5, 30, 5, 10)
-        eventQuestionLabel.textAlignment = .left
+        eventCategoryLabel.textContainerInset = UIEdgeInsetsMake(8, 30, 8, 15)
+        eventCategoryLabel.textAlignment = .left
         
-        eventTimeLabel.font = UIFont(name: "Montserrat-Light", size: 14)
+        eventTimeLabel.font = UIFont(name: "Montserrat-Light", size: 16)
         eventTimeLabel.textColor = Palette.grey.color
         
-        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        eventTitleLabel.setLineHeight(lineHeight: 10)
+        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 18)
+        eventTitleLabel.setLineHeight(lineHeight: 12)
         
-        memberActionLabel.font = UIFont(name: "Montserrat-Regular", size: 14)
+        memberActionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
         memberActionLabel.attributedText = event?.memberPositions
         
         setupConstraints()
@@ -94,7 +95,7 @@ extension EventTableCell {
         labels.forEach { setupCommonConstraints($0) }
         eventTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         eventTimeLabel.numberOfLines = 0
-        eventQuestionLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
         
         setupUniqueConstraints()
     }
@@ -107,20 +108,20 @@ extension EventTableCell {
     
     func setupUniqueConstraints() {
         
-        eventQuestionLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: contentView.frame.height * 0.3).isActive = true
-        eventQuestionLabel.widthAnchor.constraint(lessThanOrEqualTo: margins.widthAnchor, multiplier: 0.8).isActive = true
-        eventQuestionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        eventQuestionLabel.isScrollEnabled = false
-        eventQuestionLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventCategoryLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: contentView.frame.height * 0.4).isActive = true
+        eventCategoryLabel.widthAnchor.constraint(lessThanOrEqualTo: margins.widthAnchor, multiplier: 0.8).isActive = true
+        eventCategoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        eventCategoryLabel.isScrollEnabled = false
+        eventCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        eventTimeLabel.topAnchor.constraint(equalTo: eventQuestionLabel.topAnchor).isActive = true
+        eventTimeLabel.topAnchor.constraint(equalTo: eventCategoryLabel.topAnchor).isActive = true
         eventTimeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         
-        eventTitleLabel.topAnchor.constraint(equalTo: eventQuestionLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
-        eventTitleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.1).isActive = true
-        eventTitleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true
+        eventTitleLabel.topAnchor.constraint(equalTo: eventCategoryLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
+        eventTitleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.05).isActive = true
+        eventTitleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true        
         
-        memberActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: contentView.frame.height * 0.3).isActive = true
+        memberActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
         memberActionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         memberActionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
@@ -144,15 +145,15 @@ extension EventTableCell {
 extension EventTableCell {
     
     func setUpBill(_ event: Event) {
-        eventQuestionLabel.text = event.bill?.subject.uppercased()
         guard let safeBill = event.bill else { return }
-        eventQuestionLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
-        eventTitleLabel.text = event.cleanTitle
+        eventCategoryLabel.text = safeBill.subject.uppercased()
+        eventCategoryLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
+        eventTitleLabel.attributedText = event.cleanTitle
         
     }
     
     func setUpNonBill(_ event: Event) {
-        eventQuestionLabel.text = event.question.uppercased()
-        eventTitleLabel.text = event.cleanTitle
+        eventCategoryLabel.text = event.cleanCategory.uppercased()
+        eventTitleLabel.attributedText = event.cleanTitle
     }
 }

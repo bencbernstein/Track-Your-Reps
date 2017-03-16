@@ -76,7 +76,7 @@ func determineBackgroundColor(_ text:String) -> UIColor {
     } else if text.contains("Labor") {
         return Palette.red.color
     } else {
-        return Palette.black.color
+        return Palette.darkgrey.color
     }
 }
 
