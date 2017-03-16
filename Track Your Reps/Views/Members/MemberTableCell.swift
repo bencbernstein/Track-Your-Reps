@@ -2,7 +2,6 @@
 /// MembersTableCell.swift
 ///
 
-import Social
 import Then
 import UIKit
 
