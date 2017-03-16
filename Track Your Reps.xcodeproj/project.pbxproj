@@ -29,6 +29,8 @@
 		B54EB1971E739A9C005943B1 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */; };
 		B54EB1981E73A203005943B1 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */; };
 		B5567D391E6B836A000260B4 /* MemberSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5567D381E6B836A000260B4 /* MemberSummaryVC.swift */; };
+		B5577EB91E7AECAB00A1C7E6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5577EB81E7AECAB00A1C7E6 /* SettingsVC.swift */; };
+		B5577EBB1E7B1C2C00A1C7E6 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5577EBA1E7B1C2C00A1C7E6 /* NavBar.swift */; };
 		B57A4F391E6F5DB700DC1326 /* Senate.json in Sources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* Senate.json */; };
 		B57DD3F11E6B28ED00C4E277 /* EventsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F01E6B28ED00C4E277 /* EventsTableVC.swift */; };
 		B57DD3F31E6B2B2400C4E277 /* MembersTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DD3F21E6B2B2400C4E277 /* MembersTableVC.swift */; };
@@ -69,6 +71,8 @@
 		B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* MemberSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSummaryVC.swift; sourceTree = "<group>"; };
+		B5577EB81E7AECAB00A1C7E6 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		B5577EBA1E7B1C2C00A1C7E6 /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		B57A4F381E6F5DB700DC1326 /* Senate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Senate.json; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* EventsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsTableVC.swift; path = "Track Your Reps/Views/Events/EventsTableVC.swift"; sourceTree = SOURCE_ROOT; };
 		B57DD3F21E6B2B2400C4E277 /* MembersTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MembersTableVC.swift; path = "Track Your Reps/Views/Members/MembersTableVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -194,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				A75D546C1E781EE30062ABF4 /* RecentActions.swift */,
+				B5577EBA1E7B1C2C00A1C7E6 /* NavBar.swift */,
 			);
 			name = Components;
 			path = Views/Components;
@@ -202,6 +207,7 @@
 		B57DD3EF1E6B281700C4E277 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5577EB81E7AECAB00A1C7E6 /* SettingsVC.swift */,
 				B5E1072E1E6F68460017A15B /* OnboardVC.swift */,
 				A75D546B1E781EC90062ABF4 /* Components */,
 				A75D54691E77AF190062ABF4 /* Events */,
@@ -401,6 +407,7 @@
 				B5321AFC1E778CC9007A12BE /* TimeSince.swift in Sources */,
 				A70396231E6CCA78001BC549 /* ProPublicaAPI.swift in Sources */,
 				B5321AF71E775F3F007A12BE /* Event.swift in Sources */,
+				B5577EB91E7AECAB00A1C7E6 /* SettingsVC.swift in Sources */,
 				B5567D391E6B836A000260B4 /* MemberSummaryVC.swift in Sources */,
 				B57DD3F11E6B28ED00C4E277 /* EventsTableVC.swift in Sources */,
 				B52420951E705B8E007FB0CD /* DataStore.swift in Sources */,
@@ -412,6 +419,7 @@
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */,
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
+				B5577EBB1E7B1C2C00A1C7E6 /* NavBar.swift in Sources */,
 				B5321AFA1E775F48007A12BE /* Bill.swift in Sources */,
 				B57DD3FA1E6B30E700C4E277 /* EventTableCell.swift in Sources */,
 				B5321AF81E775F3F007A12BE /* User.swift in Sources */,

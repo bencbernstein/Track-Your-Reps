@@ -15,10 +15,15 @@ class MembersTableVC: UITableViewController {
     }
     
     func setupLayout() {
+        
+        navComponents(title: "Reps")
+        
         self.tableView.backgroundColor = UIColor.lightGray
         self.tableView.rowHeight = view.frame.size.height / 8
         self.tableView.register(MemberTableCell.self, forCellReuseIdentifier: MemberTableCell.reuseID)
     }
+    
+
 }
 
 // MARK: - Table View Methods

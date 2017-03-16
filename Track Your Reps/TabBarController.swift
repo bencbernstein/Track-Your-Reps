@@ -10,29 +10,21 @@ protocol SetupViewControllersDelegate: class {
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate, SetupViewControllersDelegate {
     
-    // USA State (ex. NY)
     var userState: String? {
         return UserDefaults.standard.string(forKey: "state")
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        setupLayout()
-        setupUser()
-    }
-    
-    func setupUser() {
-        guard let userState = userState else { onboardUser(); return }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         User.sharedInstance.delegate = self
-        User.sharedInstance.state = userState
+        User.sharedInstance.state = userState!
         User.sharedInstance.fetchMembers()
         User.sharedInstance.fetchEvents()
+        
+        setupLayout()
     }
     
-    func onboardUser() {
-        let onBoardVC = OnBoardViewController()
-        parent?.present(onBoardVC, animated: true, completion: nil)
-    }
 }
 
 
@@ -53,7 +45,14 @@ typealias ViewControllersInitializer = TabBarController
 extension ViewControllersInitializer {
     
     func setupViewControllers() {
-        self.viewControllers = [eventsTableView(), membersTableView()]
+        
+        let eventsView = UINavigationController(rootViewController: eventsTableView())
+        eventsView.navigationBar.barTintColor = Palette.pink.color
+
+        let membersView = UINavigationController(rootViewController: membersTableView())
+        membersView.navigationBar.barTintColor = Palette.pink.color
+        
+        self.viewControllers = [eventsView, membersView]
     }
     
     func eventsTableView() -> EventsTableVC {
@@ -69,4 +68,6 @@ extension ViewControllersInitializer {
         membersTableView.tabBarItem = membersBarItem
         return membersTableView
     }
+    
+
 }
