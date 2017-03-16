@@ -2,6 +2,7 @@
 /// MembersTableCell.swift
 ///
 
+import Social
 import Then
 import UIKit
 
@@ -9,11 +10,11 @@ class MemberTableCell: UITableViewCell {
     
     let memberImage: UIImageView
     let nameLabel: UILabel
-    let phoneImage: UIImageView
-    let twitterImage: UIImageView
+    let phoneContainer: UIView
+    let twitterContainer: UIView
     
     var views: [UIView] {
-        return [memberImage, nameLabel, twitterImage, phoneImage]
+        return [memberImage, nameLabel, twitterContainer, phoneContainer]
     }
     
     var member: CongressMember? {
@@ -22,6 +23,8 @@ class MemberTableCell: UITableViewCell {
             memberImage.image = cropCircularImage(for: member)
             nameLabel.text = member.fullName.uppercased()
             nameLabel.textColor = member.partyColor()
+            
+            setupLinks(for: member)
         }
     }
     
@@ -31,12 +34,16 @@ class MemberTableCell: UITableViewCell {
         return contentView.layoutMarginsGuide
     }
     
+    var viewDimensions: (h: CGFloat, w: CGFloat) {
+        return (contentView.frame.size.height, contentView.frame.size.width)
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
         memberImage = UIImageView()
         nameLabel = UILabel()
-        phoneImage = UIImageView()
-        twitterImage = UIImageView()
+        phoneContainer = UIView()
+        twitterContainer = UIView()
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -56,25 +63,46 @@ class MemberTableCell: UITableViewCell {
             $0.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
             $0.font = UIFont(name: "Montserrat-Regular", size: 12)
         }
-        
-        _ = phoneImage.then {
-            $0.image = #imageLiteral(resourceName: "Phone")
-            $0.trailingAnchor.constraint(equalTo: twitterImage.leadingAnchor, constant: -20).isActive = true
-            $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-            $0.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.30).isActive = true
-            $0.heightAnchor.constraint(equalTo: phoneImage.widthAnchor).isActive = true
-        }
-        
-        _ = twitterImage.then {
-            $0.image = #imageLiteral(resourceName: "Twitter")
-            $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-            $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-            $0.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
-            $0.heightAnchor.constraint(equalTo: twitterImage.widthAnchor).isActive = true
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+// MARK: - Contact
+
+extension MemberTableCell {
+    
+    func setupLinks(for member: CongressMember) {
+        
+        let imageSize = CGSize(width: viewDimensions.w * 0.075, height: viewDimensions.w * 0.075)
+        let imageOrigin = CGPoint(x: 0, y: 0)
+        let imageFrame = CGRect(origin: imageOrigin, size: imageSize)
+        
+        if let phoneImageView = Phone(number: member.phone.numbersOnly, frame: imageFrame) {
+            
+            _ = phoneContainer.then {
+                $0.addSubview(phoneImageView)
+                $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+                $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -10).isActive = true
+                $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
+                $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
+            }
+            
+        }
+        
+        if let twitterImageView = Twitter(account: member.twitterAccount, frame: imageFrame) {
+            
+            _ = twitterContainer.then {
+                $0.addSubview(twitterImageView)
+                $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+                $0.trailingAnchor.constraint(equalTo: phoneContainer.leadingAnchor, constant: -25).isActive = true
+                $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
+                $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
+            }
+            
+        }
     }
 }
