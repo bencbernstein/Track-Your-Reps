@@ -9,7 +9,7 @@ import Moya
 
 class CongressMember {
     
-    // Data from ProPublica
+    // from ProPublica
     var apiUri: String
     var domain: String
     var dwNominate: String
@@ -35,9 +35,12 @@ class CongressMember {
     var url: String
     var votesWithPartyPct: String
     
-    // Data from Wikipedia
+    // from Wikipedia
     var wikipediaBio: String = ""
     var wikipediaUrl: String = ""
+    
+    // from senate.gov
+    var phone: String = ""
     
     var fullName: String {
         return "\(firstName) \(lastName)"
@@ -130,7 +133,8 @@ extension CongressMemberJsonParser {
         biosJson().arrayValue.forEach { bioJson in
             guard let i = members.map({ $0.id }).index(of:  bioJson["id"].stringValue) else { return }
             members[i].wikipediaBio = bioJson["biography"].stringValue
-            members[i].wikipediaUrl = "https://wikipedia.org\(bioJson["url"].stringValue)"
+            members[i].wikipediaUrl = "https://en.wikipedia.org\(bioJson["url"].stringValue)"
+            members[i].phone = bioJson["phone"].stringValue
         }
     }
     
