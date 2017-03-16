@@ -17,6 +17,7 @@ class EventsTableVC: UITableViewController {
     func setEvents() {
         let dataStore = User.sharedInstance.dataStore
         let uniqueEvents = Set(dataStore.members.flatMap({ $0.events }))
+
         let sortedEvents = uniqueEvents.sorted { $0.0.date > $0.1.date }
         events = Array(sortedEvents)
     }
@@ -29,7 +30,7 @@ extension EventsTableVC {
     
     func setupLayout() {
         parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Marker"), landscapeImagePhone: #imageLiteral(resourceName: "Marker"), style: .plain, target: self, action: #selector(openOnBoard))
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 150
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
     }
@@ -56,6 +57,7 @@ extension EventsTableVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: EventTableCell.reuseID, for: indexPath) as! EventTableCell
         cell.event = events[indexPath.row]
         return cell

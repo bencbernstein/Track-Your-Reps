@@ -68,6 +68,18 @@ extension Event {
 }
 
 
+func determineBackgroundColor(_ text:String) -> UIColor {
+    if text.contains("Education") {
+        return Palette.green.color
+    } else if text.contains("Natural") {
+        return Palette.blue.color
+    } else if text.contains("Labor") {
+        return Palette.red.color
+    } else {
+        return Palette.darkgrey.color
+    }
+}
+
 func multiColorText(textToColor: [(String, UIColor)], withImage: UIImage?, at index: Int?) -> NSMutableAttributedString {
     let baseString = textToColor.map({ $0.0 }).joined(separator: " ")
     let mutableString = NSMutableAttributedString(string: baseString)

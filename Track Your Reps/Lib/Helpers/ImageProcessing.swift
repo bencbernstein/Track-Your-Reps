@@ -30,6 +30,8 @@ func cropCircle(for member: CongressMember, image: UIImage, radius: Float) -> UI
     
     layer.masksToBounds = true
     layer.cornerRadius = CGFloat(radius)
+    
+    // TODO: make border width proportional to radius, or make it an 'absolute value' that doesn't scale with image radius
     layer.borderWidth = 5
     layer.borderColor = member.partyColor().cgColor
     

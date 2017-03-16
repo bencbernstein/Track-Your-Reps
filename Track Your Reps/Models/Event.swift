@@ -38,7 +38,7 @@ struct Event: CustomStringConvertible, Hashable {
     var shortDescription: String {
         return "\(eventDescription) - \(time)"
     }
-
+    
     init(from json: JSON, for member: CongressMember) {
         self.billId = json["bill"]["bill_uri"].stringValue.components(separatedBy: "/").last ?? ""
         self.chamber = json["chamber"].stringValue
@@ -87,6 +87,40 @@ extension Event {
     }
 }
 
+// MARK: - Clean Strings
+extension Event {
+    
+    var cleanTitle: NSAttributedString {
+        if self.isBill {
+            guard let safeBill = bill else { return NSAttributedString(string: "No Title") }
+            let greyBillNumber = NSMutableAttributedString(string: safeBill.number, attributes: [NSForegroundColorAttributeName: Palette.darkgrey.color])
+            if safeBill.title.contains("disapproval") || safeBill.title.contains("Disapproving") && safeBill.title.characters.count >= 140 {
+                greyBillNumber.append(NSAttributedString(string: "\n\nA \(safeBill.fullParty) sponsored resolution to overturn a previous rule."))
+                return greyBillNumber
+            } else {
+                greyBillNumber.append(NSAttributedString(string: "\n\n\(safeBill.title)"))
+                return greyBillNumber
+            }
+        } else {
+            return NSAttributedString(string: self.eventDescription)
+            
+        }
+    }
+    
+    var cleanCategory: String {
+        var returnString = self.question
+        if self.question.contains("On the") {
+            returnString = returnString.replacingOccurrences(of: "On the ", with: "")
+        }
+        if returnString.contains("Cloture Motion") {
+            returnString = returnString.replacingOccurrences(of: "Cloture Motion", with: "End the Debate On")
+        }
+        return returnString
+        
+    }
+    
+}
+
 
 // MARK: - UI
 extension Event {
@@ -95,27 +129,37 @@ extension Event {
         let returnString = NSMutableAttributedString(string: "")
         for member in congressMembers {
             guard let event = member.events.filter({ $0 == self }).first else { return nil }
+            
+            let memberPicture = NSTextAttachment()
+            memberPicture.image = cropCircularImage(for: member)
+            memberPicture.bounds = CGRect(x: 0, y: -3, width: 35, height: 35)
+            let memberPictureString = NSAttributedString(attachment: memberPicture)
+            
             let memberNameString = NSMutableAttributedString(
-                string: (member.fullName + " voted ").uppercased(),
-                attributes: [NSForegroundColorAttributeName:Palette.grey.color])
+                string: "" ,
+                attributes: [:])
             
             let xImage = NSTextAttachment()
             xImage.image = #imageLiteral(resourceName: "X")
-            xImage.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
+            xImage.bounds = CGRect(x: 0, y: -4, width: 28, height: 28)
             let xString = NSAttributedString(attachment: xImage)
             
             let checkImage = NSTextAttachment()
             checkImage.image = #imageLiteral(resourceName: "Check")
-            checkImage.bounds = CGRect(x: 0, y: 0, width: 18, height: 18)
+            checkImage.bounds = CGRect(x: 0, y: 0, width: 28, height: 28)
             let checkString = NSAttributedString(attachment: checkImage)
             
             switch event.position {
             case "Yes":
+                memberNameString.append(memberPictureString)
+                memberNameString.append(NSAttributedString(string: " "))
                 memberNameString.append(checkString)
-                memberNameString.append(NSAttributedString(string: "\n"))
+                memberNameString.append(NSAttributedString(string: "    "))
             case "No":
+                memberNameString.append(memberPictureString)
+                memberNameString.append(NSAttributedString(string: " "))
                 memberNameString.append(xString)
-                memberNameString.append(NSAttributedString(string: "\n"))
+                memberNameString.append(NSAttributedString(string: "    "))
             default:
                 memberNameString.append(NSMutableAttributedString(string: event.position))
             }
