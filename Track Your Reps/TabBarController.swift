@@ -18,9 +18,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, SetupVie
         super.viewDidLoad()
 
         User.sharedInstance.delegate = self
-        User.sharedInstance.state = userState!
+        User.sharedInstance.state = userState ?? "NY"
         User.sharedInstance.fetchMembers()
         User.sharedInstance.fetchEvents()
+        
+        
         
         setupLayout()
     }

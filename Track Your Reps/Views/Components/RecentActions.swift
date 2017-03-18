@@ -62,10 +62,9 @@ class RecentActions: UIView {
     
     func getRecentDecisions() -> [(NSMutableAttributedString, String)] {
         return member.events.flatMap { event in
-            guard let position = event.positionImage else { return nil }
             let heading = multiColorText(
                 textToColor: [("Voted", Palette.grey.color), (event.question.lowercased(), Palette.grey.color)],
-                withImage: position,
+                withImage: positionImage(event),
                 at: 6
             )
             let subheading = event.eventDescription.trunc(length: 80)
