@@ -6,28 +6,26 @@ import UIKit
 
 class EventTableCell: UITableViewCell {
     
-    let eventCategoryLabel = UITextView()
-    let eventTimeLabel = UILabel()
-    let eventTitleLabel = UILabel()
+    let categoryLabel = UITextView()
+    let timeLabel = UILabel()
+    let bodyLabel = UILabel()
     let memberActionLabel = UILabel()
     
     var event: Event? {
         didSet {
             guard let event = event else { return }
-            memberActionLabel.attributedText = event.memberPositions
-            eventTimeLabel.text = formatDate(event.date)
-            switch event.isBill {
-            case true:
-                setUpBill(event)
-            case false:
-                setUpNonBill(event)
-            }
+            event.isBill ? setUpBill(event) : setUpNonBill(event)
             
+            memberActionLabel.attributedText = event.memberPositions
+            timeLabel.text = formatDate(event.date)
+            
+           
+
         }
     }
     
     var labels: [UILabel] {
-        return [eventTitleLabel, memberActionLabel, eventTimeLabel]
+        return [timeLabel, bodyLabel, memberActionLabel]
     }
     
     static let reuseID = "events"
@@ -42,7 +40,7 @@ class EventTableCell: UITableViewCell {
     }
     
     private func reset() {
-         eventCategoryLabel.backgroundColor = Palette.darkgrey.color
+         categoryLabel.backgroundColor = Palette.darkgrey.color
 
     }
     
@@ -63,25 +61,23 @@ extension EventTableCell {
     
     func setupView() {
         labels.forEach { contentView.addSubview($0) }
-        contentView.addSubview(eventCategoryLabel)
-        contentView.addSubview(eventTimeLabel)
+        contentView.addSubview(categoryLabel)
+        
         setupLabels()
     }
     
     func setupLabels() {
-        eventCategoryLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        eventCategoryLabel.textColor =  Palette.white.color
-        eventCategoryLabel.backgroundColor = Palette.darkgrey.color
+        categoryLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        categoryLabel.textColor =  Palette.white.color
+        categoryLabel.backgroundColor = Palette.darkgrey.color
+        categoryLabel.textContainerInset = UIEdgeInsetsMake(5, 30, 5, 13)
+        categoryLabel.textAlignment = .left
         
-        // TODO: calculate this more effectively without breaking constraints
-        eventCategoryLabel.textContainerInset = UIEdgeInsetsMake(8, 30, 8, 15)
-        eventCategoryLabel.textAlignment = .left
+        timeLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        timeLabel.textColor = Palette.grey.color
         
-        eventTimeLabel.font = UIFont(name: "Montserrat-Light", size: 16)
-        eventTimeLabel.textColor = Palette.grey.color
-        
-        eventTitleLabel.font = UIFont(name: "Montserrat-Regular", size: 18)
-        eventTitleLabel.setLineHeight(lineHeight: 12)
+        bodyLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        bodyLabel.setLineHeight(lineHeight: 18)
         
         memberActionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
         memberActionLabel.attributedText = event?.memberPositions
@@ -92,9 +88,7 @@ extension EventTableCell {
     
     func setupConstraints() {
         labels.forEach { setupCommonConstraints($0) }
-        eventTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventTimeLabel.numberOfLines = 0
-        eventCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         
         setupUniqueConstraints()
     }
@@ -107,20 +101,20 @@ extension EventTableCell {
     
     func setupUniqueConstraints() {
         
-        eventCategoryLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: contentView.frame.height * 0.4).isActive = true
-        eventCategoryLabel.widthAnchor.constraint(lessThanOrEqualTo: margins.widthAnchor, multiplier: 0.8).isActive = true
-        eventCategoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        eventCategoryLabel.isScrollEnabled = false
-        eventCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        categoryLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: contentView.frame.height * 0.4).isActive = true
+        categoryLabel.widthAnchor.constraint(lessThanOrEqualTo: margins.widthAnchor, multiplier: 0.8).isActive = true
+        categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        categoryLabel.isScrollEnabled = false
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        eventTimeLabel.topAnchor.constraint(equalTo: eventCategoryLabel.topAnchor).isActive = true
-        eventTimeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: categoryLabel.topAnchor).isActive = true
+        timeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         
-        eventTitleLabel.topAnchor.constraint(equalTo: eventCategoryLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
-        eventTitleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.05).isActive = true
-        eventTitleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true        
+        bodyLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
+        bodyLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -contentView.frame.width * 0.05).isActive = true
+        bodyLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: contentView.frame.width * 0.05).isActive = true        
         
-        memberActionLabel.topAnchor.constraint(equalTo: eventTitleLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
+        memberActionLabel.topAnchor.constraint(equalTo: bodyLabel.bottomAnchor, constant: contentView.frame.height * 0.4).isActive = true
         memberActionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         memberActionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
@@ -145,14 +139,21 @@ extension EventTableCell {
     
     func setUpBill(_ event: Event) {
         guard let safeBill = event.bill else { return }
-        eventCategoryLabel.text = safeBill.subject.uppercased()
-        eventCategoryLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
-        eventTitleLabel.attributedText = event.cleanTitle
+        categoryLabel.text = safeBill.subject.uppercased()
+        categoryLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
+        
+        let body = NSMutableAttributedString()
+        let billNumber = multiColorText(textToColor: [(safeBill.number, Palette.darkgrey.color)], withImage: nil, at: 0)
+        
+        body.append(billNumber)
+        body.append(NSAttributedString(string: "\n\n\(event.cleanTitle)"))
+            
+        bodyLabel.attributedText = body
         
     }
     
     func setUpNonBill(_ event: Event) {
-        eventCategoryLabel.text = event.cleanCategory.uppercased()
-        eventTitleLabel.attributedText = event.cleanTitle
+        categoryLabel.text = event.cleanCategory.uppercased()
+        bodyLabel.text = event.eventDescription
     }
 }

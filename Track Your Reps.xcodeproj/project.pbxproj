@@ -16,6 +16,8 @@
 		A7C2D7D11E6FAE8300B8E325 /* ProPublicaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */; };
 		A7C2D7D31E6FC41900B8E325 /* CongressMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */; };
 		A7C2D7D41E6FC6BC00B8E325 /* Senate.json in Resources */ = {isa = PBXBuildFile; fileRef = B57A4F381E6F5DB700DC1326 /* Senate.json */; };
+		B51BD4E21E7CC9CF0072D2F8 /* Garamond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51BD4E11E7CC9950072D2F8 /* Garamond.ttf */; };
+		B51BD4E41E7CD2990072D2F8 /* TextSimplification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD4E31E7CD2990072D2F8 /* TextSimplification.swift */; };
 		B52420951E705B8E007FB0CD /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52420941E705B8E007FB0CD /* DataStore.swift */; };
 		B5321AF71E775F3F007A12BE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF51E775F3F007A12BE /* Event.swift */; };
 		B5321AF81E775F3F007A12BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5321AF61E775F3F007A12BE /* User.swift */; };
@@ -59,6 +61,8 @@
 		A7B8BE431E74571500DE0162 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeExtensions.swift; path = "Track Your Reps/Lib/TypeExtensions.swift"; sourceTree = "<group>"; };
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
 		A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CongressMember.swift; path = Models/CongressMember.swift; sourceTree = "<group>"; };
+		B51BD4E11E7CC9950072D2F8 /* Garamond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Garamond.ttf; sourceTree = "<group>"; };
+		B51BD4E31E7CD2990072D2F8 /* TextSimplification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSimplification.swift; sourceTree = "<group>"; };
 		B52420941E705B8E007FB0CD /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		B5321AF51E775F3F007A12BE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Models/Event.swift; sourceTree = "<group>"; };
 		B5321AF61E775F3F007A12BE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 			children = (
 				B54EB1931E738339005943B1 /* Colors.swift */,
 				B5C54D471E71DD0F0070210B /* ImageProcessing.swift */,
+				B51BD4E31E7CD2990072D2F8 /* TextSimplification.swift */,
 				A70396251E6CF09C001BC549 /* ResponseStubs.swift */,
 				B54D2B101E6E0DEC00011A19 /* Secrets.swift */,
 				B5321AFB1E778CC9007A12BE /* TimeSince.swift */,
@@ -153,6 +158,7 @@
 		A75D54671E77A8BB0062ABF4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B51BD4E11E7CC9950072D2F8 /* Garamond.ttf */,
 				B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */,
 				B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */,
 				B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */,
@@ -337,6 +343,7 @@
 				B54EB1921E737D1F005943B1 /* Montserrat-Regular.ttf in Resources */,
 				A7C2D7D41E6FC6BC00B8E325 /* Senate.json in Resources */,
 				B54EB18F1E737D1F005943B1 /* Montserrat-Black.ttf in Resources */,
+				B51BD4E21E7CC9CF0072D2F8 /* Garamond.ttf in Resources */,
 				B54EB1901E737D1F005943B1 /* Montserrat-Bold.ttf in Resources */,
 				B58A34FC1E6757FB0059DB2B /* LaunchScreen.storyboard in Resources */,
 				B58A34F91E6757FB0059DB2B /* Assets.xcassets in Resources */,
@@ -420,6 +427,7 @@
 				A70396261E6CF09C001BC549 /* ResponseStubs.swift in Sources */,
 				B5E1072F1E6F68460017A15B /* OnboardVC.swift in Sources */,
 				A75D546D1E781EE30062ABF4 /* RecentActions.swift in Sources */,
+				B51BD4E41E7CD2990072D2F8 /* TextSimplification.swift in Sources */,
 				B58A34F21E6757FB0059DB2B /* AppDelegate.swift in Sources */,
 				B57DD3FC1E6B573000C4E277 /* EventSummaryVC.swift in Sources */,
 				B57DD3F51E6B2B7100C4E277 /* TabBarController.swift in Sources */,
@@ -485,6 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBSC_COMPILER_AUTO_ACTIVATE_CUSTOM_FONTS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -528,6 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBSC_COMPILER_AUTO_ACTIVATE_CUSTOM_FONTS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;

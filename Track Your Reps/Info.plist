@@ -7,14 +7,11 @@
 		<string>Montserrat-SemiBold.ttf</string>
 		<string>Montserrat-Light.ttf</string>
 		<string>Montserrat-Black.ttf</string>
+		<string>Garamond.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
 		<string>Montserrat-Italic.ttf</string>
 		<string>Montserrat-Regular.ttf</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Please allow general location so we can get your representatives. </string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please allow general location so we can get your representatives.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

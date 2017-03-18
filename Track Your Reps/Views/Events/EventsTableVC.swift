@@ -12,13 +12,11 @@ class EventsTableVC: UITableViewController {
         super.viewDidLoad()
         setEvents()
         setupLayout()
-
     }
     
     func setEvents() {
         let dataStore = User.sharedInstance.dataStore
         let uniqueEvents = Set(dataStore.members.flatMap({ $0.events }))
-
         let sortedEvents = uniqueEvents.sorted { $0.0.date > $0.1.date }
         events = Array(sortedEvents)
     }

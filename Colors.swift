@@ -80,6 +80,18 @@ func determineBackgroundColor(_ text:String) -> UIColor {
     }
 }
 
+func positionImage(_ Event: Event) -> UIImage {
+    switch Event.position {
+    case "Yes":
+        return #imageLiteral(resourceName: "Check")
+    case "No":
+        return #imageLiteral(resourceName: "X")
+    default:
+        // TODO: - Images for other vote types
+        return #imageLiteral(resourceName: "Check")
+    }
+}
+
 func multiColorText(textToColor: [(String, UIColor)], withImage: UIImage?, at index: Int?) -> NSMutableAttributedString {
     let baseString = textToColor.map({ $0.0 }).joined(separator: " ")
     let mutableString = NSMutableAttributedString(string: baseString)

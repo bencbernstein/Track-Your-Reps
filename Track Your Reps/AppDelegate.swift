@@ -18,13 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if userState == nil {
-            let onboardVC = OnBoardViewController()
-            setupWindow(with: onboardVC)
-        } else {
-            let tabBarController = TabBarController()
-            setupWindow(with: tabBarController)
-        }
+        
+        let initalView = userState == nil ? OnBoardViewController() : TabBarController()
+        setupWindow(with: initalView)
+
         return true
     }
     
