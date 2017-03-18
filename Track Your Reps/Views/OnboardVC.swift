@@ -24,10 +24,7 @@ class OnBoardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func buttonAction(sender: UIButton!) {
         let state = states[pickerView.selectedRow(inComponent: 0)]
         UserDefaults.standard.set(state, forKey: "state")
-
-        present(TabBarController(), animated: true) { 
-            //
-        }
+        present(TabBarController(), animated: true, completion: nil)
         
     }
     
