@@ -16,14 +16,7 @@ class MemberSummaryVC: UIViewController, UIScrollViewDelegate {
     let shortDescriptionLabel = UILabel()
     let twitterContainer = UIView()
     let biographyBorder = UIView()
-    
-    
     let biographyScrollView = UIScrollView()
-    
-    
-    // let biographyContainerView = UIView()
-    
-    
     let biographyLabel = UILabel()
     
     var member: CongressMember!
@@ -117,7 +110,7 @@ extension MemberSummaryVC {
     
     func setupContactButtons() {
         
-        let imageSize = CGSize(width: 40, height: 40)
+        let imageSize = CGSize(width: viewDimensions.w * 0.1, height: viewDimensions.w * 0.1)
         let imageOrigin = CGPoint(x: 0, y: 0)
         let imageFrame = CGRect(origin: imageOrigin, size: imageSize)
         var hasTwitter = false

@@ -48,12 +48,12 @@ class RecentActions: UIView {
             $0.numberOfLines = 0
             $0.setLineHeight(lineHeight: 6)
             $0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            $0.widthAnchor.constraint(equalToConstant: screenWidth * 0.8).isActive = true
+            $0.widthAnchor.constraint(equalToConstant: screenWidth * 0.9).isActive = true
             subheadings.append($0)
         }
         
         if index == 0 {
-            heading.topAnchor.constraint(equalTo: self.topAnchor, constant: 60).isActive = true
+            heading.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         } else {
             heading.topAnchor.constraint(equalTo: subheadings[index-1].bottomAnchor, constant: 20).isActive = true
         }
