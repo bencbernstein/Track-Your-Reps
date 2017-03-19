@@ -44,15 +44,16 @@ class RecentActions: UIView {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.text = recentActions[index].subheading
-            $0.font = UIFont(name: "Montserrat-Regular", size: 14)
+            $0.font = UIFont(name: "Garamond", size: 16)
             $0.numberOfLines = 0
+            $0.setLineHeight(lineHeight: 6)
             $0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            $0.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
+            $0.widthAnchor.constraint(equalToConstant: screenWidth * 0.9).isActive = true
             subheadings.append($0)
         }
         
         if index == 0 {
-            heading.topAnchor.constraint(equalTo: self.topAnchor, constant: 60).isActive = true
+            heading.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         } else {
             heading.topAnchor.constraint(equalTo: subheadings[index-1].bottomAnchor, constant: 20).isActive = true
         }

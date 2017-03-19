@@ -5,7 +5,7 @@
 import Social
 import UIKit
 
-class MemberSummaryVC: UIViewController {
+class MemberSummaryVC: UIViewController, UIScrollViewDelegate {
     
     let recentActionsTitle = UILabel()
     let recentActionsView = UIView()
@@ -14,19 +14,17 @@ class MemberSummaryVC: UIViewController {
     let nameLabel = UILabel()
     let phoneContainer = UIView()
     let shortDescriptionLabel = UILabel()
-    let summaryLabel = UILabel()
-    let summaryLabelBorder = UIView()
     let twitterContainer = UIView()
-    let wikipediaLink = UILabel()
+    let biographyBorder = UIView()
+    let biographyScrollView = UIScrollView()
+    let biographyLabel = UILabel()
     
     var member: CongressMember!
     var summaryHidden = true
-    let SUMMARY_LABEL_LINE_HEIGHT: CGFloat = 4
     var recentActionsViewTopConstraint: NSLayoutConstraint!
-    let WIKI_BIO_CHAR_LENGTH = 500
     
     var views: [UIView] {
-        return [nameLabel, memberImage, shortDescriptionLabel, phoneContainer, twitterContainer, summaryLabel, summaryLabelBorder, wikipediaLink, recentActionsView, recentActionsViewBorder, recentActionsTitle]
+        return [nameLabel, memberImage, shortDescriptionLabel, phoneContainer, twitterContainer, biographyScrollView, biographyBorder, recentActionsView, recentActionsViewBorder, recentActionsTitle]
     }
     
     var margins: UILayoutGuide {
@@ -66,98 +64,89 @@ class MemberSummaryVC: UIViewController {
             $0.numberOfLines = 0
             $0.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
             $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-            $0.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
+            $0.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         }
         
-        _ = summaryLabel.then {
-            $0.font = UIFont(name: "Montserrat-Regular", size: 16)
-            $0.numberOfLines = 0
-            $0.text = member.wikipediaBio.trunc(length: WIKI_BIO_CHAR_LENGTH, trailing: " . . .")
-            $0.setLineHeight(lineHeight: SUMMARY_LABEL_LINE_HEIGHT)
-            $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            $0.topAnchor.constraint(equalTo: memberImage.bottomAnchor, constant: viewDimensions.w * 0.1).isActive = true
-            $0.widthAnchor.constraint(equalTo: margins.widthAnchor).isActive = true
-            $0.addSubview(summaryLabelBorder)
+        setupContactButtons()
+        setupBiographyScrollView()
+        setupRecentActions()
+    }
+    
+    func setupBiographyScrollView() {
+        
+        _ = biographyScrollView.then {
+            $0.addSubview(biographyLabel)
+            $0.topAnchor.constraint(equalTo: memberImage.bottomAnchor, constant: 20).isActive = true
+            $0.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            $0.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            $0.bottomAnchor.constraint(equalTo: recentActionsViewBorder.topAnchor).isActive = true
         }
-
-        _ = summaryLabelBorder.then {
+        
+        _ = biographyLabel.then {
+            $0.font = UIFont(name: "Garamond", size: 18)
+            $0.numberOfLines = 0
+            $0.text = "\n\(member.wikipediaBio)\n"
+            $0.setLineHeight(lineHeight: 6)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.topAnchor.constraint(equalTo: biographyScrollView.topAnchor).isActive = true
+            $0.bottomAnchor.constraint(equalTo: biographyScrollView.bottomAnchor).isActive = true
+            $0.leadingAnchor.constraint(equalTo: biographyScrollView.leadingAnchor, constant: 20).isActive = true
+            $0.trailingAnchor.constraint(equalTo: biographyScrollView.trailingAnchor, constant: -20).isActive = true
+            $0.widthAnchor.constraint(equalTo: biographyScrollView.widthAnchor, constant: -40).isActive = true
+        }
+        
+        _ = biographyBorder.then {
             $0.backgroundColor = Palette.pink.color
             $0.widthAnchor.constraint(equalToConstant: viewDimensions.w).isActive = true
             $0.heightAnchor.constraint(equalToConstant: 2).isActive = true
-            $0.topAnchor.constraint(equalTo: summaryLabel.topAnchor, constant: -viewDimensions.w * 0.05).isActive = true
+            $0.topAnchor.constraint(equalTo: biographyScrollView.topAnchor).isActive = true
         }
-        
-        // MARK: - Links
+    }
+}
+
+
+// MARK: - Contact Buttons
+extension MemberSummaryVC {
+    
+    func setupContactButtons() {
         
         let imageSize = CGSize(width: viewDimensions.w * 0.1, height: viewDimensions.w * 0.1)
         let imageOrigin = CGPoint(x: 0, y: 0)
         let imageFrame = CGRect(origin: imageOrigin, size: imageSize)
+        var hasTwitter = false
         
         if let twitterImageView = Twitter(account: member.twitterAccount, frame: imageFrame) {
             
             _ = twitterContainer.then {
                 $0.addSubview(twitterImageView)
-                $0.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
-                $0.trailingAnchor.constraint(equalTo: phoneContainer.leadingAnchor, constant: -35).isActive = true
+                $0.topAnchor.constraint(equalTo: shortDescriptionLabel.bottomAnchor, constant: 15).isActive = true
+                $0.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
                 $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
                 $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
             }
-            
+            hasTwitter = true
         }
-
+        
         if let phoneImageView = Phone(number: member.phone.numbersOnly, frame: imageFrame) {
+            
+            let leadingAnchor = hasTwitter ?
+                phoneImageView.leadingAnchor.constraint(equalTo: twitterContainer.leadingAnchor, constant: 65) :
+                phoneImageView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
             
             _ = phoneContainer.then {
                 $0.addSubview(phoneImageView)
-                $0.bottomAnchor.constraint(equalTo: memberImage.bottomAnchor).isActive = true
-                $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -25).isActive = true
+                $0.topAnchor.constraint(equalTo: shortDescriptionLabel.bottomAnchor, constant: 15).isActive = true
+                leadingAnchor.isActive = true
                 $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
                 $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
             }
             
-        }
- 
-        let wikipediaTapped = UITapGestureRecognizer(target: self, action: #selector(self.wikipediaTapped(_:)))
-        
-        _ = wikipediaLink.then {
-            $0.font = UIFont(name: "Montserrat-Regular", size: 14)
-            $0.text = "Read full bio on Wikipedia"
-            $0.textColor = Palette.grey.color
-            $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(wikipediaTapped)
-            $0.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 10).isActive = true
-            $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        }
-        
-        setupRecentActions()
-    }
-
-    
-    func wikipediaTapped(_ sender: UITapGestureRecognizer) {
-        let url = member.wikipediaUrl
-        if url.noContent {
-            print("MemberSummaryVC -> No wikipedia link: \(member.fullName)")
-            return
-        }
-        open(scheme: url)
-    }
-    
-    func open(scheme: String) {
-        if let url = URL(string: scheme) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        } else {
-            print("MemberSummaryVC -> Invalid URL: \(scheme)")
         }
     }
 }
 
 
 // MARK: - Recent Actions
-
 extension MemberSummaryVC {
     
     func setupRecentActions() {
@@ -167,24 +156,26 @@ extension MemberSummaryVC {
         _ = recentActionsView.then {
             $0.backgroundColor = .white
             $0.addSubview(recentActions)
-            $0.addSubview(recentActionsViewBorder)
+            $0.addSubview(recentActionsTitle)
             $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
             $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
             $0.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         }
         
-        recentActionsViewTopConstraint = recentActionsView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height * -0.075)
+        let constraintConstant = tabBarController?.tabBar.frame.height ?? 50
+        recentActionsViewTopConstraint = recentActionsView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -constraintConstant - 50)
         recentActionsViewTopConstraint.isActive = true
         
-        let recentActionsTapped = UITapGestureRecognizer(target: self, action: #selector(self.recentActionsTapped(_:)))
+        let recentActionsHeaderTap = UITapGestureRecognizer(target: self, action: #selector(self.tappedRecentActionsHeader(_:)))
         
         _ = recentActionsTitle.then {
             $0.text = "RECENT DECISIONS"
             $0.font = UIFont(name: "Montserrat-Light", size: 18)
-            $0.topAnchor.constraint(equalTo: recentActionsView.topAnchor, constant: 20).isActive = true
-            $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+            $0.addSubview(recentActionsViewBorder)
             $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(recentActionsTapped)
+            $0.addGestureRecognizer(recentActionsHeaderTap)
+            $0.topAnchor.constraint(equalTo: recentActionsView.topAnchor, constant: 15).isActive = true
+            $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
         }
         
         _ = recentActionsViewBorder.then {
@@ -196,13 +187,13 @@ extension MemberSummaryVC {
         }
     }
     
-    func recentActionsTapped(_ sender: UITapGestureRecognizer) {
-        if summaryHidden {
-            self.recentActionsViewTopConstraint.constant -= viewDimensions.h * 0.33
-        } else {
-            self.recentActionsViewTopConstraint.constant += viewDimensions.h * 0.33
-        }
-        UIView.animate(withDuration: 0.5, animations: { self.view.layoutIfNeeded() })
+    func tappedRecentActionsHeader(_ sender: UITapGestureRecognizer) {
+        animateRecentActions()
         summaryHidden = !summaryHidden
+    }
+    
+    func animateRecentActions() {
+        self.recentActionsViewTopConstraint.constant += (summaryHidden ? viewDimensions.h * -0.33 : viewDimensions.h * 0.33)
+        UIView.animate(withDuration: 0.5, animations: { self.view.layoutIfNeeded() })
     }
 }

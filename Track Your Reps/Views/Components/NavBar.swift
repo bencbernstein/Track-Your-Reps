@@ -22,6 +22,7 @@ extension UITableViewController {
         
         navigationItem.title = title
         navigationController?.navigationBar.tintColor = Palette.black.color
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     func openSettings() {
