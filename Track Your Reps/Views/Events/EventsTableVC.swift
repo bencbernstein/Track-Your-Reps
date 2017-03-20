@@ -18,7 +18,8 @@ class EventsTableVC: UITableViewController {
         _ = tableView.then {
             $0.backgroundColor = Palette.pink.color
             $0.separatorColor = Palette.pink.color
-            $0.estimatedRowHeight = 300
+            $0.separatorInset.left = 0
+            $0.estimatedRowHeight = view.frame.height
             $0.rowHeight = UITableViewAutomaticDimension
             $0.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
         }
@@ -49,7 +50,6 @@ extension EventsTableVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EventTableCell.reuseID, for: indexPath) as! EventTableCell
         cell.event = events[indexPath.row]
-        cell.layoutIfNeeded()
         return cell
     }
 }
