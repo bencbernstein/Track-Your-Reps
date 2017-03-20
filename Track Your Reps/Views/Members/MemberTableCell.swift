@@ -21,8 +21,7 @@ class MemberTableCell: UITableViewCell {
             guard let member = member else { return }
             memberImage.image = cropCircularImage(for: member)
             nameLabel.text = member.fullName.uppercased()
-            nameLabel.textColor = member.partyColor()
-            
+
             setupLinks(for: member)
         }
     }
@@ -60,7 +59,7 @@ class MemberTableCell: UITableViewCell {
             $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
             $0.leadingAnchor.constraint(equalTo: memberImage.trailingAnchor, constant: 20).isActive = true
             $0.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-            $0.font = UIFont(name: "Montserrat-Regular", size: 12)
+            $0.font = UIFont(name: "Montserrat-Regular", size: 14)
         }
     }
     

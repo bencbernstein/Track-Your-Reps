@@ -99,7 +99,7 @@ extension MemberSummaryVC {
         if let phoneImageView = Phone(number: member.phone.numbersOnly, frame: imageFrame) {
             
             let leadingAnchor = hasTwitter ?
-                phoneImageView.leadingAnchor.constraint(equalTo: twitterContainer.leadingAnchor, constant: 65) :
+                phoneImageView.leadingAnchor.constraint(equalTo: twitterContainer.leadingAnchor, constant: 60) :
                 phoneImageView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
             
             _ = phoneContainer.then {
@@ -157,10 +157,13 @@ extension MemberSummaryVC {
         
         let recentActions = RecentActions(member: member, screenWidth: viewDimensions.w)
         
+        let recentActionsHeaderTap = UITapGestureRecognizer(target: self, action: #selector(self.tappedRecentActionsHeader(_:)))
+
         _ = recentActionsView.then {
             $0.backgroundColor = .white
             $0.addSubview(recentActions)
             $0.addSubview(recentActionsTitle)
+            $0.addGestureRecognizer(recentActionsHeaderTap)
             $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
             $0.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
             $0.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -170,14 +173,12 @@ extension MemberSummaryVC {
         recentActionsViewTopConstraint = recentActionsView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -constraintConstant - 50)
         recentActionsViewTopConstraint.isActive = true
         
-        let recentActionsHeaderTap = UITapGestureRecognizer(target: self, action: #selector(self.tappedRecentActionsHeader(_:)))
-        
         _ = recentActionsTitle.then {
             $0.text = "RECENT DECISIONS"
             $0.font = UIFont(name: "Montserrat-Light", size: 18)
             $0.addSubview(recentActionsViewBorder)
             $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(recentActionsHeaderTap)
+     
             $0.topAnchor.constraint(equalTo: recentActionsView.topAnchor, constant: 15).isActive = true
             $0.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
         }

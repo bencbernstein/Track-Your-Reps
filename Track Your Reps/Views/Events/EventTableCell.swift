@@ -122,21 +122,7 @@ extension EventTableCell {
         guard let safeBill = event.bill else { return }
         categoryLabel.text = safeBill.subject.uppercased()
         categoryLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
-        
-        let body = NSMutableAttributedString()
-        
-        let billNumber = multiColorText(
-            textToColor: [
-                (safeBill.number, Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 16)!)
-            ],
-            withImage: nil,
-            at: 0
-        )
-        
-        body.append(billNumber)
-        body.append(NSAttributedString(string: "\n\n\(event.cleanTitle)"))
-            
-        bodyLabel.attributedText = body
+        bodyLabel.text = event.cleanTitle
     }
     
     func setUpNonBill(_ event: Event) {
