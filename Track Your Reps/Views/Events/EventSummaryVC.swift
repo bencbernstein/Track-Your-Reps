@@ -9,7 +9,9 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
     
     let titleLabel = UILabel()
     let summaryLabel = UILabel()
-    var latestQuestionLabel = UILabel()
+    var latestActionHeader = UILabel()
+    var latestAction = UILabel()
+
     var memberActionLabel = UILabel()
     
     let actionsScrollView = UIScrollView()
@@ -18,7 +20,6 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
     var actionsCount: Int? = nil
     var titleText = NSMutableAttributedString()
     var summaryText = ""
-    var latestQuestionText = NSMutableAttributedString()
     
     let SCROLL_VIEW_HEIGHT: CGFloat = 115
     var ACTION_LABEL_WIDTH: CGFloat = 350
@@ -32,7 +33,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
     }
     
     var views: [UIView] {
-        return [titleLabel, summaryLabel, actionsScrollView, latestQuestionLabel, memberActionLabel]
+        return [titleLabel, summaryLabel, actionsScrollView, latestActionHeader, latestAction, memberActionLabel]
     }
     
     var viewDimensions: (h: CGFloat, w: CGFloat) {
@@ -71,8 +72,6 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.9).isActive = true
         }
         
-        var actionHistoryPresent = false
-        
         if let actionsCount = actionsCount {
             
             ACTION_LABEL_WIDTH = view.frame.width
@@ -81,18 +80,17 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             
             _ = actionsScrollView.then {
                 $0.addSubview(actionsStackView)
-                $0.layer.borderWidth = 2
-                $0.layer.borderColor = Palette.pink.color.cgColor
-                $0.topAnchor.constraint(equalTo: view.topAnchor, constant: viewDimensions.h * 0.45).isActive = true
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2).isActive = true
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2).isActive = true
+                $0.backgroundColor = Palette.pink.color
+                $0.topAnchor.constraint(equalTo: view.topAnchor, constant: viewDimensions.h * 0.50).isActive = true
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
                 $0.heightAnchor.constraint(equalToConstant: SCROLL_VIEW_HEIGHT).isActive = true
             }
             
             _ = actionsStackView.then {
                 $0.axis = .horizontal
                 $0.distribution = .equalSpacing
-                $0.alignment = .leading
+                $0.alignment = .center
                 $0.spacing = stackViewSpacing
                 $0.translatesAutoresizingMaskIntoConstraints = false
                 $0.topAnchor.constraint(equalTo: actionsScrollView.topAnchor, constant: 10).isActive = true
@@ -102,57 +100,54 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
                 $0.widthAnchor.constraint(equalToConstant: stackViewWidth).isActive = true
             }
             
-            actionHistoryPresent = true
+            _ = memberActionLabel.then {
+                $0.topAnchor.constraint(equalTo: actionsScrollView.bottomAnchor, constant: 20).isActive = true
+                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            }
+        } else {
             
-        }
-        
-        let latestQuestionLabelTopAnchorConstraint = actionHistoryPresent ?
-            latestQuestionLabel.topAnchor.constraint(equalTo: actionsScrollView.bottomAnchor, constant: 10) :
-            latestQuestionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50)
-        
-        _ = latestQuestionLabel.then {
-            $0.attributedText = latestQuestionText
-            $0.numberOfLines = 4
-            latestQuestionLabelTopAnchorConstraint.isActive = true
-            $0.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
-            $0.trailingAnchor.constraint(equalTo: summaryLabel.trailingAnchor).isActive = true
-        }
-        
-        _ = memberActionLabel.then {
-            $0.topAnchor.constraint(equalTo: latestQuestionLabel.bottomAnchor, constant: 10).isActive = true
-            $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            _ = latestActionHeader.then {
+                $0.text = "LATEST ACTION"
+                $0.font = UIFont(name: "Montserrat-Light", size: 18)
+                $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50).isActive = true
+                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            }
+            
+            _ = latestAction.then {
+                $0.text = event?.question
+                $0.font = UIFont(name: "Garamond", size: 16)
+                $0.topAnchor.constraint(equalTo: latestActionHeader.bottomAnchor, constant: 10).isActive = true
+                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            }
+            
+            _ = memberActionLabel.then {
+                $0.topAnchor.constraint(equalTo: latestAction.bottomAnchor, constant: 30).isActive = true
+                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            }
         }
     }
     
     func setupTexts(for event: Event) {
         
         if let bill = event.bill {
+            
             titleText = multiColorText(
                 textToColor: [
                     ("\(bill.subject.uppercased()) BILL\n", .black, UIFont(name: "Montserrat-Light", size: 18)!),
-                    (bill.number, Palette.grey.color, UIFont(name: "Montserrat-Regular", size: 14)!)
+                    (bill.number, Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 14)!)
                 ],
-                withImage: nil, at: 0)
+                withImage: nil, at: 0
+            )
+            
             summaryText = bill.summary.cleanSummary
-            latestQuestionText = multiColorText(
-                textToColor: [
-                    ("LATEST ACTION", .black, UIFont(name: "Montserrat-Light", size: 18)!),
-                    ("\n\(bill.latestMajorAction)", .black, UIFont(name: "Garamond", size: 16)!)
-                ],
-                withImage: nil, at: 0)
             setupStackView(with: bill.actions)
         } else {
+            
             titleText = multiColorText(
                 textToColor: [(event.eventDescription, .black, UIFont(name: "Montserrat-Light", size: 18)!)],
-                withImage: nil, at: 0)
-            latestQuestionText = multiColorText(
-                textToColor: [
-                    ("LATEST ACTION", .black, UIFont(name: "Montserrat-Light", size: 18)!),
-                    ("\n\(event.question)", .black, UIFont(name: "Garamond", size: 16)!)
-                ],
-                withImage: nil, at: 0)
+                withImage: nil, at: 0
+            )
         }
-        
     }
     
     func setupStackView(with actions: [[String : String]]) {
@@ -161,8 +156,8 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             
             let attributedText = multiColorText(
                 textToColor: [
-                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 14)!),
-                    (action["description"]?.cleanAction ?? "", .black, UIFont(name: "Montserrat-Regular", size: 14)!)
+                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Light", size: 14)!),
+                    (action["description"]?.cleanAction ?? "", Palette.darkgrey.color, UIFont(name: "Garamond", size: 16)!)
                 ],
                 withImage: nil,
                 at: 0
