@@ -8,7 +8,7 @@ import UIKit
 class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var pickerView = UIPickerView()
-    let states = ["AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    let states = ["AK", "AL", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
     var submitButton = UIButton()
     var welcomeLabel = UILabel()
     
@@ -59,13 +59,17 @@ extension SettingsViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        // Set initial view to New York
-        pickerView.selectRow(30, inComponent: 0, animated: true)
+        if let state = UserDefaults.standard.string(forKey: "state"), let index = states.index(of: state) {
+            pickerView.selectRow(index, inComponent: 0, animated: true)
+        } else {
+            // Set initial view to New York
+            pickerView.selectRow(30, inComponent: 0, animated: true)
+        }
         
         setupWelcomeLabel()
         setupPickerView()
         setupSubmitButton()
-        [welcomeLabel, pickerView,submitButton].forEach { self.view.addSubview($0)}
+        [welcomeLabel, pickerView, submitButton].forEach { self.view.addSubview($0)}
         setupConstraints()
     }
     

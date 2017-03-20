@@ -62,22 +62,22 @@
 		A7C2D7D01E6FAE8300B8E325 /* ProPublicaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPublicaProvider.swift; path = "Track Your Reps/Networking/ProPublicaProvider.swift"; sourceTree = "<group>"; };
 		A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CongressMember.swift; path = Models/CongressMember.swift; sourceTree = "<group>"; };
 		B51BD4E11E7CC9950072D2F8 /* Garamond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Garamond.ttf; sourceTree = "<group>"; };
-		B51BD4E31E7CD2990072D2F8 /* TextSimplification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSimplification.swift; sourceTree = "<group>"; };
+		B51BD4E31E7CD2990072D2F8 /* TextSimplification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSimplification.swift; path = "Track Your Reps/Lib/TextSimplification.swift"; sourceTree = "<group>"; };
 		B52420941E705B8E007FB0CD /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		B5321AF51E775F3F007A12BE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Models/Event.swift; sourceTree = "<group>"; };
 		B5321AF61E775F3F007A12BE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		B5321AF91E775F48007A12BE /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
-		B5321AFB1E778CC9007A12BE /* TimeSince.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSince.swift; sourceTree = "<group>"; };
+		B5321AFB1E778CC9007A12BE /* TimeSince.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeSince.swift; path = "Track Your Reps/Lib/TimeSince.swift"; sourceTree = "<group>"; };
 		B54D2B101E6E0DEC00011A19 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Track Your Reps/Lib/Secrets.swift"; sourceTree = "<group>"; };
 		B54EB18B1E737D1F005943B1 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		B54EB18C1E737D1F005943B1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		B54EB18D1E737D1F005943B1 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		B54EB18E1E737D1F005943B1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		B54EB1931E738339005943B1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B54EB1931E738339005943B1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = "Track Your Reps/Lib/Colors.swift"; sourceTree = "<group>"; };
 		B54EB1951E739743005943B1 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		B54EB1961E7399E5005943B1 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		B5567D381E6B836A000260B4 /* MemberSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSummaryVC.swift; sourceTree = "<group>"; };
-		B5577EB81E7AECAB00A1C7E6 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		B5577EB81E7AECAB00A1C7E6 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Views/SettingsVC.swift; sourceTree = "<group>"; };
 		B5577EBA1E7B1C2C00A1C7E6 /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		B57A4F381E6F5DB700DC1326 /* Senate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Senate.json; sourceTree = "<group>"; };
 		B57DD3F01E6B28ED00C4E277 /* EventsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsTableVC.swift; path = "Track Your Reps/Views/Events/EventsTableVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -247,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				B58A34F11E6757FB0059DB2B /* AppDelegate.swift */,
+				B52420941E705B8E007FB0CD /* DataStore.swift */,
 				B57DD3F41E6B2B7100C4E277 /* TabBarController.swift */,
 				A70396241E6CF086001BC549 /* Lib */,
 				B5B189D91E68998300F9E6AF /* Models */,
@@ -264,7 +265,6 @@
 			children = (
 				B5321AF91E775F48007A12BE /* Bill.swift */,
 				A7C2D7D21E6FC41900B8E325 /* CongressMember.swift */,
-				B52420941E705B8E007FB0CD /* DataStore.swift */,
 				B5321AF51E775F3F007A12BE /* Event.swift */,
 				B5321AF61E775F3F007A12BE /* User.swift */,
 			);

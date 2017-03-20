@@ -64,7 +64,10 @@ class RecentActions: UIView {
     func getRecentDecisions() -> [(NSMutableAttributedString, String)] {
         return member.events.flatMap { event in
             let heading = multiColorText(
-                textToColor: [("Voted", Palette.grey.color), (event.question.lowercased(), Palette.grey.color)],
+                textToColor: [
+                    ("Voted", Palette.grey.color, UIFont(name: "Montserrat-Regular", size: 16)!),
+                    (event.question.lowercased(), Palette.grey.color, UIFont(name: "Montserrat-Regular", size: 16)!)
+                ],
                 withImage: positionImage(event),
                 at: 6
             )

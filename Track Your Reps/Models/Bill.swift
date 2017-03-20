@@ -7,6 +7,7 @@ import SwiftyJSON
 
 struct Bill {
     
+    var actions: [[String : String]]
     var committees: String
     var congressDotGovUrl: String
     var cosponsers: Int
@@ -20,7 +21,7 @@ struct Bill {
     var title: String
     var type: String
     
-    var fullParty: String {
+    var sponsorPartyLong: String {
         switch sponsorParty {
         case "R": return "Republican"
         case "D": return "Democrat"
@@ -30,6 +31,14 @@ struct Bill {
     
     init(from json: JSON) {
         let results = json["results"][0]
+        
+        self.actions = results["actions"].arrayValue.map { action in
+            [
+                "date": action["datetime"].stringValue,
+                "description": action["description"].stringValue
+            ]
+        }
+        
         self.number = results["number"].stringValue
         self.committees = results["committees"].stringValue
         self.congressDotGovUrl = results["congressdotgov_url"].stringValue
@@ -43,5 +52,4 @@ struct Bill {
         self.title = results["title"].stringValue
         self.type = results["bill_type"].stringValue
     }
-    
 }

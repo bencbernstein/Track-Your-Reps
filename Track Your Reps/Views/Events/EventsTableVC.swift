@@ -10,8 +10,18 @@ class EventsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navComponents(title: "Home")
+        
         setEvents()
-        setupLayout()
+        
+        _ = tableView.then {
+            $0.backgroundColor = Palette.pink.color
+            $0.separatorColor = Palette.pink.color
+            $0.estimatedRowHeight = 300
+            $0.rowHeight = UITableViewAutomaticDimension
+            $0.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
+        }
     }
     
     func setEvents() {
@@ -22,24 +32,8 @@ class EventsTableVC: UITableViewController {
     }
 }
 
-// MARK: - Layout
-
-extension EventsTableVC {
-    
-    func setupLayout() {
-        
-        navComponents(title: "Home")
-        
-        self.tableView.estimatedRowHeight = 300
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.register(EventTableCell.self, forCellReuseIdentifier: EventTableCell.reuseID)
-    }
-    
-}
-
 
 // MARK: - Table View Methods
-
 extension EventsTableVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +47,6 @@ extension EventsTableVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: EventTableCell.reuseID, for: indexPath) as! EventTableCell
         cell.event = events[indexPath.row]
         return cell
