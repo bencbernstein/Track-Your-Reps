@@ -6,18 +6,19 @@ import UIKit
 import Foundation
 
 enum Palette {
-    case pink, blue, red, green, grey, darkgrey, white, black
+    case pink, blue, red, green, grey, darkgrey, white, black, orange
     
     var color: UIColor {
         switch self {
         case .pink: return UIColor(hex: 0xFFDCE5)
-        case .blue: return UIColor(hex: 0x2D9CDB)
+        case .blue: return UIColor(hex: 0x2D9CDB) 
         case .red: return UIColor(hex: 0xEB5757)
         case .green: return UIColor(hex: 0x27AE60)
         case .grey: return UIColor(hex: 0xA5A5A5)
         case .white: return UIColor(hex: 0xffffff)
         case .darkgrey: return UIColor(hex: 0x4F4F4F)
         case .black: return UIColor(hex: 0x000000)
+        case .orange: return UIColor(hex: 0xF2994A)
         }
     }
 }
@@ -75,6 +76,9 @@ func determineBackgroundColor(_ text:String) -> UIColor {
         return Palette.blue.color
     } else if text.contains("Labor") {
         return Palette.red.color
+    } else if text.contains("Crime") {
+        return Palette.orange.color
+
     } else {
         return Palette.darkgrey.color
     }

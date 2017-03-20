@@ -15,7 +15,6 @@ extension EventTitleSimplifier {
     
     private func sanitizeTitle(for bill: Bill) -> String {
         let title = bill.title
-        print("title is", title)
         
         if isOverturning(title) && longerThan140Chars(title) {
             return "\(bill.sponsorPartyLong) sponsored resolution to overturn a previous rule."

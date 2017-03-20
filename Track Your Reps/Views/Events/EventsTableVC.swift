@@ -49,6 +49,7 @@ extension EventsTableVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EventTableCell.reuseID, for: indexPath) as! EventTableCell
         cell.event = events[indexPath.row]
+        cell.layoutIfNeeded()
         return cell
     }
 }
