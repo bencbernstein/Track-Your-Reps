@@ -16,6 +16,7 @@ class MembersTableVC: UITableViewController {
         _ = tableView.then {
             $0.backgroundColor = Palette.pink.color
             $0.separatorColor = Palette.pink.color
+            $0.separatorInset.left = 0
             $0.rowHeight = view.frame.size.height / 7
             $0.register(MemberTableCell.self, forCellReuseIdentifier: MemberTableCell.reuseID)
         }

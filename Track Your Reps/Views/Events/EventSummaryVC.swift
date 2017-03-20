@@ -64,7 +64,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
         
         _ = summaryLabel.then {
             $0.text = summaryText
-            $0.font = UIFont(name: "Garamond", size: 16)
+            $0.font = UIFont(name: "Garamond", size: 18)
             $0.setLineHeight(lineHeight: 6)
             $0.numberOfLines = 8
             $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
@@ -77,7 +77,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             ACTION_LABEL_WIDTH = view.frame.width
             let stackViewSpacing: CGFloat = 25
             let stackViewWidth = CGFloat(actionsCount) * ACTION_LABEL_WIDTH + CGFloat(actionsCount - 1) * stackViewSpacing
-            
+
             _ = actionsScrollView.then {
                 $0.addSubview(actionsStackView)
                 $0.backgroundColor = Palette.pink.color
@@ -156,8 +156,8 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             
             let attributedText = multiColorText(
                 textToColor: [
-                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Light", size: 14)!),
-                    (action["description"]?.cleanAction ?? "", Palette.darkgrey.color, UIFont(name: "Garamond", size: 16)!)
+                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Light", size: 16)!),
+                    (action["description"]?.cleanAction ?? "", Palette.darkgrey.color, UIFont(name: "Garamond", size: 18)!)
                 ],
                 withImage: nil,
                 at: 0
