@@ -3,22 +3,41 @@
 ///
 
 import UIKit
+import Then
 
-class EventSummaryVC: UIViewController {
+class EventSummaryVC: UIViewController, UIScrollViewDelegate {
+    
+    let titleLabel = UILabel()
+    let summaryLabel = UILabel()
+    var latestQuestionLabel = UILabel()
+    var memberActionLabel = UILabel()
+    
+    let actionsScrollView = UIScrollView()
+    let actionsStackView = UIStackView()
+    
+    var actionsCount: Int? = nil
+    var titleText = ""
+    var summaryText = ""
+    var latestQuestionText = ""
+    
+    let STACK_VIEW_HEIGHT: CGFloat = 150
+    let ACTION_LABEL_WIDTH: CGFloat = 250
     
     var event: Event? {
         didSet {
             guard let event = event else { return }
-            event.isBill ? setUpBill(event) : setUpNonBill(event)
+            setupTexts(for: event)
             memberActionLabel.attributedText = event.memberPositions
         }
     }
     
-    var titleLabel = UILabel()
-    var summaryLabel = UILabel()
-    var actionHistoryLabel = UILabel()
-    var latestQuestion = UILabel()
-    var memberActionLabel = UILabel()
+    var views: [UIView] {
+        return [titleLabel, summaryLabel, actionsScrollView, latestQuestionLabel, memberActionLabel]
+    }
+    
+    var viewDimensions: (h: CGFloat, w: CGFloat) {
+        return (view.frame.size.height, view.frame.size.width)
+    }
     
     var margins: UILayoutGuide {
         return view.layoutMarginsGuide
@@ -26,80 +45,122 @@ class EventSummaryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-    }
-}
-
-// MARK: - Layout
-
-extension EventSummaryVC {
-    
-    func setupView() {
-        self.view.backgroundColor = UIColor.white
-        [titleLabel, summaryLabel, actionHistoryLabel, latestQuestion, memberActionLabel].forEach {
-            view.addSubview($0) }
+        self.view.backgroundColor = .white
         
-        setupLabels()
+        actionsScrollView.delegate = self
         
-    }
-    
-    func setupLabels() {
+        views.forEach { view.addSubview($0) }
+        views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        titleLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        titleLabel.textAlignment = .center
-        
-        summaryLabel.font = UIFont(name: "Garamond", size: 20)
-        summaryLabel.textAlignment = .left
-        
-        actionHistoryLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        actionHistoryLabel.textAlignment = .center
-        actionHistoryLabel.textColor = Palette.grey.color
-        
-        latestQuestion.font = UIFont(name: "Montserrat-Regular", size: 16)
-        latestQuestion.textAlignment = .center
-        
-        memberActionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        memberActionLabel.textAlignment = .center
-        
-        setupLabelConstraints()
-    }
-
-    
-    func setupLabelConstraints() {
-        [titleLabel, summaryLabel, actionHistoryLabel, latestQuestion, memberActionLabel].forEach { label in
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20).isActive = true
-            label.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.8).isActive = true
-            label.numberOfLines = 0
+        _ = titleLabel.then {
+            $0.text = titleText
+            $0.font = UIFont(name: "Montserrat-Regular", size: 18)
+            $0.textAlignment = .center
+            $0.numberOfLines = 0
+            $0.topAnchor.constraint(equalTo: margins.topAnchor, constant: 30).isActive = true
+            $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.9).isActive = true
         }
-        titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 80).isActive = true
-        summaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
-        actionHistoryLabel.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 20).isActive = true
-        latestQuestion.topAnchor.constraint(equalTo: actionHistoryLabel.bottomAnchor, constant: 20).isActive = true
-        memberActionLabel.topAnchor.constraint(equalTo: latestQuestion.bottomAnchor, constant: 20).isActive = true
+        
+        _ = summaryLabel.then {
+            $0.text = summaryText
+            $0.font = UIFont(name: "Garamond", size: 18)
+            $0.textAlignment = .left
+            $0.numberOfLines = 8
+            $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
+            $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.9).isActive = true
+        }
+        
+        var actionHistoryPresent = false
+        
+        if let actionsCount = actionsCount {
+            
+            let stackViewSpacing: CGFloat = 40
+            let stackViewWidth = CGFloat(actionsCount) * ACTION_LABEL_WIDTH + CGFloat(actionsCount - 1) * stackViewSpacing
+            
+            _ = actionsScrollView.then {
+                $0.addSubview(actionsStackView)
+                $0.layer.borderWidth = 2
+                $0.layer.borderColor = Palette.pink.color.cgColor
+                $0.topAnchor.constraint(equalTo: view.topAnchor, constant: viewDimensions.h * 0.4).isActive = true
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2).isActive = true
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2).isActive = true
+                $0.heightAnchor.constraint(equalToConstant: STACK_VIEW_HEIGHT).isActive = true
+            }
+            
+            _ = actionsStackView.then {
+                $0.axis = .horizontal
+                $0.distribution = .equalSpacing
+                $0.alignment = .leading
+                $0.spacing = stackViewSpacing
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                $0.topAnchor.constraint(equalTo: actionsScrollView.topAnchor).isActive = true
+                $0.leadingAnchor.constraint(equalTo: actionsScrollView.leadingAnchor, constant: 10).isActive = true
+                $0.trailingAnchor.constraint(equalTo: actionsScrollView.trailingAnchor, constant: -10).isActive = true
+                $0.bottomAnchor.constraint(equalTo: actionsScrollView.bottomAnchor).isActive = true
+                $0.widthAnchor.constraint(equalToConstant: stackViewWidth).isActive = true
+            }
+            
+            actionHistoryPresent = true
+            
+        }
+        
+        let latestQuestionLabelTopAnchor = actionHistoryPresent ? actionsScrollView.bottomAnchor : titleLabel.bottomAnchor
+        
+        _ = latestQuestionLabel.then {
+            $0.text = latestQuestionText
+            $0.font = UIFont(name: "Montserrat-Regular", size: 16)
+            $0.numberOfLines = 0
+            $0.topAnchor.constraint(equalTo: latestQuestionLabelTopAnchor, constant: 20).isActive = true
+            $0.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
+            $0.trailingAnchor.constraint(equalTo: summaryLabel.trailingAnchor).isActive = true
+        }
+        
+        _ = memberActionLabel.then {
+            $0.topAnchor.constraint(equalTo: latestQuestionLabel.bottomAnchor, constant: 20).isActive = true
+            $0.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
+        }
     }
-}
-
-extension EventSummaryVC {
     
-    func setUpBill(_ event: Event) {
-        guard let safeBill = event.bill else { return }
-        titleLabel.text = safeBill.subject.uppercased() + " BILL: " + safeBill.number
-        summaryLabel.text = event.bill!.summary
-        actionHistoryLabel.text = "This is where Oliver's sweet scroll component will go.".uppercased()
-        latestQuestion.text = "LATEST ACTION: " + safeBill.latestMajorAction.uppercased()
+    func setupTexts(for event: Event) {
+        
+        if let bill = event.bill {
+            titleText = "\(bill.subject.uppercased()) BILL\n\(bill.number)"
+            summaryText = bill.summary
+            latestQuestionText = "LATEST ACTION: \(bill.latestMajorAction.uppercased())"
+            setupStackView(with: bill.actions)
+        } else {
+            titleText = event.eventDescription
+            latestQuestionText = "LATEST ACTION: \(event.question.uppercased())"
+        }
         
     }
     
-    func setUpNonBill(_ event: Event) {
-   
-        titleLabel.text = event.cleanTitle
-        if event.eventDescription != String(describing: event.cleanTitle) {
-            summaryLabel.text = event.eventDescription
+    func setupStackView(with actions: [[String : String]]) {
+        
+        actions.forEach { action in
+            
+            let attributedText = multiColorText(
+                textToColor: [
+                    ("\n\(action["date"]?.kindDate() ?? "")\n\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 16)!),
+                    (action["description"] ?? "", .black, UIFont(name: "Garamond", size: 16)!)
+                ],
+                withImage: nil,
+                at: 0
+            )
+            
+            _ = UILabel().then {
+                actionsStackView.addArrangedSubview($0)
+                $0.attributedText = attributedText
+                $0.textAlignment = .center
+                $0.numberOfLines = 7
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                $0.widthAnchor.constraint(equalToConstant: ACTION_LABEL_WIDTH).isActive = true
+            }
+            
         }
-        actionHistoryLabel.text = "To make the nonbill scrollview, you have to look at all the merged events  that share the same description name, I think?".uppercased()
-        latestQuestion.text = "LATEST ACTION: " + event.question.uppercased()
-
+        
+        if actions.count > 0 { actionsCount = actions.count }
     }
 }
-

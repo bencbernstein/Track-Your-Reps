@@ -15,12 +15,8 @@ class EventTableCell: UITableViewCell {
         didSet {
             guard let event = event else { return }
             event.isBill ? setUpBill(event) : setUpNonBill(event)
-            
             memberActionLabel.attributedText = event.memberPositions
-            timeLabel.text = formatDate(event.date)
-            
-           
-
+            timeLabel.text = timeSince(from: event.date)
         }
     }
     
@@ -41,7 +37,6 @@ class EventTableCell: UITableViewCell {
     
     private func reset() {
          categoryLabel.backgroundColor = Palette.darkgrey.color
-
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -56,7 +51,6 @@ class EventTableCell: UITableViewCell {
 
 
 // MARK: - Layout
-
 extension EventTableCell {
     
     func setupView() {
@@ -118,19 +112,6 @@ extension EventTableCell {
         memberActionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         memberActionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
-    
-    func formatDate(_ date: String) -> String {
-        
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd"
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d"
-        
-        let date: Date? = dateFormatterGet.date(from: date)
-        
-        return dateFormatter.timeSince(from: date!)
-    }
 }
 
 // MARK: - Bill or NonBill Specific Layout
@@ -143,17 +124,23 @@ extension EventTableCell {
         categoryLabel.backgroundColor = determineBackgroundColor(safeBill.subject)
         
         let body = NSMutableAttributedString()
-        let billNumber = multiColorText(textToColor: [(safeBill.number, Palette.darkgrey.color)], withImage: nil, at: 0)
+        
+        let billNumber = multiColorText(
+            textToColor: [
+                (safeBill.number, Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 16)!)
+            ],
+            withImage: nil,
+            at: 0
+        )
         
         body.append(billNumber)
         body.append(NSAttributedString(string: "\n\n\(event.cleanTitle)"))
             
         bodyLabel.attributedText = body
-        
     }
     
     func setUpNonBill(_ event: Event) {
-        categoryLabel.text = event.cleanCategory.uppercased()
+        categoryLabel.text = event.cleanQuestion.uppercased()
         bodyLabel.text = event.eventDescription
     }
 }

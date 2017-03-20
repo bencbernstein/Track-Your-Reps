@@ -1,50 +1,53 @@
-//
-//  TextSimplification.swift
-//  Track Your Reps
-//
-//  Created by Benjamin Bernstein on 3/17/17.
-//  Copyright © 2017 Burning Flowers. All rights reserved.
-//
+///
+///  TextSimplification.swift
+///
 
 import Foundation
 import UIKit
 
 typealias EventTitleSimplifier = Event
-
 extension EventTitleSimplifier {
     
     var cleanTitle: String {
-        if self.isBill {
-            guard let safeBill = self.bill else { return  "No Title" }
-            if safeBill.title.contains("disapproval") || safeBill.title.contains("Disapproving") && safeBill.title.characters.count >= 140 {
-                return "\(safeBill.fullParty) sponsored resolution to overturn a previous rule."
-            }
-            else {
-                return safeBill.title
-            }
-        } else {
-            return self.eventDescription
-        }
+        if let bill = self.bill { return sanitizeTitle(for: bill) }
+        return self.eventDescription
     }
     
+    private func sanitizeTitle(for bill: Bill) -> String {
+        let title = bill.title
+        if isOverturning(title) && longerThan140Chars(title) {
+            return "\(bill.sponsorPartyLong) sponsored resolution to overturn a previous rule."
+        }
+        return title
+    }
+    
+    private func isOverturning(_ title: String) -> Bool {
+        return title.lowercased().contains("disapprov")
+    }
+    
+    private func longerThan140Chars(_ title: String) -> Bool {
+        return title.characters.count >= 140
+    }
 }
 
-typealias EventCategorySimplifier = Event
 
+typealias EventCategorySimplifier = Event
 extension EventCategorySimplifier {
     
-    var cleanCategory: String {
-        var returnString = self.question
-        if self.question.contains("On the") {
-            returnString = returnString.replacingOccurrences(of: "On the ", with: "")
-        }
-        if returnString.contains("Cloture Motion") {
-            returnString = returnString.replacingOccurrences(of: "Cloture Motion", with: "End the Debate On")
-        }
-        return returnString
-        
+    var categoryStringReplacements: [String : String] {
+        return [
+            "On the ": "",
+            "Cloture Motion": "End the Debate On"
+        ]
     }
     
+    var cleanQuestion: String {
+        var questionCopy = self.question
+        categoryStringReplacements.forEach { str in
+            questionCopy = questionCopy.replacingOccurrences(of: str.key, with: str.value)
+        }
+        return questionCopy
+    }
 }
 
 

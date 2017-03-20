@@ -10,21 +10,18 @@ class MembersTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Palette.pink.color
-        setupLayout()
-    }
-    
-    func setupLayout() {
         
         navComponents(title: "Reps")
-        
-        self.tableView.backgroundColor = UIColor.lightGray
-        self.tableView.rowHeight = view.frame.size.height / 8
-        self.tableView.register(MemberTableCell.self, forCellReuseIdentifier: MemberTableCell.reuseID)
-    }
     
-
+        _ = tableView.then {
+            $0.backgroundColor = Palette.pink.color
+            $0.separatorColor = Palette.pink.color
+            $0.rowHeight = view.frame.size.height / 8
+            $0.register(MemberTableCell.self, forCellReuseIdentifier: MemberTableCell.reuseID)
+        }
+    }
 }
+
 
 // MARK: - Table View Methods
 extension MembersTableVC {

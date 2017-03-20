@@ -71,37 +71,6 @@ class MemberSummaryVC: UIViewController, UIScrollViewDelegate {
         setupBiographyScrollView()
         setupRecentActions()
     }
-    
-    func setupBiographyScrollView() {
-        
-        _ = biographyScrollView.then {
-            $0.addSubview(biographyLabel)
-            $0.topAnchor.constraint(equalTo: memberImage.bottomAnchor, constant: 20).isActive = true
-            $0.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            $0.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-            $0.bottomAnchor.constraint(equalTo: recentActionsViewBorder.topAnchor).isActive = true
-        }
-        
-        _ = biographyLabel.then {
-            $0.font = UIFont(name: "Garamond", size: 18)
-            $0.numberOfLines = 0
-            $0.text = "\n\(member.wikipediaBio)\n"
-            $0.setLineHeight(lineHeight: 6)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.topAnchor.constraint(equalTo: biographyScrollView.topAnchor).isActive = true
-            $0.bottomAnchor.constraint(equalTo: biographyScrollView.bottomAnchor).isActive = true
-            $0.leadingAnchor.constraint(equalTo: biographyScrollView.leadingAnchor, constant: 20).isActive = true
-            $0.trailingAnchor.constraint(equalTo: biographyScrollView.trailingAnchor, constant: -20).isActive = true
-            $0.widthAnchor.constraint(equalTo: biographyScrollView.widthAnchor, constant: -40).isActive = true
-        }
-        
-        _ = biographyBorder.then {
-            $0.backgroundColor = Palette.pink.color
-            $0.widthAnchor.constraint(equalToConstant: viewDimensions.w).isActive = true
-            $0.heightAnchor.constraint(equalToConstant: 2).isActive = true
-            $0.topAnchor.constraint(equalTo: biographyScrollView.topAnchor).isActive = true
-        }
-    }
 }
 
 
@@ -140,7 +109,42 @@ extension MemberSummaryVC {
                 $0.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
                 $0.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
             }
-            
+        }
+    }
+}
+
+
+// MARK: - Scrollview
+extension MemberSummaryVC {
+    
+    func setupBiographyScrollView() {
+        
+        _ = biographyScrollView.then {
+            $0.addSubview(biographyLabel)
+            $0.topAnchor.constraint(equalTo: memberImage.bottomAnchor, constant: 20).isActive = true
+            $0.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            $0.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            $0.bottomAnchor.constraint(equalTo: recentActionsViewBorder.topAnchor).isActive = true
+        }
+        
+        _ = biographyLabel.then {
+            $0.font = UIFont(name: "Garamond", size: 18)
+            $0.numberOfLines = 0
+            $0.text = "\n\(member.wikipediaBio)\n"
+            $0.setLineHeight(lineHeight: 6)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.topAnchor.constraint(equalTo: biographyScrollView.topAnchor).isActive = true
+            $0.bottomAnchor.constraint(equalTo: biographyScrollView.bottomAnchor).isActive = true
+            $0.leadingAnchor.constraint(equalTo: biographyScrollView.leadingAnchor, constant: 20).isActive = true
+            $0.trailingAnchor.constraint(equalTo: biographyScrollView.trailingAnchor, constant: -20).isActive = true
+            $0.widthAnchor.constraint(equalTo: biographyScrollView.widthAnchor, constant: -40).isActive = true
+        }
+        
+        _ = biographyBorder.then {
+            $0.backgroundColor = Palette.pink.color
+            $0.widthAnchor.constraint(equalToConstant: viewDimensions.w).isActive = true
+            $0.heightAnchor.constraint(equalToConstant: 2).isActive = true
+            $0.topAnchor.constraint(equalTo: biographyScrollView.topAnchor).isActive = true
         }
     }
 }
