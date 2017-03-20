@@ -85,3 +85,5 @@ func multiColorText(textToColor: [(String, UIColor, UIFont)], withImage: UIImage
     }
     return mutableString
 }
+
+

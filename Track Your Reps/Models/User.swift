@@ -8,7 +8,7 @@ final class User {
     
     static let sharedInstance = User()
     
-    fileprivate let STORED_EVENTS_COUNT = 8
+    fileprivate let STORED_EVENTS_COUNT = 25
     
     var dataStore = DataStore()
     let defaults = UserDefaults.standard

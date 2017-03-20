@@ -15,6 +15,8 @@ extension EventTitleSimplifier {
     
     private func sanitizeTitle(for bill: Bill) -> String {
         let title = bill.title
+        print("title is", title)
+        
         if isOverturning(title) && longerThan140Chars(title) {
             return "\(bill.sponsorPartyLong) sponsored resolution to overturn a previous rule."
         }
@@ -28,7 +30,41 @@ extension EventTitleSimplifier {
     private func longerThan140Chars(_ title: String) -> Bool {
         return title.characters.count >= 140
     }
+    
 }
+
+extension String {
+    
+    var cleanAction: String {
+        return self.removeParentheses()
+    }
+    
+    var cleanSummary: String {
+        return self.removeParentheses()
+    }
+    
+    func removeParentheses() -> String {
+        var result: [Character] = []
+        var moveOn = false
+        for character in self.characters {
+            
+            if character == "(" {
+                moveOn = true
+            }
+            
+            if !moveOn {
+                result.append(character)
+            }
+            
+            if character == ")" {
+                moveOn = false
+            }
+        }
+        
+        return String(result)
+    }
+}
+
 
 
 typealias EventCategorySimplifier = Event
@@ -49,7 +85,6 @@ extension EventCategorySimplifier {
         return questionCopy
     }
 }
-
 
 typealias EventMemberPositions = Event
 // TODO: - Refactor to either String or [Member] and create attributed elements in the Views
@@ -102,3 +137,5 @@ extension EventMemberPositions {
         return returnString
     }
 }
+
+

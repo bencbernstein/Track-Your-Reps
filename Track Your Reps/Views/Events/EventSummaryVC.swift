@@ -127,7 +127,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
         
         if let bill = event.bill {
             titleText = "\(bill.subject.uppercased()) BILL\n\(bill.number)"
-            summaryText = bill.summary
+            summaryText = bill.summary.cleanSummary
             latestQuestionText = "LATEST ACTION: \(bill.latestMajorAction.uppercased())"
             setupStackView(with: bill.actions)
         } else {
@@ -144,7 +144,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             let attributedText = multiColorText(
                 textToColor: [
                     ("\n\(action["date"]?.kindDate() ?? "")\n\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 16)!),
-                    (action["description"] ?? "", .black, UIFont(name: "Garamond", size: 16)!)
+                    (action["description"]?.cleanAction ?? "", .black, UIFont(name: "Garamond", size: 16)!)
                 ],
                 withImage: nil,
                 at: 0
