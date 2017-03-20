@@ -75,6 +75,10 @@ func multiColorText(textToColor: [(String, UIColor, UIFont)], withImage: UIImage
         let strLength = str.characters.count
         mutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: intValue, length: strLength))
         mutableString.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: intValue, length: strLength))
+        // line spacing
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 5
+        mutableString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: intValue, length: strLength))
     }
     if let image = withImage, let index = index {
         let nsImage = NSTextAttachment()

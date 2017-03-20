@@ -36,10 +36,12 @@ extension String {
     
     var cleanAction: String {
         return self.removeParentheses()
+                   .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     var cleanSummary: String {
         return self.removeParentheses()
+                   .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     func removeParentheses() -> String {

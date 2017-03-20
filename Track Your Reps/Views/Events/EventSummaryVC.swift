@@ -16,12 +16,12 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
     let actionsStackView = UIStackView()
     
     var actionsCount: Int? = nil
-    var titleText = ""
+    var titleText = NSMutableAttributedString()
     var summaryText = ""
-    var latestQuestionText = ""
+    var latestQuestionText = NSMutableAttributedString()
     
-    let STACK_VIEW_HEIGHT: CGFloat = 150
-    let ACTION_LABEL_WIDTH: CGFloat = 250
+    let SCROLL_VIEW_HEIGHT: CGFloat = 115
+    var ACTION_LABEL_WIDTH: CGFloat = 350
     
     var event: Event? {
         didSet {
@@ -53,21 +53,20 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
         views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
         _ = titleLabel.then {
-            $0.text = titleText
-            $0.font = UIFont(name: "Montserrat-Regular", size: 18)
+            $0.attributedText = titleText
             $0.textAlignment = .center
             $0.numberOfLines = 0
-            $0.topAnchor.constraint(equalTo: margins.topAnchor, constant: 30).isActive = true
+            $0.topAnchor.constraint(equalTo: margins.topAnchor, constant: viewDimensions.w * 0.05).isActive = true
             $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.9).isActive = true
+            $0.widthAnchor.constraint(equalTo: margins.widthAnchor).isActive = true
         }
         
         _ = summaryLabel.then {
             $0.text = summaryText
-            $0.font = UIFont(name: "Garamond", size: 18)
-            $0.textAlignment = .left
+            $0.font = UIFont(name: "Garamond", size: 16)
+            $0.setLineHeight(lineHeight: 6)
             $0.numberOfLines = 8
-            $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
+            $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
             $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.9).isActive = true
         }
@@ -76,17 +75,18 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
         
         if let actionsCount = actionsCount {
             
-            let stackViewSpacing: CGFloat = 40
+            ACTION_LABEL_WIDTH = view.frame.width
+            let stackViewSpacing: CGFloat = 25
             let stackViewWidth = CGFloat(actionsCount) * ACTION_LABEL_WIDTH + CGFloat(actionsCount - 1) * stackViewSpacing
             
             _ = actionsScrollView.then {
                 $0.addSubview(actionsStackView)
                 $0.layer.borderWidth = 2
                 $0.layer.borderColor = Palette.pink.color.cgColor
-                $0.topAnchor.constraint(equalTo: view.topAnchor, constant: viewDimensions.h * 0.4).isActive = true
+                $0.topAnchor.constraint(equalTo: view.topAnchor, constant: viewDimensions.h * 0.45).isActive = true
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2).isActive = true
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2).isActive = true
-                $0.heightAnchor.constraint(equalToConstant: STACK_VIEW_HEIGHT).isActive = true
+                $0.heightAnchor.constraint(equalToConstant: SCROLL_VIEW_HEIGHT).isActive = true
             }
             
             _ = actionsStackView.then {
@@ -95,7 +95,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
                 $0.alignment = .leading
                 $0.spacing = stackViewSpacing
                 $0.translatesAutoresizingMaskIntoConstraints = false
-                $0.topAnchor.constraint(equalTo: actionsScrollView.topAnchor).isActive = true
+                $0.topAnchor.constraint(equalTo: actionsScrollView.topAnchor, constant: 10).isActive = true
                 $0.leadingAnchor.constraint(equalTo: actionsScrollView.leadingAnchor, constant: 10).isActive = true
                 $0.trailingAnchor.constraint(equalTo: actionsScrollView.trailingAnchor, constant: -10).isActive = true
                 $0.bottomAnchor.constraint(equalTo: actionsScrollView.bottomAnchor).isActive = true
@@ -106,33 +106,51 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             
         }
         
-        let latestQuestionLabelTopAnchor = actionHistoryPresent ? actionsScrollView.bottomAnchor : titleLabel.bottomAnchor
+        let latestQuestionLabelTopAnchorConstraint = actionHistoryPresent ?
+            latestQuestionLabel.topAnchor.constraint(equalTo: actionsScrollView.bottomAnchor, constant: 10) :
+            latestQuestionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50)
         
         _ = latestQuestionLabel.then {
-            $0.text = latestQuestionText
-            $0.font = UIFont(name: "Montserrat-Regular", size: 16)
-            $0.numberOfLines = 0
-            $0.topAnchor.constraint(equalTo: latestQuestionLabelTopAnchor, constant: 20).isActive = true
+            $0.attributedText = latestQuestionText
+            $0.numberOfLines = 4
+            latestQuestionLabelTopAnchorConstraint.isActive = true
             $0.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
             $0.trailingAnchor.constraint(equalTo: summaryLabel.trailingAnchor).isActive = true
         }
         
         _ = memberActionLabel.then {
-            $0.topAnchor.constraint(equalTo: latestQuestionLabel.bottomAnchor, constant: 20).isActive = true
-            $0.leadingAnchor.constraint(equalTo: summaryLabel.leadingAnchor).isActive = true
+            $0.topAnchor.constraint(equalTo: latestQuestionLabel.bottomAnchor, constant: 10).isActive = true
+            $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         }
     }
     
     func setupTexts(for event: Event) {
         
         if let bill = event.bill {
-            titleText = "\(bill.subject.uppercased()) BILL\n\(bill.number)"
+            titleText = multiColorText(
+                textToColor: [
+                    ("\(bill.subject.uppercased()) BILL\n", .black, UIFont(name: "Montserrat-Light", size: 18)!),
+                    (bill.number, Palette.grey.color, UIFont(name: "Montserrat-Regular", size: 14)!)
+                ],
+                withImage: nil, at: 0)
             summaryText = bill.summary.cleanSummary
-            latestQuestionText = "LATEST ACTION: \(bill.latestMajorAction.uppercased())"
+            latestQuestionText = multiColorText(
+                textToColor: [
+                    ("LATEST ACTION", .black, UIFont(name: "Montserrat-Light", size: 18)!),
+                    ("\n\(bill.latestMajorAction)", .black, UIFont(name: "Garamond", size: 16)!)
+                ],
+                withImage: nil, at: 0)
             setupStackView(with: bill.actions)
         } else {
-            titleText = event.eventDescription
-            latestQuestionText = "LATEST ACTION: \(event.question.uppercased())"
+            titleText = multiColorText(
+                textToColor: [(event.eventDescription, .black, UIFont(name: "Montserrat-Light", size: 18)!)],
+                withImage: nil, at: 0)
+            latestQuestionText = multiColorText(
+                textToColor: [
+                    ("LATEST ACTION", .black, UIFont(name: "Montserrat-Light", size: 18)!),
+                    ("\n\(event.question)", .black, UIFont(name: "Garamond", size: 16)!)
+                ],
+                withImage: nil, at: 0)
         }
         
     }
@@ -143,8 +161,8 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             
             let attributedText = multiColorText(
                 textToColor: [
-                    ("\n\(action["date"]?.kindDate() ?? "")\n\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 16)!),
-                    (action["description"]?.cleanAction ?? "", .black, UIFont(name: "Garamond", size: 16)!)
+                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 14)!),
+                    (action["description"]?.cleanAction ?? "", .black, UIFont(name: "Montserrat-Regular", size: 14)!)
                 ],
                 withImage: nil,
                 at: 0
@@ -154,7 +172,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
                 actionsStackView.addArrangedSubview($0)
                 $0.attributedText = attributedText
                 $0.textAlignment = .center
-                $0.numberOfLines = 7
+                $0.numberOfLines = 4
                 $0.translatesAutoresizingMaskIntoConstraints = false
                 $0.widthAnchor.constraint(equalToConstant: ACTION_LABEL_WIDTH).isActive = true
             }
