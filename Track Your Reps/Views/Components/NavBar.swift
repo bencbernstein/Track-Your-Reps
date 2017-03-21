@@ -20,14 +20,8 @@ extension UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: settingsButton)
         
-        if title == "Home" {
-            let logo = #imageLiteral(resourceName: "Icon")
-            let imageView = UIImageView(image:logo)
-            self.navigationItem.titleView = imageView
-        } else {
-            navigationItem.title = title
-        }
-        
+        navigationItem.title = title
+
         navigationController?.navigationBar.tintColor = Palette.black.color
         navigationController?.navigationBar.isTranslucent = false
     }
