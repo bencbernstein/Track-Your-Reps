@@ -11,7 +11,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
     let summaryLabel = UILabel()
     var latestActionHeader = UILabel()
     var latestAction = UILabel()
-
+    
     var memberActionLabel = UILabel()
     
     let actionsScrollView = UIScrollView()
@@ -77,11 +77,11 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             ACTION_LABEL_WIDTH = view.frame.width
             let stackViewSpacing: CGFloat = 25
             let stackViewWidth = CGFloat(actionsCount) * ACTION_LABEL_WIDTH + CGFloat(actionsCount - 1) * stackViewSpacing
-
+            
             _ = actionsScrollView.then {
                 $0.addSubview(actionsStackView)
                 $0.backgroundColor = Palette.pink.color
-                $0.topAnchor.constraint(equalTo: view.topAnchor, constant: viewDimensions.h * 0.50).isActive = true
+                $0.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: viewDimensions.w * 0.05 ).isActive = true
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
                 $0.heightAnchor.constraint(equalToConstant: SCROLL_VIEW_HEIGHT).isActive = true
@@ -107,21 +107,26 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
         } else {
             
             _ = latestActionHeader.then {
-                $0.text = "LATEST ACTION"
-                $0.font = UIFont(name: "Montserrat-Light", size: 18)
-                $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50).isActive = true
+                guard let event = event else { return }
+                $0.text = event.eventDescription
+                $0.font = UIFont(name: "Garamond", size: 18)
+                $0.numberOfLines = 0
+                $0.setLineHeight(lineHeight: 6)
+                $0.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.9).isActive = true
+                $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
                 $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             }
             
             _ = latestAction.then {
-                $0.text = event?.question
-                $0.font = UIFont(name: "Garamond", size: 16)
-                $0.topAnchor.constraint(equalTo: latestActionHeader.bottomAnchor, constant: 10).isActive = true
+                
+                $0.text = event?.question.uppercased()
+                $0.font = UIFont(name: "Montserrat-Light", size: 16)
+                $0.topAnchor.constraint(equalTo: latestActionHeader.bottomAnchor, constant: 30).isActive = true
                 $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             }
             
             _ = memberActionLabel.then {
-                $0.topAnchor.constraint(equalTo: latestAction.bottomAnchor, constant: 30).isActive = true
+                $0.topAnchor.constraint(equalTo: latestAction.bottomAnchor, constant: 15).isActive = true
                 $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             }
         }
@@ -144,7 +149,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
         } else {
             
             titleText = multiColorText(
-                textToColor: [(event.eventDescription, .black, UIFont(name: "Montserrat-Light", size: 18)!)],
+                textToColor: [("LATEST ACTION" + ": " + event.date.kindDate().uppercased(), .black, UIFont(name: "Montserrat-Light", size: 18)!)],
                 withImage: nil, at: 0
             )
         }
@@ -156,7 +161,7 @@ class EventSummaryVC: UIViewController, UIScrollViewDelegate {
             
             let attributedText = multiColorText(
                 textToColor: [
-                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Light", size: 16)!),
+                    ("\(action["date"]?.kindDate().uppercased() ?? "")\n", Palette.darkgrey.color, UIFont(name: "Montserrat-Regular", size: 16)!),
                     (action["description"]?.cleanAction ?? "", Palette.darkgrey.color, UIFont(name: "Garamond", size: 18)!)
                 ],
                 withImage: nil,
